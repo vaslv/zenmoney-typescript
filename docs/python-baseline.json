@@ -1,0 +1,23 @@
+{
+  "package": "zenmoney-python",
+  "version": "0.7.0",
+  "tag": "v0.7.0",
+  "tagCommit": "6c38d4c0cb3e8cc271292e37e9934e6c1a7b9972",
+  "sourceCommit": "bf550cd9878903c954f7c3487202ff450bf4102e",
+  "wheel": {
+    "filename": "zenmoney_python-0.7.0-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/c4/67/0a58fea1cb691d20c3ed9dbaed2b908fd61e766f69b32b4f210044071fe6/zenmoney_python-0.7.0-py3-none-any.whl",
+    "sha256": "529cd89ce941ddfabbe8a08c4ab5c587389680cda0e0b9b1f1abaf3e5f2734b7"
+  },
+  "moduleSha256": {
+    "__init__.py": "074d91d043e4fb309e695ed9ba95dfc5328bb7e774ba263d4cad978d2096fcb0",
+    "client.py": "310d6bd36d4776ea25138b113e3e1aa58a199d86a8433cc0aba316901d16fff6",
+    "entities.py": "6dca2a54d43e08fdf9d7750914559c0fe6ad7b0e784c2d2d1314746e6844bdf1",
+    "errors.py": "6565134171d78f87cdef22d3410ad1a28072f2d74cca06bcd1f30afcdad60c5d",
+    "models.py": "7dc70ab370402ba83c2bfcee06c02f19c013c3aa731843e747031e94dba9c351",
+    "oauth.py": "817fb489a8e7babe34163672fa758571cae8ba62f04c43cbdbc1c34815b27619",
+    "protocol.py": "29ec3931fd766b4de92eb0400e1bed1f775c6051f8aa4a44ac25b5055630b2bc",
+    "transactions.py": "e8d45310d8d345e5b0459b310def500403bd8f4f3860e679625d52b8f1512e25"
+  },
+  "comparison": "All eight wheel runtime modules equal the approved source inventory and tag runtime source"
+}

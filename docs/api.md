@@ -1,7 +1,8 @@
 # Proposed public API and invariant contract
 
-Status: implementation specification, not working code. S1 freezes declaration
-examples and records any amendments before implementation.
+Status: approved target API. S1 implements ExactDecimal/decimal only and freezes
+the mapping in api-options.json; all remaining root exports below are planned.
+Numeric/resource decisions are recorded in adr/002-exact-json.md.
 
 ## Exports and module boundaries
 
@@ -84,8 +85,9 @@ The codec must reject duplicate keys, invalid UTF-8, malformed JSON, nonfinite
 numbers, cycles and unsupported JS values (functions/symbols/custom prototypes).
 JSON object keys such as __proto__ must remain inert data without prototype mutation.
 Preserve missing versus null versus empty arrays. Avoid regex-based JSON replacement.
-Choose the parser in S1 after testing these invariants; do not handwrite a parser
-unless existing candidates fail documented mandatory requirements.
+S1 selected lossless-json 4.3.2 with bounded duplicate-key preflight; see ADR 002.
+Maximum numeric token length is 4096 and nesting depth is 128. These are explicit
+resource bounds compared with Python, not rounding or loss of accepted values.
 
 ## Transport
 

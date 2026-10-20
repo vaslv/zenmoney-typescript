@@ -1,0 +1,995 @@
+{
+  "status": "S1 declaration mapping; tests and implementation coverage follow in S2-S7",
+  "rules": [
+    "Wire field spellings remain unchanged",
+    "Convenience parameters use camelCase",
+    "Python HTTPX transport and per-phase timeout map to fetch and total timeoutMs with documented differences",
+    "Sync and async Python classes share one asynchronous TypeScript client",
+    "Internal protocol helpers in the Python public module are parity adapter targets, not promised root TS exports",
+    "Do not implement unapproved extra root exports just because they are inventoried"
+  ],
+  "declarations": [
+    {
+      "python": "client.py:validate_timeout",
+      "typescript": "validateTimeout",
+      "parameters": {
+        "timeout": "timeoutMs"
+      },
+      "featureIds": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P19",
+        "P20",
+        "P22"
+      ]
+    },
+    {
+      "python": "client.py:Client",
+      "typescript": "ZenMoneyClient",
+      "wireFields": [
+        "_http"
+      ],
+      "methods": [
+        {
+          "python": "close",
+          "typescript": "close",
+          "parameters": {}
+        },
+        {
+          "python": "diff",
+          "typescript": "diff",
+          "parameters": {
+            "server_timestamp": "serverTimestamp",
+            "changes": "changes",
+            "deletions": "deletions",
+            "force_fetch": "forceFetch"
+          }
+        },
+        {
+          "python": "read_diff",
+          "typescript": "readDiff",
+          "parameters": {
+            "server_timestamp": "serverTimestamp",
+            "force_fetch": "forceFetch"
+          }
+        },
+        {
+          "python": "upsert",
+          "typescript": "upsert",
+          "parameters": {
+            "kind": "kind",
+            "entities": "entities",
+            "server_timestamp": "serverTimestamp"
+          }
+        },
+        {
+          "python": "delete",
+          "typescript": "delete",
+          "parameters": {
+            "deletions": "deletions",
+            "server_timestamp": "serverTimestamp"
+          }
+        },
+        {
+          "python": "suggest",
+          "typescript": "suggest",
+          "parameters": {
+            "transactions": "transactions"
+          }
+        },
+        {
+          "python": "suggest",
+          "typescript": "suggest",
+          "parameters": {
+            "transactions": "transactions"
+          }
+        },
+        {
+          "python": "suggest",
+          "typescript": "suggest",
+          "parameters": {
+            "transactions": "transactions"
+          }
+        }
+      ],
+      "featureIds": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P19",
+        "P20",
+        "P22"
+      ]
+    },
+    {
+      "python": "client.py:AsyncClient",
+      "typescript": "ZenMoneyClient",
+      "wireFields": [
+        "_http"
+      ],
+      "methods": [
+        {
+          "python": "aclose",
+          "typescript": "close",
+          "parameters": {}
+        },
+        {
+          "python": "diff",
+          "typescript": "diff",
+          "parameters": {
+            "server_timestamp": "serverTimestamp",
+            "changes": "changes",
+            "deletions": "deletions",
+            "force_fetch": "forceFetch"
+          }
+        },
+        {
+          "python": "read_diff",
+          "typescript": "readDiff",
+          "parameters": {
+            "server_timestamp": "serverTimestamp",
+            "force_fetch": "forceFetch"
+          }
+        },
+        {
+          "python": "upsert",
+          "typescript": "upsert",
+          "parameters": {
+            "kind": "kind",
+            "entities": "entities",
+            "server_timestamp": "serverTimestamp"
+          }
+        },
+        {
+          "python": "delete",
+          "typescript": "delete",
+          "parameters": {
+            "deletions": "deletions",
+            "server_timestamp": "serverTimestamp"
+          }
+        },
+        {
+          "python": "suggest",
+          "typescript": "suggest",
+          "parameters": {
+            "transactions": "transactions"
+          }
+        },
+        {
+          "python": "suggest",
+          "typescript": "suggest",
+          "parameters": {
+            "transactions": "transactions"
+          }
+        },
+        {
+          "python": "suggest",
+          "typescript": "suggest",
+          "parameters": {
+            "transactions": "transactions"
+          }
+        }
+      ],
+      "featureIds": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P19",
+        "P20",
+        "P22"
+      ]
+    },
+    {
+      "python": "entities.py:account",
+      "typescript": "account",
+      "parameters": {
+        "user": "user",
+        "title": "title",
+        "instrument": "instrument",
+        "account_type": "accountType",
+        "id": "id",
+        "now": "now"
+      },
+      "featureIds": [
+        "P09",
+        "P23"
+      ],
+      "extraOptionsSource": "fields: Any"
+    },
+    {
+      "python": "entities.py:tag",
+      "typescript": "tag",
+      "parameters": {
+        "user": "user",
+        "title": "title",
+        "id": "id",
+        "now": "now"
+      },
+      "featureIds": [
+        "P09",
+        "P23"
+      ],
+      "extraOptionsSource": "fields: Any"
+    },
+    {
+      "python": "entities.py:merchant",
+      "typescript": "merchant",
+      "parameters": {
+        "user": "user",
+        "title": "title",
+        "id": "id",
+        "now": "now"
+      },
+      "featureIds": [
+        "P09",
+        "P23"
+      ],
+      "extraOptionsSource": "fields: Any"
+    },
+    {
+      "python": "errors.py:ZenMoneyError",
+      "typescript": "ZenMoneyError",
+      "wireFields": [],
+      "methods": [],
+      "featureIds": [
+        "P18"
+      ]
+    },
+    {
+      "python": "errors.py:TransportError",
+      "typescript": "TransportError",
+      "wireFields": [],
+      "methods": [],
+      "featureIds": [
+        "P18"
+      ]
+    },
+    {
+      "python": "errors.py:ResponseError",
+      "typescript": "ResponseError",
+      "wireFields": [],
+      "methods": [],
+      "featureIds": [
+        "P18"
+      ]
+    },
+    {
+      "python": "errors.py:HTTPError",
+      "typescript": "HTTPError",
+      "wireFields": [],
+      "methods": [
+        {
+          "python": "__init__",
+          "typescript": "constructor",
+          "parameters": {
+            "status_code": "statusCode"
+          }
+        }
+      ],
+      "featureIds": [
+        "P18"
+      ]
+    },
+    {
+      "python": "errors.py:ClientClosedError",
+      "typescript": "ClientClosedError",
+      "wireFields": [],
+      "methods": [],
+      "featureIds": [
+        "P18"
+      ]
+    },
+    {
+      "python": "models.py:Instrument",
+      "typescript": "Instrument",
+      "wireFields": [
+        "id",
+        "changed",
+        "title",
+        "shortTitle",
+        "symbol",
+        "rate"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Company",
+      "typescript": "Company",
+      "wireFields": [
+        "id",
+        "changed",
+        "title",
+        "fullTitle",
+        "www",
+        "country"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:User",
+      "typescript": "User",
+      "wireFields": [
+        "id",
+        "changed",
+        "login",
+        "currency",
+        "parent"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Entity",
+      "typescript": "Entity",
+      "wireFields": [
+        "id",
+        "changed",
+        "user"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Account",
+      "typescript": "Account",
+      "wireFields": [
+        "private",
+        "balanceCorrectionType",
+        "role",
+        "instrument",
+        "company",
+        "type",
+        "title",
+        "syncID",
+        "balance",
+        "startBalance",
+        "creditLimit",
+        "inBalance",
+        "savings",
+        "enableCorrection",
+        "enableSMS",
+        "archive",
+        "capitalization",
+        "percent",
+        "startDate",
+        "endDateOffset",
+        "endDateOffsetInterval",
+        "payoffStep",
+        "payoffInterval"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Tag",
+      "typescript": "Tag",
+      "wireFields": [
+        "archive",
+        "staticId",
+        "title",
+        "parent",
+        "icon",
+        "picture",
+        "color",
+        "showIncome",
+        "showOutcome",
+        "budgetIncome",
+        "budgetOutcome",
+        "required"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Merchant",
+      "typescript": "Merchant",
+      "wireFields": [
+        "mcc",
+        "title"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Movement",
+      "typescript": "Movement",
+      "wireFields": [
+        "incomeInstrument",
+        "incomeAccount",
+        "income",
+        "outcomeInstrument",
+        "outcomeAccount",
+        "outcome",
+        "tag",
+        "merchant",
+        "payee",
+        "comment"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Transaction",
+      "typescript": "Transaction",
+      "wireFields": [
+        "created",
+        "deleted",
+        "hold",
+        "originalPayee",
+        "date",
+        "mcc",
+        "reminderMarker",
+        "opIncome",
+        "opIncomeInstrument",
+        "opOutcome",
+        "opOutcomeInstrument",
+        "latitude",
+        "longitude",
+        "viewed",
+        "qrCode",
+        "source",
+        "incomeBankID",
+        "outcomeBankID"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Reminder",
+      "typescript": "Reminder",
+      "wireFields": [
+        "interval",
+        "step",
+        "points",
+        "startDate",
+        "endDate",
+        "notify"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:ReminderMarker",
+      "typescript": "ReminderMarker",
+      "wireFields": [
+        "isForecast",
+        "date",
+        "reminder",
+        "state",
+        "notify"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Budget",
+      "typescript": "Budget",
+      "wireFields": [
+        "isIncomeForecast",
+        "isOutcomeForecast",
+        "changed",
+        "user",
+        "tag",
+        "date",
+        "income",
+        "incomeLock",
+        "outcome",
+        "outcomeLock"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:Deletion",
+      "typescript": "Deletion",
+      "wireFields": [
+        "id",
+        "object",
+        "user",
+        "stamp"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:TransactionFields",
+      "typescript": "TransactionFields",
+      "wireFields": [
+        "originalPayee",
+        "reminderMarker",
+        "opIncome",
+        "opIncomeInstrument",
+        "opOutcome",
+        "opOutcomeInstrument",
+        "latitude",
+        "longitude",
+        "mcc",
+        "hold",
+        "deleted",
+        "viewed",
+        "qrCode",
+        "source",
+        "incomeBankID",
+        "outcomeBankID"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:BaseTransactionOptions",
+      "typescript": "BaseTransactionOptions",
+      "wireFields": [
+        "user",
+        "date",
+        "categories",
+        "comment",
+        "merchant",
+        "id",
+        "now"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "models.py:TransactionOptions",
+      "typescript": "TransactionOptions",
+      "wireFields": [
+        "payee"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P08"
+      ]
+    },
+    {
+      "python": "oauth.py:authorization_url",
+      "typescript": "authorizationUrl",
+      "parameters": {
+        "client_id": "clientId",
+        "redirect_uri": "redirectUri",
+        "state": "state"
+      },
+      "featureIds": [
+        "P15",
+        "P16",
+        "P17",
+        "P20"
+      ]
+    },
+    {
+      "python": "oauth.py:callback_code",
+      "typescript": "callbackCode",
+      "parameters": {
+        "callback_url": "callbackUrl",
+        "expected_state": "expectedState"
+      },
+      "featureIds": [
+        "P15",
+        "P16",
+        "P17",
+        "P20"
+      ]
+    },
+    {
+      "python": "oauth.py:Token",
+      "typescript": "OAuthToken",
+      "wireFields": [
+        "access_token",
+        "token_type",
+        "expires_in",
+        "refresh_token"
+      ],
+      "methods": [],
+      "featureIds": [
+        "P15",
+        "P16",
+        "P17",
+        "P20"
+      ]
+    },
+    {
+      "python": "oauth.py:OAuthClient",
+      "typescript": "OAuthClient",
+      "wireFields": [
+        "_http"
+      ],
+      "methods": [
+        {
+          "python": "close",
+          "typescript": "close",
+          "parameters": {}
+        },
+        {
+          "python": "exchange_code",
+          "typescript": "exchangeCode",
+          "parameters": {
+            "code": "code"
+          }
+        },
+        {
+          "python": "refresh",
+          "typescript": "refresh",
+          "parameters": {
+            "refresh_token": "refreshToken"
+          }
+        }
+      ],
+      "featureIds": [
+        "P15",
+        "P16",
+        "P17",
+        "P20"
+      ]
+    },
+    {
+      "python": "oauth.py:AsyncOAuthClient",
+      "typescript": "OAuthClient",
+      "wireFields": [
+        "_http"
+      ],
+      "methods": [
+        {
+          "python": "aclose",
+          "typescript": "close",
+          "parameters": {}
+        },
+        {
+          "python": "exchange_code",
+          "typescript": "exchangeCode",
+          "parameters": {
+            "code": "code"
+          }
+        },
+        {
+          "python": "refresh",
+          "typescript": "refresh",
+          "parameters": {
+            "refresh_token": "refreshToken"
+          }
+        }
+      ],
+      "featureIds": [
+        "P15",
+        "P16",
+        "P17",
+        "P20"
+      ]
+    },
+    {
+      "python": "protocol.py:Diff",
+      "typescript": "Diff",
+      "wireFields": [],
+      "methods": [
+        {
+          "python": "__init__",
+          "typescript": "constructor",
+          "parameters": {
+            "data": "data",
+            "raw_json": "rawJson"
+          }
+        },
+        {
+          "python": "server_timestamp",
+          "typescript": "serverTimestamp",
+          "parameters": {}
+        }
+      ],
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:entity_key",
+      "typescript": "entityKey",
+      "parameters": {
+        "kind": "kind",
+        "item": "item"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:validate_diff",
+      "typescript": "validateDiff",
+      "parameters": {
+        "data": "data"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:decode_json",
+      "typescript": "decodeJson",
+      "parameters": {
+        "raw": "raw"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:decode_diff",
+      "typescript": "decodeDiff",
+      "parameters": {
+        "raw": "raw",
+        "cursor": "cursor"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:timestamp",
+      "typescript": "timestamp",
+      "parameters": {
+        "value": "value"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:encode_json",
+      "typescript": "encodeJson",
+      "parameters": {
+        "value": "value"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:diff_payload",
+      "typescript": "diffPayload",
+      "parameters": {
+        "cursor": "cursor",
+        "now": "now",
+        "changes": "changes",
+        "deletions": "deletions",
+        "force_fetch": "forceFetch"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:suggest_payload",
+      "typescript": "suggestPayload",
+      "parameters": {
+        "transactions": "transactions"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "protocol.py:decode_suggestion",
+      "typescript": "decodeSuggestion",
+      "parameters": {
+        "raw": "raw",
+        "request": "request"
+      },
+      "featureIds": [
+        "P05",
+        "P06",
+        "P07",
+        "P21"
+      ]
+    },
+    {
+      "python": "transactions.py:transaction",
+      "typescript": "transaction",
+      "parameters": {
+        "user": "user",
+        "date": "date",
+        "income_account": "incomeAccount",
+        "outcome_account": "outcomeAccount",
+        "income_instrument": "incomeInstrument",
+        "outcome_instrument": "outcomeInstrument",
+        "income": "income",
+        "outcome": "outcome",
+        "categories": "categories",
+        "payee": "payee",
+        "comment": "comment",
+        "merchant": "merchant",
+        "id": "id",
+        "now": "now"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "extraOptionsSource": "fields: Unpack[TransactionFields]"
+    },
+    {
+      "python": "transactions.py:expense",
+      "typescript": "expense",
+      "parameters": {
+        "account": "account",
+        "instrument": "instrument",
+        "amount": "amount"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "extraOptionsSource": "kwargs: Unpack[TransactionOptions]"
+    },
+    {
+      "python": "transactions.py:income",
+      "typescript": "income",
+      "parameters": {
+        "account": "account",
+        "instrument": "instrument",
+        "amount": "amount"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "extraOptionsSource": "kwargs: Unpack[TransactionOptions]"
+    },
+    {
+      "python": "transactions.py:transfer",
+      "typescript": "transfer",
+      "parameters": {
+        "from_account": "fromAccount",
+        "to_account": "toAccount",
+        "from_instrument": "fromInstrument",
+        "to_instrument": "toInstrument",
+        "amount_out": "amountOut",
+        "amount_in": "amountIn"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "extraOptionsSource": "kwargs: Unpack[TransactionOptions]"
+    },
+    {
+      "python": "transactions.py:debt",
+      "typescript": "debt",
+      "parameters": {
+        "action": "action",
+        "account": "account",
+        "debt_account": "debtAccount",
+        "instrument": "instrument",
+        "amount": "amount",
+        "payee": "payee"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "extraOptionsSource": "kwargs: Unpack[BaseTransactionOptions]"
+    },
+    {
+      "python": "transactions.py:update",
+      "typescript": "update",
+      "parameters": {
+        "entity": "entity",
+        "now": "now"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "extraOptionsSource": "fields: Any"
+    },
+    {
+      "python": "transactions.py:deletion",
+      "typescript": "deletion",
+      "parameters": {
+        "kind": "kind",
+        "id": "id",
+        "user": "user",
+        "now": "now"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ]
+    },
+    {
+      "python": "transactions.py:clear_budget",
+      "typescript": "clearBudget",
+      "parameters": {
+        "budget": "budget",
+        "now": "now"
+      },
+      "featureIds": [
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ]
+    }
+  ]
+}

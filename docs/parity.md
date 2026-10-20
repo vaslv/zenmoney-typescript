@@ -8,8 +8,8 @@ the recorded HEAD is empty. S1 still verifies published-wheel provenance before
 freezing the contract baseline.
 
 The inventory lists public module functions, class methods and model fields.
-It is a planning aid, not proof of compatibility. All TypeScript entries below
-are **planned**, not implemented. S1 converts this matrix into machine-readable
+It is a planning aid, not proof of compatibility. The matrix is a target coverage inventory. Only the ExactDecimal primitive and
+S1 feasibility prototypes exist; the HTTP/client/builder parity entries remain planned. S1 converts this matrix into machine-readable
 feature IDs linked to concrete case IDs and test paths. Release fails on unmapped
 public exports/fields or unexplained reference changes.
 
@@ -74,6 +74,9 @@ transaction time ordering from a date-only field or change timezone silently.
 
 ## Intentional language differences (must have tests)
 
+- Explicit TS numeric-token length limit 4096 and JSON container-depth limit 128,
+  compared with Python interpreter resource limits. Over-limit input is rejected
+  without truncation; required native resource-bound cases follow ADR 002.
 - One async client instead of sync/async variants; camelCase helper names while
   entity wire fields keep ZenMoney spellings exactly.
 - timeoutMs is a total request/body deadline, default 60000 or null for unlimited.

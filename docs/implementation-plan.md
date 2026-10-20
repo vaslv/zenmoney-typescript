@@ -1,7 +1,7 @@
 # Sequential implementation plan
 
-Status: APPROVED by the user on 2026-10-20. Only S0 documentation exists.
-S1 implementation will begin after the user switches models.
+Status: APPROVED by the user on 2026-10-20. S1 is implemented and verified;
+see docs/status.md for evidence. S2 is the next implementation stage.
 
 ## Execution discipline
 

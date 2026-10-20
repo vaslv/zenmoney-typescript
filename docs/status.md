@@ -29,12 +29,40 @@ No Docker/runtime/real API tests were run or claimed: there is no SDK implementa
 at S0. Existing Python/backend/Chrome runtime files and production data are unchanged.
 S0 is complete and approved. The user created the GitHub repository at
 https://github.com/vaslv/zenmoney-typescript; origin is configured locally.
-No tags, pushes or publication. S1 has not started: the user will switch models
-before implementation.
+At the S0 handoff there were no tags, pushes or publication; S1 was deferred
+until the user switched models.
 
-## Handoff for S1
+## 2026-10-20 — S1 foundation
 
-Read AGENTS.md, README.md and docs/implementation-plan.md, then execute S1 only.
-Use docs/api.md and docs/contracts.md as the approved specification. Record actual
-checks and local commits here. Do not infer publication permission from the presence
-of origin. Keep sibling repositories and production data unchanged.
+Implemented pinned ESM/strict TypeScript tooling, installed-artifact checks,
+hash-locked Python reference validation, exact-number primitives and private codec/
+transport feasibility probes. Public package exports only ExactDecimal, decimal,
+and MAX_NUMBER_LENGTH; complete clients/builders/parity are later stages.
+
+Verified the PyPI 0.7.0 wheel hash and all eight runtime modules against the approved
+source inventory. The peeled tag is 6c38d4c0cb3e8cc271292e37e9934e6c1a7b9972;
+its runtime source equals the recorded source HEAD. Baseline details and exact
+transitive hashes are committed. Added 50 declaration/parameter mappings.
+
+Decisions: ADR 001 pins tooling/runtimes; ADR 002 selects lossless-json 4.3.2 with
+an equal-duplicate-key preflight, 4096-character numeric and 128-container limits.
+No production API calls. No sibling runtime files or running products changed.
+
+Initial full acceptance passed with:
+`BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/test.sh`.
+
+- Node 22.23.3 / Node 24.22.0: lock/mapping checks, strict build/types, 13 focused
+  tests per runtime (including 200 seeded comparisons), offline seven-file package
+  installation and NodeNext/Bundler consumer types.
+- Python 3.12.15: installed-wheel hash checks, pip consistency, exact roundtrip.
+- Chromium 156.0.8078.4 arm64 and Chrome 120.0.6099.109 amd64: nine scenario groups
+  covering ordinary-page CORS, MV3 host permission absence/presence, precision,
+  bounded/cancelled streams, invalid UTF-8, deadlines, abort and redirect no-retry.
+- Every runtime container used --network none with a read-only root. Download/build
+  steps had network access; test APIs ran exclusively on loopback.
+- Markdown links, English source/comments, lock integrity and whitespace checked.
+
+The first planning result remains separate from full protocol acceptance: S2 has
+not started, and these checks do not claim a complete working ZenMoney SDK.
+A clean Git-archive acceptance will verify the committed snapshot before handoff.
+

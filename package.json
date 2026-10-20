@@ -1,0 +1,47 @@
+{
+  "name": "zenmoney-typescript",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent TypeScript client for the public ZenMoney API (in development)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vaslv/zenmoney-typescript.git"
+  },
+  "engines": {
+    "node": "^22.0.0 || ^24.0.0"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.spikes.json --noEmit",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:package": "node scripts/check-package.mjs",
+    "test:browser": "node tests/browser/run.mjs",
+    "test": "npm run check:manifest && npm run build && npm run typecheck && npm run build:spikes && npm run test:unit && npm run test:package",
+    "build:spikes": "node scripts/build-spikes.mjs",
+    "check:manifest": "node scripts/check-manifest.mjs"
+  },
+  "dependencies": {
+    "lossless-json": "4.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.0",
+    "esbuild": "0.28.2",
+    "playwright": "1.64.1",
+    "typescript": "5.9.3"
+  }
+}

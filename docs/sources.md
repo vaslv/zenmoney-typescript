@@ -37,3 +37,19 @@ Numeric representation, contracts, fixture ownership and stage sequencing are
 project design decisions. Runtime/dependency exact version selection, parser
 choice, npm name availability and publication authentication remain explicit S1/S8
 checks; they were not verified by this documentation-only task.
+
+## S1 implementation evidence
+
+Context7 queries used the primary lossless-json, Playwright and TypeScript docs:
+- https://github.com/josdejong/lossless-json (custom number callbacks/stringifiers).
+- https://playwright.dev/docs/chrome-extensions (MV3 persistent contexts).
+- https://www.typescriptlang.org/docs/handbook/modules/reference.html (ESM/types).
+
+The installed lossless-json 4.3.2 parse implementation was inspected because its
+handler does not reject equal duplicate values. The preflight compensates for this
+behavior; tests, rather than the generic documentation claim, define acceptance.
+Package versions and integrity come from the npm registry lock; Python artifacts
+and hashes come from https://pypi.org/pypi/zenmoney-python/0.7.0/json.
+Chrome 120 version/download comes from
+https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json.
+Docker manifest digests were resolved from Docker Hub/MCR and are pinned in ADR 001.
