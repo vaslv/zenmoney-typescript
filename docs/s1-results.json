@@ -1,0 +1,53 @@
+{
+  "stage": "S1",
+  "date": "2026-10-20",
+  "sourceCommit": "3103a1e0b05ae6529b3b1d03073849b5429aa6a2",
+  "execution": "clean git archive; no host node_modules; Docker builds then network-none test containers",
+  "command": "BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/test.sh",
+  "results": {
+    "node22": {
+      "version": "22.23.3",
+      "testsPassed": 13,
+      "testsSkipped": 0,
+      "seededComparisons": 200,
+      "installedTarball": "passed",
+      "consumerTypes": [
+        "NodeNext",
+        "Bundler"
+      ]
+    },
+    "node24": {
+      "version": "24.22.0",
+      "testsPassed": 13,
+      "testsSkipped": 0,
+      "seededComparisons": 200,
+      "installedTarball": "passed",
+      "consumerTypes": [
+        "NodeNext",
+        "Bundler"
+      ]
+    },
+    "python": {
+      "version": "3.12.15",
+      "package": "zenmoney-python==0.7.0",
+      "runtimeModuleHashesVerified": 8,
+      "exactRoundtrip": "passed"
+    },
+    "browsers": [
+      {
+        "version": "156.0.8078.4",
+        "platform": "linux/arm64",
+        "scenarioGroups": 9,
+        "status": "passed"
+      },
+      {
+        "version": "120.0.6099.109",
+        "platform": "linux/amd64",
+        "scenarioGroups": 9,
+        "status": "passed"
+      }
+    ]
+  },
+  "productionApiCalls": 0,
+  "fullSdkParity": "not implemented; S2-S7 pending"
+}

@@ -64,5 +64,16 @@ Initial full acceptance passed with:
 
 The first planning result remains separate from full protocol acceptance: S2 has
 not started, and these checks do not claim a complete working ZenMoney SDK.
-A clean Git-archive acceptance will verify the committed snapshot before handoff.
+Clean Git-archive acceptance of commit 3103a1e passed with exit code 0. It used
+no host node_modules or ignored source files. Full machine-readable results:
+[s1-results.json](s1-results.json). Local implementation commit:
+`3103a1e build(tooling): establish verified SDK feasibility environment`.
+The follow-up documentation commit records the final acceptance and handoff.
 
+## Handoff for S2
+
+S1 is complete. Read AGENTS.md and docs/implementation-plan.md, then execute S2 only
+when requested. Build the shared fixture schema, comparator and installed Python
+sync/async adapters. Use docs/contracts.md and docs/api-options.json; do not mistake
+S1's exact-number and transport probes for completed SDK feature coverage.
+No push, tags, releases, registry publication or live API writes are authorized.
