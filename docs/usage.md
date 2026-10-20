@@ -25,7 +25,11 @@ Use that cursor on the next call; the SDK never persists or advances it internal
 identity is user/date/tag, not id: use `clearBudget` then `upsert('budget', [value])`.
 `entityKey` returns the reference-compatible string/composite identity.
 `transactions.update(entity, fields, {now?})` copies, preserves extensions and stamps
-changed; identity and created/changed overrides through fields are rejected.
+changed; overrides of id, user, created and changed through fields are rejected.
+For budgets, date and tag are also part of the composite identity, but the generic
+update helper does not restrict them because those fields may change on other
+entities. Preserve user/date/tag when updating a budget's amounts or locks. Changing
+date or tag addresses a different budget and does not clear the old one.
 
 `suggest(object)` returns one object; `suggest([objects])` returns an equal-length
 array. The SDK preserves all returned fields and does not apply suggestions to your

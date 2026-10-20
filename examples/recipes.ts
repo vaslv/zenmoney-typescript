@@ -1,4 +1,4 @@
-import {ZenMoneyClient,OAuthClient,decimal,transactions,entities,type Budget,type Reminder,type ReminderMarker,type Transaction,type Diff,type Integer} from 'zenmoney-typescript';
+import {ZenMoneyClient,OAuthClient,decimal,transactions,entities,entityKey,type Budget,type Reminder,type ReminderMarker,type Transaction,type Diff,type Integer} from 'zenmoney-typescript';
 
 /** The caller supplies verified account IDs and persists the result atomically. */
 export async function readHistory(token:string,cursor:Integer=0):Promise<Diff> {
@@ -25,6 +25,13 @@ export function recurring(user:Integer,account:string,instrument:Integer) {
   const marker:ReminderMarker={...movement,id:'synthetic-marker',user,changed:1,isForecast:false,date:'2026-01-01',reminder:'synthetic-reminder',state:'planned',notify:false};
   const budget:Budget={user,changed:1,date:'2026-01-01',tag:null,income:0,outcome:decimal('100.01'),incomeLock:false,outcomeLock:true,isIncomeForecast:false,isOutcomeForecast:true};
   return {reminder,marker,budget};
+}
+/** Update amounts without changing a budget's user/date/tag identity. */
+export function updateBudgetAmount(budget:Budget,outcome:NonNullable<Budget['outcome']>):Budget {
+  const originalKey=entityKey('budget',budget);
+  const updated=transactions.update(budget,{outcome});
+  if(entityKey('budget',updated)!==originalKey)throw new Error('Budget identity changed');
+  return updated;
 }
 /** Confidential server only. Never distribute clientSecret inside an extension. */
 export async function exchangeOnTrustedServer(clientId:string,clientSecret:string,redirectUri:string,code:string) {

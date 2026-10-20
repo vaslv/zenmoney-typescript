@@ -241,3 +241,15 @@ compared with approximately 927 ms on the review snapshot. Timings are diagnosti
 the structural absence of the nested scan is the acceptance criterion. Reviewed
 cross-kind equal IDs, repeated deletions and unchanged request semantics. No live
 API call was made.
+
+## 2026-10-20 — Full-review remediation F5
+
+Documentation now names the four fields protected by the generic update helper
+and explains the separate user/date/tag identity rule for budgets. A compiled
+example updates a budget amount while verifying that its composite key stays the
+same; a native test records the behavior of budget and transaction date changes.
+
+Verification: node-target Docker build passed declarations, package and manifest
+checks; offline `node --test tests/unit/builders.test.mjs` passed. Reviewed the
+example against entityKey and the generic helper without changing runtime API
+behavior. No live API call was made.

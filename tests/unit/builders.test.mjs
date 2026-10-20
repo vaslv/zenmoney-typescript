@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {transactions as t,entities as e,decimal,ValidationError,encodeJson} from '../../dist/index.js';
+import {transactions as t,entities as e,decimal,ValidationError,encodeJson,entityKey} from '../../dist/index.js';
 const common={user:1,date:'2026-01-15',id:'x',now:1};
 const options={...common,account:'a',instrument:1,amount:decimal('1.01')};
 test('full transaction and catalog defaults preserve explicit flags and extensions',()=>{
@@ -22,6 +22,15 @@ test('builders copy inputs, protect identities and reject silent option loss',()
   assert.throws(()=>e.tag({user:1,title:'x',fields:null}),ValidationError);
   assert.throws(()=>t.update({id:'a'},{id:'b'}),ValidationError);
   assert.equal(t.update({id:'a',future:{n:decimal('0.001')}},{comment:'new'},{now:2}).future.n.toString(),'0.001');
+});
+test('generic updates preserve only explicit identity fields, so budget keys need caller care',()=>{
+  const budget={user:1,date:'2026-10-01',tag:'food',changed:1,income:0,outcome:100};
+  const changed=t.update(budget,{outcome:200},{now:2});
+  assert.equal(entityKey('budget',changed),entityKey('budget',budget));
+  assert.equal(budget.outcome,100);assert.equal(changed.outcome,200);
+  const moved=t.update(budget,{date:'2026-11-01',tag:'travel'},{now:2});
+  assert.notEqual(entityKey('budget',moved),entityKey('budget',budget));
+  assert.equal(t.update({id:'transaction',date:'2026-10-01'},{date:'2026-11-01'},{now:2}).date,'2026-11-01');
 });
 test('dates, amounts, paired fields and debt counterparties are validated before use',()=>{
   for(const date of ['0000-01-01','2025-02-29','2026-02-30','2026-13-01','2026-01-15\n','2026-01-15\r','2026-01-15\u2028'])assert.throws(()=>t.expense({...options,date}),ValidationError);

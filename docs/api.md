@@ -48,8 +48,10 @@ Declaration shapes:
 - All builders use options objects; wire-style optional fields keep their names.
   Core convenience options use incomeAccount/fromAccount/amountOut/etc. Map all
   Python options explicitly in the S1 generated coverage manifest.
-- transactions.update(entity, fields, {now?} = {}); identity/timestamp overrides in
-  fields rejected. entities builders accept extension fields through fields?.
+- transactions.update(entity, fields, {now?} = {}); overrides of id, user, created
+  and changed in fields rejected. For budgets, callers must also keep the composite
+  user/date/tag identity unchanged. entities builders accept extension fields through
+  fields?.
 - client.close(): void, idempotent; client.isClosed: boolean.
 - OAuthClient({clientId, clientSecret, redirectUri, fetch?, timeoutMs?});
   authorizationUrl({state}), exchangeCode(code, {signal?}?),

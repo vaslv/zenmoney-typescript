@@ -30,7 +30,7 @@ not exhaustive proof of every combination or live service acceptance.
 | P10 | transaction/expense/income | transactions equivalents | complete defaults, validation and optional fields |
 | P11 | transfer | transactions.transfer | both legs, amounts/currencies and same-account rejection |
 | P12 | debt | transactions.debt | lend, borrow, repay, collect; counterparty required |
-| P13 | update | transactions.update | copied object, unknown fields, immutable identity/timestamps |
+| P13 | update | transactions.update | copied object, unknown fields, protected id/user/created/changed |
 | P14 | deletion / clear_budget | deletion / clearBudget | stamp/user, budget zeroing + unlock, no budget ID deletion |
 | P15 | authorization_url / callback_code | authorizationUrl / callbackCode | encoding, unique state/code, OAuth errors |
 | P16 | OAuthClient/AsyncOAuthClient | OAuthClient, async | exchangeCode/refresh and token validation |
@@ -51,6 +51,9 @@ Write: account, tag, merchant, budget, reminder, reminderMarker, transaction.
 Delete by object/id: those writable kinds except budget. Budget uses composite
 user/date/tag identity; clear amounts and locks instead. ReminderMarker deletion
 state and entity deletion are separate forms and need separate tests.
+The generic update helper permits date/tag changes for transactions and other
+entities. Callers must preserve date/tag when updating a budget: otherwise its
+composite identity changes, and the old budget is not cleared by that update.
 
 Full support for Reminder/ReminderMarker/Budget means models and complete-object
 low-level write/update operations. Python has no dedicated creation builder for
