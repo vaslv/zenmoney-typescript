@@ -1,8 +1,9 @@
 # Publication plan — not yet authorized
 
-Proposed repository: zenmoney-typescript. Proposed npm package: zenmoney-typescript.
-These names are not reserved or verified. Confirm ownership and availability at
-release time; do not create repositories, accounts or registry packages during S0.
+Repository created by the user: https://github.com/vaslv/zenmoney-typescript.
+The local origin is configured; no push is authorized by this planning task.
+Proposed npm package: zenmoney-typescript. Its availability and ownership are not
+verified. Confirm them at release time; do not create registry packages during S0.
 If npm name is occupied, agree on a scoped name rather than silently changing it.
 
 Use MIT with existing author attribution. Initial target 0.1.0, independently of

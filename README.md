@@ -4,8 +4,9 @@ Independent TypeScript SDK for the public ZenMoney API, intended for Node.js,
 browsers, and Chrome extension service workers.
 
 **Status: design and implementation plan only. No SDK is implemented or published.**
-The repository/package name is proposed; npm availability and ownership are not
-confirmed. There is no configured remote or publication workflow yet.
+The implementation plan is approved. Repository: https://github.com/vaslv/zenmoney-typescript.
+The local origin points there; no code has been pushed in this task. npm name
+availability and ownership are not confirmed. No publication workflow exists yet.
 
 ## Start here
 

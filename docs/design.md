@@ -1,8 +1,9 @@
 # Design: an independent TypeScript ZenMoney SDK
 
 Generated with office-hours on 2026-10-20.
-Status: DRAFT — approach approved; detailed specification awaits user review.
-Mode: Builder. Local project: zenmoney-typescript. Remote: not created.
+Status: APPROVED by the user on 2026-10-20.
+Mode: Builder. Local project: zenmoney-typescript.
+Repository: https://github.com/vaslv/zenmoney-typescript (created by the user).
 
 ## Problem and intended outcome
 

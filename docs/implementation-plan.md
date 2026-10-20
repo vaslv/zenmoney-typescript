@@ -1,7 +1,7 @@
 # Sequential implementation plan
 
-Status: DRAFT. This file describes future implementation; only S0 documentation
-exists. Approach B is approved; detailed specification is awaiting review.
+Status: APPROVED by the user on 2026-10-20. Only S0 documentation exists.
+S1 implementation will begin after the user switches models.
 
 ## Execution discipline
 

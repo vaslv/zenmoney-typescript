@@ -10,7 +10,7 @@ Created documentation-only project and public Python declaration/field inventory
 No package.json, runtime SDK implementation, dependency installation or product
 integration has been added. S1–S8 are planned, not started.
 
-Detailed design status: DRAFT, pending user review. No blocking product questions
+Detailed design status: APPROVED by the user on 2026-10-20. No blocking product questions
 for S1; the numeric-parser/runtime spike and registry ownership are explicit gates.
 
 Validation completed:
@@ -27,5 +27,14 @@ Validation completed:
 
 No Docker/runtime/real API tests were run or claimed: there is no SDK implementation
 at S0. Existing Python/backend/Chrome runtime files and production data are unchanged.
-No remotes, tags, pushes or publication. S0 documentation is ready for user approval;
-S1 is the next implementation stage.
+S0 is complete and approved. The user created the GitHub repository at
+https://github.com/vaslv/zenmoney-typescript; origin is configured locally.
+No tags, pushes or publication. S1 has not started: the user will switch models
+before implementation.
+
+## Handoff for S1
+
+Read AGENTS.md, README.md and docs/implementation-plan.md, then execute S1 only.
+Use docs/api.md and docs/contracts.md as the approved specification. Record actual
+checks and local commits here. Do not infer publication permission from the presence
+of origin. Keep sibling repositories and production data unchanged.
