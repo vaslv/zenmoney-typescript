@@ -6,3 +6,5 @@ export {entityKey,KINDS,FORCE_FETCH,WRITABLE,DELETABLE} from './protocol.js';
 export type {Diff,DiffOptions,Changes,WritableKind,DeletableKind,FetchKind} from './protocol.js';
 export * as transactions from './transactions.js';
 export * as entities from './entities.js';
+export {ZenMoneyClient} from './client.js';
+export type {ClientOptions,RequestOptions,ExchangeOptions} from './client.js';

@@ -17,7 +17,7 @@
   "events": [
     {
       "status": 204,
-      "body": "{\"serverTimestamp\":10}"
+      "body": ""
     }
   ],
   "expect": {

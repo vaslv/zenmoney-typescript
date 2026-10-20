@@ -111,3 +111,14 @@ Independent review PASS after two silent-option-loss fixes (reviews/s4.md).
 Full Docker acceptance passed: 27 Node tests per version, 86 Python vectors per
 runner, 48 active TypeScript vectors, package/consumer types and both browsers.
 Next: S5 asynchronous client. No push, tags, publication or live requests.
+
+## 2026-10-20 — S5 complete
+
+Implemented the asynchronous Bearer client and bounded streaming transport,
+per-call cancellation, overflow-safe deadlines, close cancellation and exact diff/
+suggest requests. No automatic retries or persistent cursor state. Independent
+review PASS after three fixes (reviews/s5.md).
+Full Docker acceptance: `BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/test.sh`
+passed with 38 Node tests per version, 86 Python vectors per runner, 78 active TS
+vectors, package/consumer checks and both browser versions using the SDK.
+Next: S6 optional OAuth. No live API requests, push, tags or publication.

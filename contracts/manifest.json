@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "suiteVersion": "1.0.0",
+  "suiteVersion": "1.0.1",
   "referencePackage": "zenmoney-python",
   "referenceVersion": "0.7.0",
   "referenceCommit": "6c38d4c0cb3e8cc271292e37e9934e6c1a7b9972",
@@ -173,7 +173,7 @@
     {
       "id": "http-204",
       "file": "v1/cases/http-204.json",
-      "sha256": "0a6f1e6758151c785537bb01f9169a4e94f5e0b626a9ab5b4febb35829e3e8cb"
+      "sha256": "44120cc394d3d06fb9b79747675e0f179d494eb9b6ec71fc9358d03520fbd966"
     },
     {
       "id": "http-400",
@@ -447,5 +447,5 @@
     ]
   },
   "schemaSha256": "c0c75295e19ea615d9722bcc89519e045743500b44f32125c7dfea5bade0505e",
-  "stage": 4
+  "stage": 5
 }

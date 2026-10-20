@@ -13,6 +13,11 @@ export async function startFakeApi() {
       res.end(await readFile('.local/browser/browser.mjs')); return;
     }
     if (req.url === '/') { res.end('<!doctype html><title>Synthetic SDK fixture</title>'); return; }
+    if(req.url?.startsWith('/sdk')) {
+      if(req.url==='/sdk-cors')res.setHeader('Access-Control-Allow-Origin','*');
+      if(req.method==='OPTIONS'){res.setHeader('Access-Control-Allow-Headers','authorization,content-type');res.end();return;}
+      res.end('{"serverTimestamp":10}');return;
+    }
     if (req.url === '/cors') res.setHeader('Access-Control-Allow-Origin', '*');
     if (req.url === '/redirect') { res.writeHead(302, {Location: '/redirect-target'}); res.end(); return; }
     if (req.url === '/invalid-utf8') { res.end(Buffer.from([0xc3, 0x28])); return; }
