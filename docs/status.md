@@ -100,3 +100,14 @@ Review fixed six issues; independent follow-up PASS (reviews/s3.md).
 Full Docker acceptance passed: 22 tests per Node version, 86 Python vectors per
 runner, 18 active TypeScript vectors, both browser versions. No live requests.
 Next: S4 builders. No push, tags or publication.
+
+## 2026-10-20 — S4 complete
+
+Implemented complete transaction/expense/income/transfer/debt builders, update,
+deletions, budget clearing and account/tag/merchant builders. Inputs are copied,
+unknown update fields retained, protected identities rejected and optional flags
+remain explicit. Dedicated option interfaces reject known type mistakes.
+Independent review PASS after two silent-option-loss fixes (reviews/s4.md).
+Full Docker acceptance passed: 27 Node tests per version, 86 Python vectors per
+runner, 48 active TypeScript vectors, package/consumer types and both browsers.
+Next: S5 asynchronous client. No push, tags, publication or live requests.

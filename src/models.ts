@@ -139,7 +139,7 @@ export interface Deletion extends JsonObject {
   user: Integer;
   stamp: Integer;
 }
-export interface TransactionFields extends JsonObject {
+export interface TransactionFields {
   originalPayee?: string | null;
   reminderMarker?: string | null;
   opIncome?: Numeric | null;

@@ -33,7 +33,13 @@ for(const c of cases) {
       case 'codec.encode':result=sdk.decodeJson(sdk.encodeJson(a.value));break;
       case 'protocol.entityKey':result=sdk.entityKey(a.kind,a.entity);break;
       case 'protocol.decodeDiff':result=protocol.decodeDiff(a.raw,a.cursor);break;
-      default:throw new Error('Required TypeScript operation not implemented: '+c.operation);
+      default:
+        if(c.operation==='transactions.update')result=sdk.transactions.update(a.entity,a.fields,{now:a.now});
+        else if(c.operation==='transactions.clearBudget')result=sdk.transactions.clearBudget(a.budget,{now:a.now});
+        else if(c.operation==='transactions.deletion')result=sdk.transactions.deletion(a.kind,a.id,{user:a.user,now:a.now});
+        else if(c.operation.startsWith('transactions.'))result=sdk.transactions[c.operation.split('.')[1]](a);
+        else if(c.operation.startsWith('entities.'))result=sdk.entities[c.operation.split('.')[1]](a);
+        else throw new Error('Required TypeScript operation not implemented: '+c.operation);
     }
     row.result=encode(result);
   } catch(error) {
