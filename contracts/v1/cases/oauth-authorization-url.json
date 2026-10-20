@@ -1,0 +1,50 @@
+{
+  "formatVersion": 1,
+  "id": "oauth-authorization-url",
+  "stage": 6,
+  "operation": "oauth.authorizationUrl",
+  "description": "oauth authorization url",
+  "featureIds": [
+    "P15"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "clientId",
+        {
+          "type": "string",
+          "value": "APP"
+        }
+      ],
+      [
+        "redirectUri",
+        {
+          "type": "string",
+          "value": "https://example.invalid/callback"
+        }
+      ],
+      [
+        "state",
+        {
+          "type": "string",
+          "value": "nonce"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "string",
+      "value": "https://api.zenmoney.ru/oauth2/authorize/?response_type=code&client_id=APP&redirect_uri=https%3A%2F%2Fexample.invalid%2Fcallback&state=nonce"
+    }
+  }
+}

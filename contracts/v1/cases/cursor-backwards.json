@@ -1,0 +1,41 @@
+{
+  "formatVersion": 1,
+  "id": "cursor-backwards",
+  "stage": 3,
+  "operation": "protocol.decodeDiff",
+  "description": "cursor backwards",
+  "featureIds": [
+    "P05",
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "{\"serverTimestamp\":9}"
+        }
+      ],
+      [
+        "cursor",
+        {
+          "type": "number",
+          "lexeme": "10"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "response"
+  }
+}

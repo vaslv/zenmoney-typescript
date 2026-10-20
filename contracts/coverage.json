@@ -1,0 +1,399 @@
+{
+  "status": "Staged coverage: expected vectors exist now; TS participation is enforced as each implementation stage lands",
+  "features": {
+    "P01": {
+      "cases": [
+        "initial-read"
+      ],
+      "typeOnly": false
+    },
+    "P02": {
+      "cases": [
+        "country-force-fetch",
+        "delete-operation",
+        "duplicate-entity",
+        "force-fetch",
+        "http-204",
+        "http-400",
+        "http-401",
+        "http-403",
+        "http-429",
+        "http-500",
+        "incremental-read",
+        "initial-read",
+        "missing-changed",
+        "negative-cursor",
+        "readonly-upsert",
+        "server-cursor-backwards",
+        "suggest-invalid-result",
+        "suggest-list",
+        "suggest-object"
+      ],
+      "typeOnly": false
+    },
+    "P03": {
+      "cases": [
+        "upsert-account",
+        "upsert-budget",
+        "upsert-merchant",
+        "upsert-reminder",
+        "upsert-reminderMarker",
+        "upsert-tag",
+        "upsert-transaction"
+      ],
+      "typeOnly": false
+    },
+    "P04": {
+      "cases": [
+        "suggest-empty"
+      ],
+      "typeOnly": false
+    },
+    "P05": {
+      "cases": [
+        "bad-diff-collection",
+        "cursor-backwards",
+        "diff-unknown-fields"
+      ],
+      "typeOnly": false
+    },
+    "P06": {
+      "cases": [
+        "force-fetch"
+      ],
+      "typeOnly": false
+    },
+    "P07": {
+      "cases": [
+        "invalid-budget-key",
+        "key-account",
+        "key-budget",
+        "key-instrument"
+      ],
+      "typeOnly": false
+    },
+    "P08": {
+      "cases": [
+        "upsert-account",
+        "upsert-budget",
+        "upsert-merchant",
+        "upsert-reminder",
+        "upsert-reminderMarker",
+        "upsert-tag",
+        "upsert-transaction"
+      ],
+      "typeOnly": true
+    },
+    "P09": {
+      "cases": [
+        "account-debt-rejected",
+        "catalog-account",
+        "catalog-merchant",
+        "catalog-tag"
+      ],
+      "typeOnly": false
+    },
+    "P10": {
+      "cases": [
+        "bad-coordinate",
+        "bad-viewed",
+        "boolean-user",
+        "expense-defaults",
+        "income-refund",
+        "invalid-date",
+        "negative-expense",
+        "paired-original-amount",
+        "same-account-transfer",
+        "unreviewed-categorized-expense",
+        "zero-expense"
+      ],
+      "typeOnly": false
+    },
+    "P11": {
+      "cases": [
+        "currency-transfer"
+      ],
+      "typeOnly": false
+    },
+    "P12": {
+      "cases": [
+        "debt-borrow",
+        "debt-collect",
+        "debt-lend",
+        "debt-repay"
+      ],
+      "typeOnly": false
+    },
+    "P13": {
+      "cases": [
+        "update-identity-rejected",
+        "update-preserve-extension"
+      ],
+      "typeOnly": false
+    },
+    "P14": {
+      "cases": [
+        "budget-clear",
+        "budget-delete-rejected",
+        "deletion-account",
+        "deletion-merchant",
+        "deletion-reminder",
+        "deletion-reminderMarker",
+        "deletion-tag",
+        "deletion-transaction"
+      ],
+      "typeOnly": false
+    },
+    "P15": {
+      "cases": [
+        "oauth-authorization-url",
+        "oauth-callback",
+        "oauth-error",
+        "oauth-state-duplicate",
+        "oauth-state-mismatch"
+      ],
+      "typeOnly": false
+    },
+    "P16": {
+      "cases": [
+        "oauth-exchangeCode",
+        "oauth-refresh"
+      ],
+      "typeOnly": false
+    },
+    "P17": {
+      "cases": [
+        "oauth-exchangeCode",
+        "oauth-refresh"
+      ],
+      "typeOnly": false
+    },
+    "P18": {
+      "cases": [
+        "http-400",
+        "transport-lost-response"
+      ],
+      "typeOnly": false
+    },
+    "P19": {
+      "cases": [
+        "transport-lost-response"
+      ],
+      "typeOnly": false
+    },
+    "P20": {
+      "cases": [
+        "client-closed",
+        "oauth-closed"
+      ],
+      "typeOnly": false
+    },
+    "P21": {
+      "cases": [
+        "bad-diff-collection",
+        "cursor-backwards",
+        "diff-unknown-fields",
+        "duplicate-different",
+        "duplicate-equal",
+        "duplicate-escaped",
+        "encode-exact",
+        "invalid-json",
+        "invalid-utf8",
+        "large-integer",
+        "long-fraction",
+        "nested-extension",
+        "nonfinite-json",
+        "prototype-data"
+      ],
+      "typeOnly": false
+    },
+    "P22": {
+      "cases": [
+        "response-byte-limit"
+      ],
+      "typeOnly": false
+    },
+    "P23": {
+      "cases": [
+        "catalog-account",
+        "catalog-merchant",
+        "catalog-tag",
+        "expense-defaults"
+      ],
+      "typeOnly": false
+    }
+  },
+  "modelFields": {
+    "Instrument": [
+      "id",
+      "changed",
+      "title",
+      "shortTitle",
+      "symbol",
+      "rate"
+    ],
+    "Company": [
+      "id",
+      "changed",
+      "title",
+      "fullTitle",
+      "www",
+      "country"
+    ],
+    "User": [
+      "id",
+      "changed",
+      "login",
+      "currency",
+      "parent"
+    ],
+    "Entity": [
+      "id",
+      "changed",
+      "user"
+    ],
+    "Account": [
+      "private",
+      "balanceCorrectionType",
+      "role",
+      "instrument",
+      "company",
+      "type",
+      "title",
+      "syncID",
+      "balance",
+      "startBalance",
+      "creditLimit",
+      "inBalance",
+      "savings",
+      "enableCorrection",
+      "enableSMS",
+      "archive",
+      "capitalization",
+      "percent",
+      "startDate",
+      "endDateOffset",
+      "endDateOffsetInterval",
+      "payoffStep",
+      "payoffInterval"
+    ],
+    "Tag": [
+      "archive",
+      "staticId",
+      "title",
+      "parent",
+      "icon",
+      "picture",
+      "color",
+      "showIncome",
+      "showOutcome",
+      "budgetIncome",
+      "budgetOutcome",
+      "required"
+    ],
+    "Merchant": [
+      "mcc",
+      "title"
+    ],
+    "Movement": [
+      "incomeInstrument",
+      "incomeAccount",
+      "income",
+      "outcomeInstrument",
+      "outcomeAccount",
+      "outcome",
+      "tag",
+      "merchant",
+      "payee",
+      "comment"
+    ],
+    "Transaction": [
+      "created",
+      "deleted",
+      "hold",
+      "originalPayee",
+      "date",
+      "mcc",
+      "reminderMarker",
+      "opIncome",
+      "opIncomeInstrument",
+      "opOutcome",
+      "opOutcomeInstrument",
+      "latitude",
+      "longitude",
+      "viewed",
+      "qrCode",
+      "source",
+      "incomeBankID",
+      "outcomeBankID"
+    ],
+    "Reminder": [
+      "interval",
+      "step",
+      "points",
+      "startDate",
+      "endDate",
+      "notify"
+    ],
+    "ReminderMarker": [
+      "isForecast",
+      "date",
+      "reminder",
+      "state",
+      "notify"
+    ],
+    "Budget": [
+      "isIncomeForecast",
+      "isOutcomeForecast",
+      "changed",
+      "user",
+      "tag",
+      "date",
+      "income",
+      "incomeLock",
+      "outcome",
+      "outcomeLock"
+    ],
+    "Deletion": [
+      "id",
+      "object",
+      "user",
+      "stamp"
+    ],
+    "TransactionFields": [
+      "originalPayee",
+      "reminderMarker",
+      "opIncome",
+      "opIncomeInstrument",
+      "opOutcome",
+      "opOutcomeInstrument",
+      "latitude",
+      "longitude",
+      "mcc",
+      "hold",
+      "deleted",
+      "viewed",
+      "qrCode",
+      "source",
+      "incomeBankID",
+      "outcomeBankID"
+    ],
+    "BaseTransactionOptions": [
+      "user",
+      "date",
+      "categories",
+      "comment",
+      "merchant",
+      "id",
+      "now"
+    ],
+    "TransactionOptions": [
+      "payee"
+    ]
+  },
+  "fieldTestPlan": {
+    "stage": 3,
+    "path": "tests/types/models.ts",
+    "status": "planned; release gate requires compiling this file once models land"
+  }
+}

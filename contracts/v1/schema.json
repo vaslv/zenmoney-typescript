@@ -1,0 +1,292 @@
+{
+  "type": "object",
+  "properties": {
+    "formatVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9-]+$"
+    },
+    "stage": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 6
+    },
+    "operation": {
+      "enum": [
+        "codec.decode",
+        "codec.encode",
+        "protocol.decodeDiff",
+        "protocol.entityKey",
+        "transactions.transaction",
+        "transactions.expense",
+        "transactions.income",
+        "transactions.transfer",
+        "transactions.debt",
+        "transactions.update",
+        "transactions.deletion",
+        "transactions.clearBudget",
+        "entities.account",
+        "entities.tag",
+        "entities.merchant",
+        "client.diff",
+        "client.readDiff",
+        "client.upsert",
+        "client.delete",
+        "client.suggest",
+        "client.closed",
+        "oauth.authorizationUrl",
+        "oauth.callbackCode",
+        "oauth.exchangeCode",
+        "oauth.refresh",
+        "oauth.closed"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "featureIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^P(0[1-9]|1[0-9]|2[0-3])$"
+      }
+    },
+    "evidence": {
+      "type": "string",
+      "minLength": 1
+    },
+    "clock": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "runtimeScope": {
+      "const": "shared"
+    },
+    "input": {
+      "$ref": "#/$defs/value"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "disconnect": {
+                "const": true
+              }
+            },
+            "required": [
+              "disconnect"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "integer",
+                "minimum": 100,
+                "maximum": 599
+              },
+              "body": {
+                "type": "string"
+              },
+              "bodyBase64": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "expect": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "requests": {
+              "$ref": "#/$defs/value"
+            },
+            "result": {
+              "$ref": "#/$defs/value"
+            }
+          },
+          "required": [
+            "requests",
+            "result"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "requests": {
+              "$ref": "#/$defs/value"
+            },
+            "error": {
+              "enum": [
+                "validation",
+                "response",
+                "transport",
+                "http",
+                "closed"
+              ]
+            },
+            "statusCode": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 599
+            }
+          },
+          "required": [
+            "requests",
+            "error"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "formatVersion",
+    "id",
+    "stage",
+    "operation",
+    "description",
+    "featureIds",
+    "evidence",
+    "clock",
+    "runtimeScope",
+    "input",
+    "events",
+    "expect"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "value": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "null"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "boolean"
+            },
+            "value": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "number"
+            },
+            "lexeme": {
+              "type": "string",
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$"
+            }
+          },
+          "required": [
+            "type",
+            "lexeme"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "array"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/value"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "items"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "object"
+            },
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/$defs/value"
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          },
+          "required": [
+            "type",
+            "entries"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

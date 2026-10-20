@@ -18,3 +18,5 @@
 !docs/python-baseline.json
 !docs/python-inventory.json
 !docs/api-options.json
+!contracts/
+!contracts/**

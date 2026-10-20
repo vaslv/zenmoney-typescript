@@ -1,0 +1,33 @@
+{
+  "formatVersion": 1,
+  "id": "negative-cursor",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "negative cursor",
+  "featureIds": [
+    "P02"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "serverTimestamp",
+        {
+          "type": "number",
+          "lexeme": "-1"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

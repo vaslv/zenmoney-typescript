@@ -1,0 +1,146 @@
+{
+  "formatVersion": 1,
+  "id": "update-preserve-extension",
+  "stage": 4,
+  "operation": "transactions.update",
+  "description": "update preserve extension",
+  "featureIds": [
+    "P13"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "entity",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "id",
+              {
+                "type": "string",
+                "value": "t"
+              }
+            ],
+            [
+              "user",
+              {
+                "type": "number",
+                "lexeme": "1"
+              }
+            ],
+            [
+              "created",
+              {
+                "type": "number",
+                "lexeme": "1"
+              }
+            ],
+            [
+              "future",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "v",
+                    {
+                      "type": "number",
+                      "lexeme": "1.1"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "fields",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "comment",
+              {
+                "type": "string",
+                "value": "new"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "t"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "created",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "future",
+          {
+            "type": "object",
+            "entries": [
+              [
+                "v",
+                {
+                  "type": "number",
+                  "lexeme": "1.1"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "comment",
+          {
+            "type": "string",
+            "value": "new"
+          }
+        ],
+        [
+          "changed",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ]
+      ]
+    }
+  }
+}

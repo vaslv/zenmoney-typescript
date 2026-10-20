@@ -1,0 +1,320 @@
+{
+  "formatVersion": 1,
+  "id": "unreviewed-categorized-expense",
+  "stage": 4,
+  "operation": "transactions.expense",
+  "description": "unreviewed categorized expense",
+  "featureIds": [
+    "P10"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "date",
+        {
+          "type": "string",
+          "value": "2026-01-15"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "t"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ],
+      [
+        "account",
+        {
+          "type": "string",
+          "value": "a"
+        }
+      ],
+      [
+        "instrument",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "amount",
+        {
+          "type": "number",
+          "lexeme": "12.34"
+        }
+      ],
+      [
+        "viewed",
+        {
+          "type": "boolean",
+          "value": false
+        }
+      ],
+      [
+        "categories",
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "string",
+              "value": "tag"
+            }
+          ]
+        }
+      ],
+      [
+        "originalPayee",
+        {
+          "type": "string",
+          "value": "Synthetic store"
+        }
+      ],
+      [
+        "source",
+        {
+          "type": "string",
+          "value": "fixture"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "merchant",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "originalPayee",
+          {
+            "type": "string",
+            "value": "Synthetic store"
+          }
+        ],
+        [
+          "reminderMarker",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opIncome",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opIncomeInstrument",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opOutcome",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opOutcomeInstrument",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "latitude",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "longitude",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "qrCode",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "source",
+          {
+            "type": "string",
+            "value": "fixture"
+          }
+        ],
+        [
+          "incomeBankID",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "outcomeBankID",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "viewed",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "mcc",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "t"
+          }
+        ],
+        [
+          "created",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "changed",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "deleted",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "hold",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "date",
+          {
+            "type": "string",
+            "value": "2026-01-15"
+          }
+        ],
+        [
+          "incomeAccount",
+          {
+            "type": "string",
+            "value": "a"
+          }
+        ],
+        [
+          "outcomeAccount",
+          {
+            "type": "string",
+            "value": "a"
+          }
+        ],
+        [
+          "incomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "outcomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "income",
+          {
+            "type": "number",
+            "lexeme": "0"
+          }
+        ],
+        [
+          "outcome",
+          {
+            "type": "number",
+            "lexeme": "12.34"
+          }
+        ],
+        [
+          "tag",
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "string",
+                "value": "tag"
+              }
+            ]
+          }
+        ],
+        [
+          "payee",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "comment",
+          {
+            "type": "null"
+          }
+        ]
+      ]
+    }
+  }
+}

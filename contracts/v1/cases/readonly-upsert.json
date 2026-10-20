@@ -1,0 +1,68 @@
+{
+  "formatVersion": 1,
+  "id": "readonly-upsert",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "readonly upsert",
+  "featureIds": [
+    "P02"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "changes",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "user",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "id",
+                        {
+                          "type": "string",
+                          "value": "x"
+                        }
+                      ],
+                      [
+                        "user",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "changed",
+                        {
+                          "type": "number",
+                          "lexeme": "1700000000"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "id": "catalog-merchant",
+  "stage": 4,
+  "operation": "entities.merchant",
+  "description": "catalog merchant",
+  "featureIds": [
+    "P09",
+    "P23"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "title",
+        {
+          "type": "string",
+          "value": "Synthetic"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "x"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "x"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "title",
+          {
+            "type": "string",
+            "value": "Synthetic"
+          }
+        ],
+        [
+          "changed",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "mcc",
+          {
+            "type": "null"
+          }
+        ]
+      ]
+    }
+  }
+}

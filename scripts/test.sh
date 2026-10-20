@@ -19,3 +19,5 @@ done
 image='zenmoney-typescript-s1-chrome120'
 docker build --platform linux/amd64 -f Dockerfile.chrome120 -t "$image" .
 docker run --rm --init --platform linux/amd64 --network none --read-only --tmpfs /tmp --shm-size 1g "$image"
+
+./scripts/test-parity.sh

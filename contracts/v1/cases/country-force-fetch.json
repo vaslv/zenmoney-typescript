@@ -1,0 +1,38 @@
+{
+  "formatVersion": 1,
+  "id": "country-force-fetch",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "country force fetch",
+  "featureIds": [
+    "P02"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "forceFetch",
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "string",
+              "value": "country"
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

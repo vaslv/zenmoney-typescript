@@ -1,0 +1,451 @@
+{
+  "formatVersion": 1,
+  "suiteVersion": "1.0.0",
+  "referencePackage": "zenmoney-python",
+  "referenceVersion": "0.7.0",
+  "referenceCommit": "6c38d4c0cb3e8cc271292e37e9934e6c1a7b9972",
+  "cases": [
+    {
+      "id": "account-debt-rejected",
+      "file": "v1/cases/account-debt-rejected.json",
+      "sha256": "7a1ae42284522c379a5840e1176aa02f49031eb9e5d099b65705976e59aa2c9b"
+    },
+    {
+      "id": "bad-coordinate",
+      "file": "v1/cases/bad-coordinate.json",
+      "sha256": "f9328281ceb04aac56552644b61a14f7abbd249aa4d76e916b7c4a11e57e65a1"
+    },
+    {
+      "id": "bad-diff-collection",
+      "file": "v1/cases/bad-diff-collection.json",
+      "sha256": "aedda01f5288a1f159599320835be4b8e33f30b16509a804cfd3c4713d1edcc3"
+    },
+    {
+      "id": "bad-viewed",
+      "file": "v1/cases/bad-viewed.json",
+      "sha256": "785976591153e1932a80a4f9dc31e55ef85f34999c603ea02dbf53ac64957fdb"
+    },
+    {
+      "id": "boolean-user",
+      "file": "v1/cases/boolean-user.json",
+      "sha256": "209bd9d0cd10cb23df3279d3081d281023988bdfc29d813861afbe3547fc903b"
+    },
+    {
+      "id": "budget-clear",
+      "file": "v1/cases/budget-clear.json",
+      "sha256": "afc330688cb9316b0a26091437507b87d49d74340915ba925faeae8450aadf3f"
+    },
+    {
+      "id": "budget-delete-rejected",
+      "file": "v1/cases/budget-delete-rejected.json",
+      "sha256": "ad9b77ce2698bcd481a2ff79efbed197cf81c594a3418a527500fbf21552a9d0"
+    },
+    {
+      "id": "catalog-account",
+      "file": "v1/cases/catalog-account.json",
+      "sha256": "50ce2c1e7616a03509e94d7d2080d4dafee6a6f5fbdec2b1e296a5489ef50dfd"
+    },
+    {
+      "id": "catalog-merchant",
+      "file": "v1/cases/catalog-merchant.json",
+      "sha256": "aa17d1fec8c339b4afb2dc374e42dece65a2a8a2bfa61bd2d39aadcf52fdf87e"
+    },
+    {
+      "id": "catalog-tag",
+      "file": "v1/cases/catalog-tag.json",
+      "sha256": "90a11517a74f1ff086b66daf43e4762699d7f2599587252481b5da543bc636fc"
+    },
+    {
+      "id": "client-closed",
+      "file": "v1/cases/client-closed.json",
+      "sha256": "03bd77165577888855fbfecfa693484644e854c9f51cc45da0015373bbb2d761"
+    },
+    {
+      "id": "country-force-fetch",
+      "file": "v1/cases/country-force-fetch.json",
+      "sha256": "fe3d7d01b5b2429dfb29973b72c4b778bbf3714e35afe713af98a33454c5c355"
+    },
+    {
+      "id": "currency-transfer",
+      "file": "v1/cases/currency-transfer.json",
+      "sha256": "74a5852d636d386d442d7520e91b2bea2cbf8839066fb64d43ab823d4d2063c1"
+    },
+    {
+      "id": "cursor-backwards",
+      "file": "v1/cases/cursor-backwards.json",
+      "sha256": "662de8ed545029668e6d553f9d7ea1cc15143798aa8e87b082fa90e8a1ca5883"
+    },
+    {
+      "id": "debt-borrow",
+      "file": "v1/cases/debt-borrow.json",
+      "sha256": "5c7addaf169734a1f7cf1ce4f05d28678180abb2a76ac4f43790909ce2128198"
+    },
+    {
+      "id": "debt-collect",
+      "file": "v1/cases/debt-collect.json",
+      "sha256": "06c7fb61830393a8d27bcc5c386a3dc916add422879836a2d62579c93c879cc4"
+    },
+    {
+      "id": "debt-lend",
+      "file": "v1/cases/debt-lend.json",
+      "sha256": "97521337f3bd22c3ee1d9483d0db4ebdd5ac7294170b804d2a950320d42e1a2f"
+    },
+    {
+      "id": "debt-repay",
+      "file": "v1/cases/debt-repay.json",
+      "sha256": "2ac59a77dd9bc87800eba69b1f701ec64f62775f2ce4c086d2dcc5f4e52bea07"
+    },
+    {
+      "id": "delete-operation",
+      "file": "v1/cases/delete-operation.json",
+      "sha256": "fde9916385c0df8fd9f5696b1c91d8b6ff43c4f6524e564de927f439d47374bb"
+    },
+    {
+      "id": "deletion-account",
+      "file": "v1/cases/deletion-account.json",
+      "sha256": "59db5ac7c0c6cead122eff880eabf7770b4284bc324b5e2ac0d6c731ee667818"
+    },
+    {
+      "id": "deletion-merchant",
+      "file": "v1/cases/deletion-merchant.json",
+      "sha256": "dfaec069944454c835972c340e1facbb990f4fc9173021ab0f9da3d8db4e9490"
+    },
+    {
+      "id": "deletion-reminder",
+      "file": "v1/cases/deletion-reminder.json",
+      "sha256": "21b12d700bdb142b7208290b627e3d5fb4dc16742d2435bc5d5a09b790950600"
+    },
+    {
+      "id": "deletion-reminderMarker",
+      "file": "v1/cases/deletion-reminderMarker.json",
+      "sha256": "454171bd14010d82c54d942a33659c908552333808fda670bb2c9cbb55d4b09d"
+    },
+    {
+      "id": "deletion-tag",
+      "file": "v1/cases/deletion-tag.json",
+      "sha256": "5d32d78b88df49be49f48147aaaf2493e81b50b260faebf5de404951f0acee45"
+    },
+    {
+      "id": "deletion-transaction",
+      "file": "v1/cases/deletion-transaction.json",
+      "sha256": "1bd2bcf545871e4924c099c3c6443a5cb315820d136e216f1b1895d1f55690b4"
+    },
+    {
+      "id": "diff-unknown-fields",
+      "file": "v1/cases/diff-unknown-fields.json",
+      "sha256": "b1c7a83b491108e53b6432712d60df03933aab399b0ca31de6dc4d2c9c204eb4"
+    },
+    {
+      "id": "duplicate-different",
+      "file": "v1/cases/duplicate-different.json",
+      "sha256": "41fe95333ff9953075a134b9aa5520fa98dd308265908cc28725984967d9a75c"
+    },
+    {
+      "id": "duplicate-entity",
+      "file": "v1/cases/duplicate-entity.json",
+      "sha256": "dabc50c92815ad65c6330b94d6a99f5a6e8371e9076221c6a7254176ca718b2e"
+    },
+    {
+      "id": "duplicate-equal",
+      "file": "v1/cases/duplicate-equal.json",
+      "sha256": "15a53f89f1d60958598f570648037536ccf89fe3285d33bd0a34a0aa45925247"
+    },
+    {
+      "id": "duplicate-escaped",
+      "file": "v1/cases/duplicate-escaped.json",
+      "sha256": "e883d5aa35d7e4a45c8beda9fd4fb0395a02295711d45c0498ae67dfd73251d7"
+    },
+    {
+      "id": "encode-exact",
+      "file": "v1/cases/encode-exact.json",
+      "sha256": "cc7dcdaef295b4093e56a265c8c6a88e2286b67a72f60e181978a77fb6fa14b2"
+    },
+    {
+      "id": "expense-defaults",
+      "file": "v1/cases/expense-defaults.json",
+      "sha256": "5c41c37863ef87cea81d8ff3c7daab5719806037b45e1e701903d4810b7635b2"
+    },
+    {
+      "id": "force-fetch",
+      "file": "v1/cases/force-fetch.json",
+      "sha256": "1574aa32b6ce56c3f97105e08e610506404ff26e5db7eea02ed1d7ece440acd1"
+    },
+    {
+      "id": "http-204",
+      "file": "v1/cases/http-204.json",
+      "sha256": "0a6f1e6758151c785537bb01f9169a4e94f5e0b626a9ab5b4febb35829e3e8cb"
+    },
+    {
+      "id": "http-400",
+      "file": "v1/cases/http-400.json",
+      "sha256": "03cf178a38bc3ca59957255bd99c275b16eed2236bba3f80c5e9716517cb231c"
+    },
+    {
+      "id": "http-401",
+      "file": "v1/cases/http-401.json",
+      "sha256": "6cc51cae25d0cced505fd3ff946c9beb845c82cbbe6fbfc42824351eb5032d9f"
+    },
+    {
+      "id": "http-403",
+      "file": "v1/cases/http-403.json",
+      "sha256": "27ff879eb08c08490dfc88fd9def661ad49c6fc71635577cbad6000ea47bdee6"
+    },
+    {
+      "id": "http-429",
+      "file": "v1/cases/http-429.json",
+      "sha256": "b22bcfd3251736667cf322c47225f3da610a6bd30c08834f34bf2c3078f00047"
+    },
+    {
+      "id": "http-500",
+      "file": "v1/cases/http-500.json",
+      "sha256": "38885a9c663c9f4716bee69b64d9e65005f8dfe194ae49a1fe7682581d838c6b"
+    },
+    {
+      "id": "income-refund",
+      "file": "v1/cases/income-refund.json",
+      "sha256": "202f9008210341ee6c2f66bcc69caedd3a93aa0bf871c9e0ce00bac2c7f1b2f7"
+    },
+    {
+      "id": "incremental-read",
+      "file": "v1/cases/incremental-read.json",
+      "sha256": "1f5a4a8b385adf228f00b0f7e0a515bfe658ab951f5270f509e0c498b1660426"
+    },
+    {
+      "id": "initial-read",
+      "file": "v1/cases/initial-read.json",
+      "sha256": "173f54bb902552f501065d3b0bd8af01c24ab5978da41c0b7be4fcd995209a31"
+    },
+    {
+      "id": "invalid-budget-key",
+      "file": "v1/cases/invalid-budget-key.json",
+      "sha256": "7b3dc9edb7f354cfe81a467d9d5c95e5df62f3a7c1fe0c10221e7fc65cc50ce1"
+    },
+    {
+      "id": "invalid-date",
+      "file": "v1/cases/invalid-date.json",
+      "sha256": "636332c6985003f06ed27de6ad28f670ee667e661c1564a92319595501ded550"
+    },
+    {
+      "id": "invalid-json",
+      "file": "v1/cases/invalid-json.json",
+      "sha256": "11d67ea51da30471c5a4c36c6eefc8d554b319e035590496df31661a8c468424"
+    },
+    {
+      "id": "invalid-utf8",
+      "file": "v1/cases/invalid-utf8.json",
+      "sha256": "246b86562104a9df043846d14909cc5c5a16f56f35dfc7699ff8529735da74ad"
+    },
+    {
+      "id": "key-account",
+      "file": "v1/cases/key-account.json",
+      "sha256": "2621e065badc9979987b9bfd53c9710cdec7ab5165e6059700e7fcce1820303f"
+    },
+    {
+      "id": "key-budget",
+      "file": "v1/cases/key-budget.json",
+      "sha256": "fdcfa968e6111309b981bc64c492474187a38adeabc38f48815e931a097a0a7e"
+    },
+    {
+      "id": "key-instrument",
+      "file": "v1/cases/key-instrument.json",
+      "sha256": "9ac3fcb45d60eb5149f86f2b38c27765275f41acb125f55ece4a58061823ef34"
+    },
+    {
+      "id": "large-integer",
+      "file": "v1/cases/large-integer.json",
+      "sha256": "4d2d8c2d35f856fe5ade46c2d8c1a51a06b7e85c1c1124590685b51dd16b9548"
+    },
+    {
+      "id": "long-fraction",
+      "file": "v1/cases/long-fraction.json",
+      "sha256": "75ec3d0121edba92e8d71cecf45766de41060fc90f4a6c0e25964c2fb9c6d88a"
+    },
+    {
+      "id": "missing-changed",
+      "file": "v1/cases/missing-changed.json",
+      "sha256": "db90de5824ec581ba2897659c01834742558fee8b0c65e7541f4bf2f5c197f98"
+    },
+    {
+      "id": "negative-cursor",
+      "file": "v1/cases/negative-cursor.json",
+      "sha256": "16ddc7ef4489829d8bb56f36faf7e2f287099fa19db3687a801900b876699db6"
+    },
+    {
+      "id": "negative-expense",
+      "file": "v1/cases/negative-expense.json",
+      "sha256": "af205f0ecc7c9a001b053036934524a321c730f59124387952ba9c24ded2c72d"
+    },
+    {
+      "id": "nested-extension",
+      "file": "v1/cases/nested-extension.json",
+      "sha256": "95a5532c882ea606e6f8356a332deed9c3901f4d52de5fe402e2cee78643971e"
+    },
+    {
+      "id": "nonfinite-json",
+      "file": "v1/cases/nonfinite-json.json",
+      "sha256": "4de4ebc09692acf698499c5a790552f399ce5134354e6893d935d4b7665b1c8d"
+    },
+    {
+      "id": "oauth-authorization-url",
+      "file": "v1/cases/oauth-authorization-url.json",
+      "sha256": "ca01c26a2168289b8203287ae4e055f83f415381b3a949aa489a9018b91aef72"
+    },
+    {
+      "id": "oauth-callback",
+      "file": "v1/cases/oauth-callback.json",
+      "sha256": "f5cb43c5b67413bc4032f86cc3b4e0fd8e4b7c2249c246a420076f04d7e12efc"
+    },
+    {
+      "id": "oauth-closed",
+      "file": "v1/cases/oauth-closed.json",
+      "sha256": "999d6fc3cdc17024d567376170d774bed5959747f9ea802c7ca2aecd334b5ffa"
+    },
+    {
+      "id": "oauth-error",
+      "file": "v1/cases/oauth-error.json",
+      "sha256": "70fce7084cdc6ce7651c07a53b763ffaeee33587419be6ec9c07174158d0ff8b"
+    },
+    {
+      "id": "oauth-exchangeCode",
+      "file": "v1/cases/oauth-exchangeCode.json",
+      "sha256": "1eac6f3fd3fd73f7ad7d028f237000ed4472ce228d41cc2cfc674e5562de0bd9"
+    },
+    {
+      "id": "oauth-refresh",
+      "file": "v1/cases/oauth-refresh.json",
+      "sha256": "6c0ba8880a7f33a4d4b3c7221685bbc2ca109f020ae42c5033c789d0210007ca"
+    },
+    {
+      "id": "oauth-state-duplicate",
+      "file": "v1/cases/oauth-state-duplicate.json",
+      "sha256": "5fc0019d80b5a41f9d3075e764171b84bd9148350f2ccb7a964fda796688d6c5"
+    },
+    {
+      "id": "oauth-state-mismatch",
+      "file": "v1/cases/oauth-state-mismatch.json",
+      "sha256": "8efa981db4a116d32c7f16267b74569af086c852fbd66bf6171eb372ba57b5d7"
+    },
+    {
+      "id": "paired-original-amount",
+      "file": "v1/cases/paired-original-amount.json",
+      "sha256": "4396c7b27d6e7f9607cd72d4616e7f30e29bbafb11cb1cb5a85afa4a967dab3a"
+    },
+    {
+      "id": "prototype-data",
+      "file": "v1/cases/prototype-data.json",
+      "sha256": "a2cedd88c0a8cd25e03a4f34d92e16817e6aa2f4a596f0f1435b0e05d4c5507f"
+    },
+    {
+      "id": "readonly-upsert",
+      "file": "v1/cases/readonly-upsert.json",
+      "sha256": "6722ae92ec8db59117fbe38e94d15e1e3bb9afaa958aee5e17f4b1652adf2d7b"
+    },
+    {
+      "id": "response-byte-limit",
+      "file": "v1/cases/response-byte-limit.json",
+      "sha256": "8c41ba3b059c31a74fc678497d24d96a811f82299971e605861568be0e72c88f"
+    },
+    {
+      "id": "same-account-transfer",
+      "file": "v1/cases/same-account-transfer.json",
+      "sha256": "0bb5580b01107bd94b8570e04b84035db1f1238dfb1bde7f71bf8f48d37f0597"
+    },
+    {
+      "id": "server-cursor-backwards",
+      "file": "v1/cases/server-cursor-backwards.json",
+      "sha256": "26195ae1847a00c134a6b917e42624042b4eff95dfc5d26024bbf7b9e71acee2"
+    },
+    {
+      "id": "suggest-empty",
+      "file": "v1/cases/suggest-empty.json",
+      "sha256": "c4d841dae3406d4d5ef65f5f1e071a899e94b288e3d8bc23c2c2d09a648ebfb9"
+    },
+    {
+      "id": "suggest-invalid-result",
+      "file": "v1/cases/suggest-invalid-result.json",
+      "sha256": "b4163f7a2f536fb857c45d06b7129c17cc7b4abc4053173807fc7dd841055dc3"
+    },
+    {
+      "id": "suggest-list",
+      "file": "v1/cases/suggest-list.json",
+      "sha256": "1de80435b44b5fac5e48113e837e7d6f34ec5a1116b6b9baa264867cb789b19c"
+    },
+    {
+      "id": "suggest-object",
+      "file": "v1/cases/suggest-object.json",
+      "sha256": "298486fd8886e5e0fbc45394c3fd370d840ee0a9a4504179b51811015aa48b99"
+    },
+    {
+      "id": "transport-lost-response",
+      "file": "v1/cases/transport-lost-response.json",
+      "sha256": "2bfc5dce169595dc6940d0dba702b9830bff613bd5910be91ed2b0455c518c13"
+    },
+    {
+      "id": "unreviewed-categorized-expense",
+      "file": "v1/cases/unreviewed-categorized-expense.json",
+      "sha256": "de27799fa35817fd365008e909a4e942114cfce665e74a5f9fbf37f50f7abfe7"
+    },
+    {
+      "id": "update-identity-rejected",
+      "file": "v1/cases/update-identity-rejected.json",
+      "sha256": "cc1baa2d74863ad7d6b67d5513225689e4cc7f39ffd7db5ce9150ed6b05db1c3"
+    },
+    {
+      "id": "update-preserve-extension",
+      "file": "v1/cases/update-preserve-extension.json",
+      "sha256": "f8e23c5b7f12c0df91783de7f5de8549066b3f55a145f18ba068e4dfd4a61cc7"
+    },
+    {
+      "id": "upsert-account",
+      "file": "v1/cases/upsert-account.json",
+      "sha256": "b3208a3e374b21b3115c8bd0f1caae06d2d8ae9062ba51e7a40b39c0c07814b9"
+    },
+    {
+      "id": "upsert-budget",
+      "file": "v1/cases/upsert-budget.json",
+      "sha256": "3c0765aa4d388da4d79a9bf14fbe19d080f9215c6a25f93507164d7916b29209"
+    },
+    {
+      "id": "upsert-merchant",
+      "file": "v1/cases/upsert-merchant.json",
+      "sha256": "715db109c218622fea6621f90e008c08148f17354282fdcdafe28eb3fa176d1b"
+    },
+    {
+      "id": "upsert-reminder",
+      "file": "v1/cases/upsert-reminder.json",
+      "sha256": "1ba27ea85a53782e938fb79bf8515bcd517397aa51802ad1df0f77229eba5bbb"
+    },
+    {
+      "id": "upsert-reminderMarker",
+      "file": "v1/cases/upsert-reminderMarker.json",
+      "sha256": "e35f8d4929b1296ebb25f1c98d4c09a15a484ca5ee093445f029f1dcb7a395cc"
+    },
+    {
+      "id": "upsert-tag",
+      "file": "v1/cases/upsert-tag.json",
+      "sha256": "48b385daa55ec4f8558e9d625ece6d3f6272eb8f5ed8777b38a64fe4c200e89d"
+    },
+    {
+      "id": "upsert-transaction",
+      "file": "v1/cases/upsert-transaction.json",
+      "sha256": "be93f458e5a38a73862fc29ba2f08ab216e3d48b2ba7d44f655d5b0b750b1e12"
+    },
+    {
+      "id": "zero-expense",
+      "file": "v1/cases/zero-expense.json",
+      "sha256": "43fa454c2a62e92cf755d3e6ed855a12bb3ef666d8d60c6201caa8c2fd071c48"
+    }
+  ],
+  "nativeChecks": {
+    "python-sync": [
+      "native-cycle",
+      "native-unsupported"
+    ],
+    "python-async": [
+      "native-cycle",
+      "native-unsupported"
+    ]
+  },
+  "schemaSha256": "c0c75295e19ea615d9722bcc89519e045743500b44f32125c7dfea5bade0505e",
+  "stage": 2
+}

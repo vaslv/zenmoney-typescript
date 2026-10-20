@@ -1,0 +1,71 @@
+{
+  "formatVersion": 1,
+  "id": "nested-extension",
+  "stage": 3,
+  "operation": "codec.decode",
+  "description": "nested extension",
+  "featureIds": [
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "{\"future\":{\"rate\":1e-100,\"list\":[null,[],{}]}}"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "future",
+          {
+            "type": "object",
+            "entries": [
+              [
+                "rate",
+                {
+                  "type": "number",
+                  "lexeme": "1E-100"
+                }
+              ],
+              [
+                "list",
+                {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "array",
+                      "items": []
+                    },
+                    {
+                      "type": "object",
+                      "entries": []
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "formatVersion": 1,
+  "id": "boolean-user",
+  "stage": 4,
+  "operation": "transactions.expense",
+  "description": "boolean user",
+  "featureIds": [
+    "P10"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "boolean",
+          "value": true
+        }
+      ],
+      [
+        "date",
+        {
+          "type": "string",
+          "value": "2026-01-15"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "t"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ],
+      [
+        "account",
+        {
+          "type": "string",
+          "value": "a"
+        }
+      ],
+      [
+        "instrument",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "amount",
+        {
+          "type": "number",
+          "lexeme": "12.34"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

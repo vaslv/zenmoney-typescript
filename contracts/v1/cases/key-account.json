@@ -1,0 +1,51 @@
+{
+  "formatVersion": 1,
+  "id": "key-account",
+  "stage": 3,
+  "operation": "protocol.entityKey",
+  "description": "key account",
+  "featureIds": [
+    "P07"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "kind",
+        {
+          "type": "string",
+          "value": "account"
+        }
+      ],
+      [
+        "entity",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "id",
+              {
+                "type": "string",
+                "value": "a"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "string",
+      "value": "a"
+    }
+  }
+}

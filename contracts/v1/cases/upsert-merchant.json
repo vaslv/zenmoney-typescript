@@ -1,0 +1,182 @@
+{
+  "formatVersion": 1,
+  "id": "upsert-merchant",
+  "stage": 5,
+  "operation": "client.upsert",
+  "description": "upsert merchant",
+  "featureIds": [
+    "P03",
+    "P08"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "kind",
+        {
+          "type": "string",
+          "value": "merchant"
+        }
+      ],
+      [
+        "entities",
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "entries": [
+                [
+                  "id",
+                  {
+                    "type": "string",
+                    "value": "x"
+                  }
+                ],
+                [
+                  "user",
+                  {
+                    "type": "number",
+                    "lexeme": "1"
+                  }
+                ],
+                [
+                  "changed",
+                  {
+                    "type": "number",
+                    "lexeme": "1700000000"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [
+    {
+      "status": 200,
+      "body": "{\"serverTimestamp\":10}"
+    }
+  ],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "entries": [
+            [
+              "method",
+              {
+                "type": "string",
+                "value": "POST"
+              }
+            ],
+            [
+              "url",
+              {
+                "type": "string",
+                "value": "https://api.zenmoney.ru/v8/diff/"
+              }
+            ],
+            [
+              "headers",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "content-type",
+                    {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  ],
+                  [
+                    "authorization",
+                    {
+                      "type": "string",
+                      "value": "Bearer TEST_BEARER_NOT_A_SECRET"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              "body",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "serverTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "0"
+                    }
+                  ],
+                  [
+                    "currentClientTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "1700000000"
+                    }
+                  ],
+                  [
+                    "merchant",
+                    {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "entries": [
+                            [
+                              "id",
+                              {
+                                "type": "string",
+                                "value": "x"
+                              }
+                            ],
+                            [
+                              "user",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "changed",
+                              {
+                                "type": "number",
+                                "lexeme": "1700000000"
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "serverTimestamp",
+          {
+            "type": "number",
+            "lexeme": "10"
+          }
+        ]
+      ]
+    }
+  }
+}

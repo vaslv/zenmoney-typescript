@@ -1,0 +1,52 @@
+{
+  "formatVersion": 1,
+  "id": "prototype-data",
+  "stage": 3,
+  "operation": "codec.decode",
+  "description": "prototype data",
+  "featureIds": [
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "{\"__proto__\":{\"safe\":true}}"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "__proto__",
+          {
+            "type": "object",
+            "entries": [
+              [
+                "safe",
+                {
+                  "type": "boolean",
+                  "value": true
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}

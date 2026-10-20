@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "id": "update-identity-rejected",
+  "stage": 4,
+  "operation": "transactions.update",
+  "description": "update identity rejected",
+  "featureIds": [
+    "P13"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "entity",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "id",
+              {
+                "type": "string",
+                "value": "t"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "fields",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "id",
+              {
+                "type": "string",
+                "value": "other"
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

@@ -77,3 +77,16 @@ when requested. Build the shared fixture schema, comparator and installed Python
 sync/async adapters. Use docs/contracts.md and docs/api-options.json; do not mistake
 S1's exact-number and transport probes for completed SDK feature coverage.
 No push, tags, releases, registry publication or live API writes are authorized.
+
+## 2026-10-20 — S2 complete
+
+Added 86 manually specified shared vectors, draft-2020-12 schema, hash manifest,
+feature/field coverage metadata, exact-number comparator with negative controls,
+and installed Python sync/async adapters. The default Docker acceptance now requires
+the adapters and comparator; it cannot pass by only checking wheel hashes.
+
+Review: five issues fixed and independent follow-up PASS; see reviews/s2.md.
+Docker: full matrix passed; final Python parity and Node acceptance passed after
+review fixes (17 Node tests, 86 vectors per Python runner, two native checks each).
+Commands: scripts/test.sh and scripts/test-parity.sh with the documented buildx env.
+No financial service requests, push, tags or publication. Next: S3.

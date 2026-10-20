@@ -1,0 +1,159 @@
+{
+  "formatVersion": 1,
+  "id": "catalog-tag",
+  "stage": 4,
+  "operation": "entities.tag",
+  "description": "catalog tag",
+  "featureIds": [
+    "P09",
+    "P23"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "title",
+        {
+          "type": "string",
+          "value": "Synthetic"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "x"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "x"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "title",
+          {
+            "type": "string",
+            "value": "Synthetic"
+          }
+        ],
+        [
+          "changed",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "parent",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "icon",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "picture",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "color",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "showIncome",
+          {
+            "type": "boolean",
+            "value": true
+          }
+        ],
+        [
+          "showOutcome",
+          {
+            "type": "boolean",
+            "value": true
+          }
+        ],
+        [
+          "budgetIncome",
+          {
+            "type": "boolean",
+            "value": true
+          }
+        ],
+        [
+          "budgetOutcome",
+          {
+            "type": "boolean",
+            "value": true
+          }
+        ],
+        [
+          "required",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "archive",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "staticId",
+          {
+            "type": "null"
+          }
+        ]
+      ]
+    }
+  }
+}

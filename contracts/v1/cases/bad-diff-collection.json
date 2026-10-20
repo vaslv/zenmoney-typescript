@@ -1,0 +1,41 @@
+{
+  "formatVersion": 1,
+  "id": "bad-diff-collection",
+  "stage": 3,
+  "operation": "protocol.decodeDiff",
+  "description": "bad diff collection",
+  "featureIds": [
+    "P05",
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "{\"serverTimestamp\":10,\"account\":{}}"
+        }
+      ],
+      [
+        "cursor",
+        {
+          "type": "number",
+          "lexeme": "0"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "response"
+  }
+}

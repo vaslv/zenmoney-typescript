@@ -1,0 +1,134 @@
+{
+  "formatVersion": 1,
+  "id": "suggest-list",
+  "stage": 5,
+  "operation": "client.suggest",
+  "description": "suggest list",
+  "featureIds": [
+    "P02"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "transactions",
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "entries": [
+                [
+                  "payee",
+                  {
+                    "type": "string",
+                    "value": "Synthetic"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [
+    {
+      "status": 200,
+      "body": "[{\"tag\":[\"tag\"]}]"
+    }
+  ],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "entries": [
+            [
+              "method",
+              {
+                "type": "string",
+                "value": "POST"
+              }
+            ],
+            [
+              "url",
+              {
+                "type": "string",
+                "value": "https://api.zenmoney.ru/v8/suggest/"
+              }
+            ],
+            [
+              "headers",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "content-type",
+                    {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  ],
+                  [
+                    "authorization",
+                    {
+                      "type": "string",
+                      "value": "Bearer TEST_BEARER_NOT_A_SECRET"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              "body",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "payee",
+                        {
+                          "type": "string",
+                          "value": "Synthetic"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "result": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "entries": [
+            [
+              "tag",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "string",
+                    "value": "tag"
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

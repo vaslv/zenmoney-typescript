@@ -1,0 +1,66 @@
+{
+  "formatVersion": 1,
+  "id": "encode-exact",
+  "stage": 3,
+  "operation": "codec.encode",
+  "description": "encode exact",
+  "featureIds": [
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "value",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "v",
+              {
+                "type": "number",
+                "lexeme": "1.00000000000000000001"
+              }
+            ],
+            [
+              "i",
+              {
+                "type": "number",
+                "lexeme": "9007199254740993"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "v",
+          {
+            "type": "number",
+            "lexeme": "1.00000000000000000001"
+          }
+        ],
+        [
+          "i",
+          {
+            "type": "number",
+            "lexeme": "9007199254740993"
+          }
+        ]
+      ]
+    }
+  }
+}

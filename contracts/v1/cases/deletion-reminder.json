@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "id": "deletion-reminder",
+  "stage": 4,
+  "operation": "transactions.deletion",
+  "description": "deletion reminder",
+  "featureIds": [
+    "P14"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "kind",
+        {
+          "type": "string",
+          "value": "reminder"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "x"
+        }
+      ],
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "object",
+          {
+            "type": "string",
+            "value": "reminder"
+          }
+        ],
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "x"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "stamp",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ]
+      ]
+    }
+  }
+}

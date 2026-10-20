@@ -1,0 +1,33 @@
+{
+  "formatVersion": 1,
+  "id": "invalid-utf8",
+  "stage": 3,
+  "operation": "codec.decode",
+  "description": "Reject malformed UTF-8 bytes",
+  "featureIds": [
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "bodyBase64",
+        {
+          "type": "string",
+          "value": "wyg="
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "response"
+  }
+}

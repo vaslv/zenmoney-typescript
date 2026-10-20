@@ -1,0 +1,33 @@
+{
+  "formatVersion": 1,
+  "id": "invalid-json",
+  "stage": 3,
+  "operation": "codec.decode",
+  "description": "invalid json",
+  "featureIds": [
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "[1,]"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "response"
+  }
+}

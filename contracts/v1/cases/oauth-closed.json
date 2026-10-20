@@ -1,0 +1,25 @@
+{
+  "formatVersion": 1,
+  "id": "oauth-closed",
+  "stage": 6,
+  "operation": "oauth.closed",
+  "description": "oauth closed",
+  "featureIds": [
+    "P20"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": []
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "closed"
+  }
+}

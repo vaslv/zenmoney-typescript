@@ -17,6 +17,8 @@ COPY requirements.reference.txt ./
 RUN python -m pip install --no-cache-dir --require-hashes -r requirements.reference.txt && python -m pip check
 COPY docs/python-baseline.json docs/python-inventory.json ./docs/
 COPY scripts/check-reference.py ./scripts/
+COPY contracts ./contracts
+COPY tests/parity/python ./tests/parity/python
 CMD ["python", "scripts/check-reference.py"]
 
 FROM mcr.microsoft.com/playwright:v1.64.1-noble@sha256:7852dc5a7d72f5fe458a597d690f6c42fbc8e9e26ddfa95f8e6ef552558d9bbf AS browser

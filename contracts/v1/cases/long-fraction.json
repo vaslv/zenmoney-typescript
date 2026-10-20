@@ -1,0 +1,44 @@
+{
+  "formatVersion": 1,
+  "id": "long-fraction",
+  "stage": 3,
+  "operation": "codec.decode",
+  "description": "long fraction",
+  "featureIds": [
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "{\"v\":1.00000000000000000001}"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "v",
+          {
+            "type": "number",
+            "lexeme": "1.00000000000000000001"
+          }
+        ]
+      ]
+    }
+  }
+}

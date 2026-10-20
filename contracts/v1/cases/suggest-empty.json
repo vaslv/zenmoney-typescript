@@ -1,0 +1,33 @@
+{
+  "formatVersion": 1,
+  "id": "suggest-empty",
+  "stage": 5,
+  "operation": "client.suggest",
+  "description": "suggest empty",
+  "featureIds": [
+    "P04"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "transactions",
+        {
+          "type": "array",
+          "items": []
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

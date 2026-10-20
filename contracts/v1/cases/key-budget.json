@@ -1,0 +1,64 @@
+{
+  "formatVersion": 1,
+  "id": "key-budget",
+  "stage": 3,
+  "operation": "protocol.entityKey",
+  "description": "key budget",
+  "featureIds": [
+    "P07"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "kind",
+        {
+          "type": "string",
+          "value": "budget"
+        }
+      ],
+      [
+        "entity",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "user",
+              {
+                "type": "number",
+                "lexeme": "1"
+              }
+            ],
+            [
+              "date",
+              {
+                "type": "string",
+                "value": "2026-01-01"
+              }
+            ],
+            [
+              "tag",
+              {
+                "type": "null"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "string",
+      "value": "[1,\"2026-01-01\",null]"
+    }
+  }
+}

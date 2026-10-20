@@ -1,0 +1,54 @@
+{
+  "formatVersion": 1,
+  "id": "account-debt-rejected",
+  "stage": 4,
+  "operation": "entities.account",
+  "description": "account debt rejected",
+  "featureIds": [
+    "P09"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "title",
+        {
+          "type": "string",
+          "value": "Synthetic"
+        }
+      ],
+      [
+        "instrument",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "accountType",
+        {
+          "type": "string",
+          "value": "debt"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

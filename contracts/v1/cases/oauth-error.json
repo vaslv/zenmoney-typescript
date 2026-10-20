@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "id": "oauth-error",
+  "stage": 6,
+  "operation": "oauth.callbackCode",
+  "description": "oauth error",
+  "featureIds": [
+    "P15"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "callbackUrl",
+        {
+          "type": "string",
+          "value": "https://example.invalid/?error=denied&state=nonce"
+        }
+      ],
+      [
+        "expectedState",
+        {
+          "type": "string",
+          "value": "nonce"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "response"
+  }
+}

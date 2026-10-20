@@ -1,0 +1,25 @@
+{
+  "formatVersion": 1,
+  "id": "client-closed",
+  "stage": 5,
+  "operation": "client.closed",
+  "description": "client closed",
+  "featureIds": [
+    "P20"
+  ],
+  "evidence": "zenmoney-python 0.7.0 approved runtime source; manually specified expected protocol semantics",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": []
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "closed"
+  }
+}
