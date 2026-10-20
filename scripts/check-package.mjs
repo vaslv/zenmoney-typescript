@@ -18,7 +18,9 @@ execFileSync('node', ['--input-type=module', '-e',
 const modulePath = resolve(cwd, 'node_modules/zenmoney-typescript/dist/index.js');
 const sdk = await import(pathToFileURL(modulePath).href);
 assert.equal(sdk.decimal('1.00').equals(sdk.decimal('1e0')), true);
-assert.deepEqual(Object.keys(sdk).sort(), ['ExactDecimal', 'MAX_NUMBER_LENGTH', 'decimal']);
+assert(Object.keys(sdk).includes('encodeJson'));
+assert(Object.keys(sdk).includes('entityKey'));
+assert(!Object.keys(sdk).includes('decodeCandidate'));
 await writeFile(cwd + '/empty.d.ts', '');
 await writeFile(cwd + '/consumer.ts', `import {decimal, type ExactDecimal} from 'zenmoney-typescript';\nconst value: ExactDecimal = decimal('1.23');\nvalue.equals(decimal('123e-2'));\n// @ts-expect-error decimal intentionally requires exact text\ndecimal(1.23);\n`);
 for (const options of [['--module', 'NodeNext', '--moduleResolution', 'NodeNext'], ['--module', 'ESNext', '--moduleResolution', 'Bundler']]) {

@@ -1,3 +1,4 @@
+import {ValidationError} from './errors.js';
 /** An exact JSON decimal token; arithmetic and currency rounding are caller policy. */
 const JSON_NUMBER = /^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/;
 export const MAX_NUMBER_LENGTH = 4096;
@@ -21,7 +22,7 @@ export class ExactDecimal {
 
   constructor(value: string) {
     if (typeof value !== 'string' || value.trim() !== value || value.length > MAX_NUMBER_LENGTH || !JSON_NUMBER.test(value)) {
-      throw new TypeError('Expected a finite JSON decimal token of at most 4096 characters');
+      throw new ValidationError('invalid_decimal');
     }
     this.#lexeme = value;
     this.#parts = Object.freeze(parts(value));
@@ -51,9 +52,9 @@ export class ExactDecimal {
 
   equals(other: ExactDecimal): boolean { return this.compare(other) === 0; }
 
-  valueOf(): never { throw new TypeError('Use explicit ExactDecimal comparison or toString'); }
+  valueOf(): never { throw new ValidationError('implicit_decimal_coercion'); }
 
-  toJSON(): never { throw new TypeError('Use the SDK lossless JSON encoder for ExactDecimal'); }
+  toJSON(): never { throw new ValidationError('use_lossless_encoder'); }
 }
 
 export function decimal(value: string): ExactDecimal { return new ExactDecimal(value); }

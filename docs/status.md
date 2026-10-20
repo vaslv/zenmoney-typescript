@@ -90,3 +90,13 @@ Docker: full matrix passed; final Python parity and Node acceptance passed after
 review fixes (17 Node tests, 86 vectors per Python runner, two native checks each).
 Commands: scripts/test.sh and scripts/test-parity.sh with the documented buildx env.
 No financial service requests, push, tags or publication. Next: S3.
+
+## 2026-10-20 — S3 complete
+
+Implemented public lossless codec, error hierarchy, every inventoried model field,
+composite identities and structural diff/suggest protocol. Added exact model-field
+type checks, native validation/security regressions and staged TS vector execution.
+Review fixed six issues; independent follow-up PASS (reviews/s3.md).
+Full Docker acceptance passed: 22 tests per Node version, 86 Python vectors per
+runner, 18 active TypeScript vectors, both browser versions. No live requests.
+Next: S4 builders. No push, tags or publication.

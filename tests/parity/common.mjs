@@ -57,6 +57,11 @@ export function loadCases() {
   for(const declaration of inventory.modules['models.py'].declarations) {
     assert.deepEqual(coverage.modelFields[declaration.name],Object.keys(declaration.fields),'Missing model field mapping');
   }
+  if(manifest.stage>=3) {
+    assert.equal(coverage.fieldTestPlan.path,'tests/types/models.ts');
+    const typeTests=readFileSync(coverage.fieldTestPlan.path,'utf8');
+    for(const [model,fields] of Object.entries(coverage.modelFields)) for(const field of fields) assert(typeTests.includes(`M.${model}['${field}']`),'Unreferenced model field');
+  }
   return cases;
 }
 export function compare(cases, results, runtime) {

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
-import {decodeCandidate as decode, encodeCandidate as encode, MAX_DEPTH} from '../../.local/browser/codec.mjs';
+import {decodeJson as decode, encodeJson as encode, ResponseError, ValidationError} from '../../dist/index.js';
+import {MAX_DEPTH} from '../../dist/codec.js';
 
 test('nested decimals and large integers roundtrip without precision loss', () => {
   const raw = '{"a":1.00000000000000000001,"b":9007199254740993,"c":[-1e99999,1e-99999,42],"tag":null}';
@@ -15,7 +16,7 @@ test('nested decimals and large integers roundtrip without precision loss', () =
 test('all duplicate keys are rejected, including equal, escaped and nested keys', () => {
   for (const raw of ['{"a":1,"a":1}', '{"a":1,"a":2}', '{"a":null,"\\u0061":null}',
     '{"outer":{"x":[],"x":[]}}', '{"__proto__":{},"__proto__":{}}', '{"a":[{},{}],"a":2}']) {
-    assert.throws(() => decode(raw), /Duplicate/);
+    assert.throws(() => decode(raw), ResponseError);
   }
   assert.equal(encode(decode('{"a":{"a":1},"b":{"a":1}}')), '{"a":{"a":1},"b":{"a":1}}');
 });
@@ -48,9 +49,9 @@ test('unsupported caller objects cannot invoke coercion or custom accessors', ()
 });
 test('nesting and numeric limits reject before recursive parse/encode', () => {
   assert.doesNotThrow(() => decode('['.repeat(MAX_DEPTH) + '0' + ']'.repeat(MAX_DEPTH)));
-  assert.throws(() => decode('['.repeat(MAX_DEPTH + 1) + '0' + ']'.repeat(MAX_DEPTH + 1)), /nesting/);
-  assert.throws(() => decode('1'.repeat(4097)), /number/);
-  assert.throws(() => encode(10n ** 4096n), /number/);
+  assert.throws(() => decode('['.repeat(MAX_DEPTH + 1) + '0' + ']'.repeat(MAX_DEPTH + 1)), ResponseError);
+  assert.throws(() => decode('1'.repeat(4097)), ResponseError);
+  assert.throws(() => encode(10n ** 4096n), ValidationError);
 });
 test('punctuation and escapes inside strings do not affect preflight structure', () => {
   const data = {a: '{"a":1,"a":1}', b: ['[]{}', '\\"', 'e1234'], '"': 1};
