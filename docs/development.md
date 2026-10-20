@@ -41,8 +41,8 @@ consumer install, first prime exact runtime dependency metadata while online:
 host npm cache is not a reason to change its ownership; use Docker or a dedicated
 writable cache directory.
 
-The package is private:true. scripts/pack.sh writes only a candidate tarball and
-SHA256SUMS under .local/release. It does not publish, tag, push or modify siblings.
+The package is publishable but unpublished. scripts/pack.sh writes only a candidate
+tarball and SHA256SUMS under .local/release. It does not publish, tag, push or modify siblings.
 CI repeats Docker acceptance and packs only, with contents:read permission and no
 publication secrets. GitHub-hosted execution is pending the first authorized push;
 local success is not a claimed remote CI run.

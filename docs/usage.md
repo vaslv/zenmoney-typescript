@@ -1,6 +1,6 @@
 # Usage and integration
 
-The candidate is local and private. After `./scripts/pack.sh`, install
+The candidate is local and unpublished. After `./scripts/pack.sh`, install
 `.local/release/zenmoney-typescript-0.1.0.tgz` using npm. After an authorized npm
 publication the same root imports work by package name. Only the root export is
 supported; do not import internal dist/source modules. See ../examples/recipes.ts

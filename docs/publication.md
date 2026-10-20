@@ -1,9 +1,10 @@
 # Publication plan — not yet authorized
 
 Repository created by the user: https://github.com/vaslv/zenmoney-typescript.
-The local origin is configured; no push is authorized by this planning task.
-Proposed npm package: zenmoney-typescript. Its availability and ownership are not
-verified. Confirm them at release time; do not create registry packages during S0.
+The local origin is configured; no push is authorized by this preparation task.
+The user confirmed the npm package name zenmoney-typescript and completed npm
+registration/login. Registry availability and ownership still require verification
+before publishing.
 If npm name is occupied, agree on a scoped name rather than silently changing it.
 
 Use MIT with existing author attribution. Initial target 0.1.0, independently of
@@ -17,7 +18,7 @@ will be synchronized across languages. Mark the SDK's stability honestly.
   options. Prefer short-lived trusted CI publishing where supported; otherwise
   use a scoped local credential without exposing it in commands, logs or files.
 - Set package name/version/repository/license/exports/types/files/engines metadata;
-  emit ESM and declarations. Keep private:true until release preparation.
+  emit ESM and declarations. The release candidate now has private:false.
 - Use an allowlist for dist, README, LICENSE and selected user docs. Exclude tests,
   fixtures with credentials (none allowed), source journals, .env, .local and reports.
 - Build once from the exact commit with pinned dependencies, create the npm .tgz,
@@ -44,15 +45,16 @@ ZenImportBackend or zenmoney-python. SDK integration is a later separate stage.
 
 ## Current local candidate and operator handoff
 
-S1–S7 implementation is local. package.json remains private:true; therefore the
-candidate archive is for local acceptance and is intentionally not publishable.
-After separate release authorization, changing private to false is a reviewed
-release-preparation change: rebuild/retest the new commit and regenerate checksums.
-Do not publish the earlier private archive or silently mutate a verified archive.
+S1–S7 implementation is local. The user confirmed the npm package name and npm
+account login, so package.json now has private:false. This only prepares the
+candidate for publication; it does not authorize upload. Rebuild/retest the
+publishable commit and regenerate checksums. Do not publish the earlier private
+archive or silently mutate a verified archive.
 
-Read-only npm registry lookup on 2026-10-20 returned 404 for zenmoney-typescript.
-That is neither a reservation nor proof of ownership. Before release confirm the
-npm identity and desired public name; GitHub origin is the user-provided repository.
+Read-only npm registry lookup on 2026-10-20 again returned 404 for
+zenmoney-typescript, and `npm whoami` returned the user's npm account. This is
+neither a name reservation nor proof of future availability. Recheck immediately
+before release; GitHub origin is the user-provided repository.
 Do not print credentials or paste access tokens into chat, source or shell history.
 
 Current official guidance was consulted through Context7:

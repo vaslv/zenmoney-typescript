@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 const pkg = JSON.parse(await readFile('package.json', 'utf8'));
 const lock = JSON.parse(await readFile('package-lock.json', 'utf8'));
-assert.equal(pkg.private, true);
+assert.equal(pkg.private, false, 'Release candidate must be publishable');
 assert.equal(pkg.type, 'module');
 assert.deepEqual(lock.packages[''].dependencies, pkg.dependencies);
 assert.deepEqual(lock.packages[''].devDependencies, pkg.devDependencies);

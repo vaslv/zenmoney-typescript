@@ -355,3 +355,30 @@ Chrome-extension connectivity were not live tested. No push, tag or publication
 was performed. Documentation validation: `git diff --check` and the offline
 Docker documentation checker (`node scripts/check-docs.mjs`) passed with 19 links
 across 26 files. Local commit: `docs(live): record test-account API validation`.
+
+## 2026-10-20 — Local npm publication preparation
+
+The user confirmed the public npm name `zenmoney-typescript` and completed npm
+registration/login. Read-only `npm whoami --registry=https://registry.npmjs.org/`
+returned their account; a read-only `npm view zenmoney-typescript name version
+--json --registry=https://registry.npmjs.org/` returned 404. This is not a name
+reservation. The host npm cache was not modified; these queries used a private
+temporary cache. No registry write was made.
+
+Changed package.json from private:true to private:false and updated the manifest
+check and publication docs. The full pinned Docker matrix passed with
+`BUILDX_CONFIG=/tmp/zenmoney-typescript-release-buildx ./scripts/test.sh`:
+56 unit tests each on Node 22/24; package installation and strict NodeNext/Bundler
+consumers; installed Python reference; Chromium 156 and Chrome 120 browser/MV3
+scenarios; 124 shared vectors in both Python adapters and TypeScript; eight
+mandatory native TypeScript checks. All test containers used `--network none`.
+
+`BUILDX_CONFIG=/tmp/zenmoney-typescript-release-buildx ./scripts/pack.sh` passed.
+`cd .local/release && sha256sum -c SHA256SUMS` passed. Inspection of the archive
+showed exactly 27 allowlisted files (dist, README, LICENSE, package.json),
+private:false, MIT license and no publish lifecycle script. New candidate SHA-256:
+`bd0bf5d61fc4c7d00ea4a828cadb34d5ae77789daf622942a7ba21365cb0215a`.
+The older private:true archive was replaced locally. The candidate still needs
+reproducibility verification after its local commit and remote CI after an
+authorized push. Local commit: `build(release): prepare public npm candidate`.
+No push, tag, GitHub Release or npm publication was performed.

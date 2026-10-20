@@ -1,6 +1,6 @@
 # Local release candidate handoff
 
-Version: 0.1.0, unpublished/private. Reference: zenmoney-python 0.7.0.
+Version: 0.1.0, unpublished and locally prepared for npm. Reference: zenmoney-python 0.7.0.
 Repository: https://github.com/vaslv/zenmoney-typescript.
 
 The implementation stages S1–S7 and the ordered full-review remediation F1–F7
@@ -27,25 +27,32 @@ undocumented/private ZenMoney functionality or every possible service combinatio
   Installed-package transport failure paths cover size, streaming, invalid UTF-8,
   timeout, cancellation, client close and redirect refusal.
 - Build/test/pack-only GitHub workflow with read-only repository permission.
-- Local npm tarball and SHA256SUMS, rebuilt after the full-review remediation.
+- Local npm tarball and SHA256SUMS, rebuilt after the full-review remediation and
+  again after changing the release manifest to private:false.
 - English README, recipes, OAuth/server-only guidance and unknown-write-outcome rules.
 
 The two intentional Python differences uncovered by the review (reserved account
 builder fields and decoded unpaired surrogates) are recorded in both parity.md and
 the contract manifest. The prior S7 result file remains a historical snapshot.
-The current local `private:true` tarball is `zenmoney-typescript-0.1.0.tgz`
-(17,838 bytes; 27 allowlisted files). Its SHA-256 is
+The historical `private:true` tarball was `zenmoney-typescript-0.1.0.tgz`
+(17,838 bytes; 27 allowlisted files). Its SHA-256 was
 `af9d77375070204b63875188146a23f279153d42754a9671de95164097445e5c`.
 It was rebuilt byte-for-byte from a clean archive of the reviewed runtime commit
-`bc5b081` and from the final working tree. The tarball and `SHA256SUMS` are under
-ignored `.local/release/`; they are not a published package.
+`bc5b081` and from the then-current working tree. It is superseded and must not be
+uploaded. The new `private:false` tarball and `SHA256SUMS` are under ignored
+`.local/release/`; 27 allowlisted files, SHA-256
+`bd0bf5d61fc4c7d00ea4a828cadb34d5ae77789daf622942a7ba21365cb0215a`.
+Its installed consumer and full Docker matrix passed. It has not been published.
 
 ## Explicit outstanding release gates
 
 1. User authorizes the exact push/tag/GitHub Release/npm publication actions.
-2. Confirm npm owner/name (anonymous 404 was only an availability observation).
-3. Review changing private:true to false, retest that new release commit and rebuild
-   its artifact. The current private candidate must not be uploaded as a release.
+2. Recheck npm registry availability immediately before publishing. The user
+   confirmed the name zenmoney-typescript, `npm whoami` returned their npm user,
+   and a read-only lookup returned 404 on 2026-10-20; this does not reserve it.
+3. Rebuild the private:false candidate from the committed release tree and compare
+   its checksum with the reviewed archive. The historical private:true candidate
+   described above must not be uploaded as a release.
 4. Run remote CI on that authorized commit and verify its status/artifacts.
 5. Publish the reviewed artifact through the approved authentication method;
    verify registry install/integrity and GitHub tag/release attachments afterward.

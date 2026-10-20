@@ -1,7 +1,7 @@
 {
   "name": "zenmoney-typescript",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "description": "Exact TypeScript client for the public ZenMoney API",
   "license": "MIT",
