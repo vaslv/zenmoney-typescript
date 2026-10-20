@@ -37,6 +37,17 @@ test('loan parameters and deterministic drafts remain explicit',()=>{
   assert.equal(loan.type,'loan');assert.equal(loan.percent.toString(),'1.5');
   assert.equal(encodeJson(t.expense(options)),encodeJson(t.expense(options)));
 });
+test('account extension fields cannot replace validated type or instrument',()=>{
+  const common={user:1,title:'Synthetic',instrument:1,id:'a',now:1};
+  for(const fields of [{type:'loan'},{type:'debt'},{instrument:0}])
+    assert.throws(()=>e.account({...common,fields}),ValidationError);
+  assert.throws(()=>e.account({...common,accountType:'debt'}),ValidationError);
+  assert.throws(()=>e.account({...common,accountType:'deposit'}),ValidationError);
+  const deposit=e.account({...common,accountType:'deposit',fields:{capitalization:false,percent:decimal('1.5'),
+    startDate:'2026-01-01',endDateOffset:12,endDateOffsetInterval:'month',future:'retained'}});
+  assert.equal(deposit.type,'deposit');assert.equal(deposit.instrument,1);assert.equal(deposit.future,'retained');
+  assert.equal(e.account({...common}).type,'cash');
+});
 
 test('all option bags reject unused keys and helper exports stay intentional',()=>{
   assert.throws(()=>e.tag({user:1,title:'x',instrument:7}),ValidationError);

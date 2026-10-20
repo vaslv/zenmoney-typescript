@@ -20,6 +20,7 @@ function extend(result:JsonObject,fields:JsonObject={}):JsonObject {
 export function account(options:AccountOptions):Account {
   const a=jsonOptions(options);const kind=a.accountType===undefined?'cash':a.accountType;
   if(!['cash','ccard','checking','loan','deposit','emoney'].includes(kind))throw new ValidationError('invalid_account_type');
+  if(record(a.fields) && (Object.hasOwn(a.fields,'type') || Object.hasOwn(a.fields,'instrument')))throw new ValidationError('reserved_account_field');
   const result=extend({...base(a,true),role:null,instrument:positiveInteger(a.instrument),company:null,type:kind,syncID:null,
     balance:0,startBalance:0,creditLimit:null,inBalance:true,savings:false,enableCorrection:false,enableSMS:false,
     archive:false,private:false,balanceCorrectionType:'request',capitalization:null,percent:null,startDate:null,

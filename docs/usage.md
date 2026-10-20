@@ -56,6 +56,9 @@ not accept type debt. Loan/deposit account creation requires capitalization,
 percent, startDate, endDateOffset, endDateOffsetInterval in the `fields` bag.
 Other catalog overrides and future properties also use `fields`. The low-level
 `transaction` builder supports both movement legs directly.
+The account builder reserves `fields.type` and `fields.instrument`; use its
+`accountType` and `instrument` options so these values are validated. The low-level
+`client.upsert('account', objects)` still accepts complete caller-supplied records.
 
 For category splits create separate prepared transactions with explicit amounts;
 multiple tags alone do not define split proportions. `tag:null` and `tag:[]` remain

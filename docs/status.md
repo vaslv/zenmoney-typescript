@@ -199,3 +199,17 @@ Verification: `BUILDX_CONFIG=/tmp/zenmoney-typescript-remediation-buildx docker 
 of `node --test tests/unit/codec.test.mjs tests/unit/client.test.mjs`: 21 passed.
 Reviewed the diff for preservation of UTF-8/BOM, depth, duplicate-key and exact
 number behavior. No live API call was made.
+
+## 2026-10-20 — Full-review remediation F2
+
+The account builder reserves type and instrument in its extension bag. The
+validated constructor parameters remain the sole way to set those values; other
+future fields and required loan/deposit parameters remain available. Python 0.7.0
+has a type-override defect, so this intentional correction is documented in
+parity.md without changing the pinned Python baseline.
+
+Verification: node-target Docker build passed package, declarations, and manifest
+checks; offline `node --test tests/unit/builders.test.mjs` passed. The new native
+case covers forbidden type/instrument overrides, ordinary accounts, valid deposits,
+and preserved extensions. Reviewed the change for accidental restrictions on
+complete-object low-level writes. No live API call was made.
