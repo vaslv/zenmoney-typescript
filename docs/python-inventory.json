@@ -1,0 +1,749 @@
+{
+  "referencePackage": "zenmoney-python",
+  "referenceVersion": "0.7.0",
+  "sourceCommit": "bf550cd9878903c954f7c3487202ff450bf4102e",
+  "capturedOn": "2026-10-20",
+  "status": "planning inventory, no TypeScript implementation yet",
+  "modules": {
+    "__init__.py": {
+      "sha256": "074d91d043e4fb309e695ed9ba95dfc5328bb7e774ba263d4cad978d2096fcb0",
+      "declarations": [],
+      "moduleDeclarations": [
+        {
+          "name": "__all__",
+          "expression": "['Client', 'AsyncClient', 'OAuthClient', 'AsyncOAuthClient', 'Token', 'authorization_url', 'callback_code', 'ZenMoneyError', 'HTTPError', 'TransportError', 'ResponseError', 'ClientClosedError', 'Diff', 'KINDS', 'FORCE_FETCH', 'WRITABLE', 'DELETABLE', 'entity_key', 'models', 'transactions', 'entities']"
+        }
+      ]
+    },
+    "client.py": {
+      "sha256": "310d6bd36d4776ea25138b113e3e1aa58a199d86a8433cc0aba316901d16fff6",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "validate_timeout",
+          "parameters": "timeout: Timeout"
+        },
+        {
+          "kind": "class",
+          "name": "Client",
+          "bases": [
+            "_Config[httpx.BaseTransport]"
+          ],
+          "fields": {
+            "_http": "httpx.Client | None"
+          },
+          "methods": [
+            {
+              "name": "close",
+              "parameters": "self"
+            },
+            {
+              "name": "diff",
+              "parameters": "self, server_timestamp: int=0, *, changes: Changes | None=None, deletions: Sequence[Mapping[str, Any]] | None=None, force_fetch: Sequence[str] | None=None"
+            },
+            {
+              "name": "read_diff",
+              "parameters": "self, server_timestamp: int=0, *, force_fetch: Sequence[str] | None=None"
+            },
+            {
+              "name": "upsert",
+              "parameters": "self, kind: str, entities: Sequence[Mapping[str, Any]], server_timestamp: int=0"
+            },
+            {
+              "name": "delete",
+              "parameters": "self, deletions: Sequence[Mapping[str, Any]], server_timestamp: int=0"
+            },
+            {
+              "name": "suggest",
+              "parameters": "self, transactions: Mapping[str, Any]"
+            },
+            {
+              "name": "suggest",
+              "parameters": "self, transactions: Sequence[Mapping[str, Any]]"
+            },
+            {
+              "name": "suggest",
+              "parameters": "self, transactions: Mapping[str, Any] | Sequence[Mapping[str, Any]]"
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AsyncClient",
+          "bases": [
+            "_Config[httpx.AsyncBaseTransport]"
+          ],
+          "fields": {
+            "_http": "httpx.AsyncClient | None"
+          },
+          "methods": [
+            {
+              "name": "aclose",
+              "parameters": "self"
+            },
+            {
+              "name": "diff",
+              "parameters": "self, server_timestamp: int=0, *, changes: Changes | None=None, deletions: Sequence[Mapping[str, Any]] | None=None, force_fetch: Sequence[str] | None=None"
+            },
+            {
+              "name": "read_diff",
+              "parameters": "self, server_timestamp: int=0, *, force_fetch: Sequence[str] | None=None"
+            },
+            {
+              "name": "upsert",
+              "parameters": "self, kind: str, entities: Sequence[Mapping[str, Any]], server_timestamp: int=0"
+            },
+            {
+              "name": "delete",
+              "parameters": "self, deletions: Sequence[Mapping[str, Any]], server_timestamp: int=0"
+            },
+            {
+              "name": "suggest",
+              "parameters": "self, transactions: Mapping[str, Any]"
+            },
+            {
+              "name": "suggest",
+              "parameters": "self, transactions: Sequence[Mapping[str, Any]]"
+            },
+            {
+              "name": "suggest",
+              "parameters": "self, transactions: Mapping[str, Any] | Sequence[Mapping[str, Any]]"
+            }
+          ]
+        }
+      ],
+      "moduleDeclarations": [
+        {
+          "name": "BASE_URL",
+          "expression": "'https://api.zenmoney.ru'"
+        },
+        {
+          "name": "ENDPOINT",
+          "expression": "BASE_URL + '/v8/diff/'"
+        },
+        {
+          "name": "Timeout",
+          "expression": "float | httpx.Timeout | None"
+        },
+        {
+          "name": "Transport",
+          "expression": "TypeVar('Transport', httpx.BaseTransport, httpx.AsyncBaseTransport)"
+        }
+      ]
+    },
+    "entities.py": {
+      "sha256": "6dca2a54d43e08fdf9d7750914559c0fe6ad7b0e784c2d2d1314746e6844bdf1",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "account",
+          "parameters": "*, user: int, title: str, instrument: int, account_type: str='cash', id: str | None=None, now: int | None=None, **fields: Any"
+        },
+        {
+          "kind": "function",
+          "name": "tag",
+          "parameters": "*, user: int, title: str, id: str | None=None, now: int | None=None, **fields: Any"
+        },
+        {
+          "kind": "function",
+          "name": "merchant",
+          "parameters": "*, user: int, title: str, id: str | None=None, now: int | None=None, **fields: Any"
+        }
+      ],
+      "moduleDeclarations": []
+    },
+    "errors.py": {
+      "sha256": "6565134171d78f87cdef22d3410ad1a28072f2d74cca06bcd1f30afcdad60c5d",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "ZenMoneyError",
+          "bases": [
+            "Exception"
+          ],
+          "fields": {},
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "TransportError",
+          "bases": [
+            "ZenMoneyError"
+          ],
+          "fields": {},
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "ResponseError",
+          "bases": [
+            "ZenMoneyError"
+          ],
+          "fields": {},
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "HTTPError",
+          "bases": [
+            "ZenMoneyError"
+          ],
+          "fields": {},
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": "self, status_code: int"
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "ClientClosedError",
+          "bases": [
+            "ZenMoneyError"
+          ],
+          "fields": {},
+          "methods": []
+        }
+      ],
+      "moduleDeclarations": []
+    },
+    "models.py": {
+      "sha256": "7dc70ab370402ba83c2bfcee06c02f19c013c3aa731843e747031e94dba9c351",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "Instrument",
+          "bases": [
+            "TypedDict"
+          ],
+          "fields": {
+            "id": "int",
+            "changed": "int",
+            "title": "str",
+            "shortTitle": "str",
+            "symbol": "str",
+            "rate": "Number"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Company",
+          "bases": [
+            "TypedDict"
+          ],
+          "fields": {
+            "id": "int",
+            "changed": "int",
+            "title": "str",
+            "fullTitle": "str | None",
+            "www": "str | None",
+            "country": "str | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "User",
+          "bases": [
+            "TypedDict"
+          ],
+          "fields": {
+            "id": "int",
+            "changed": "int",
+            "login": "str | None",
+            "currency": "int",
+            "parent": "int | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Entity",
+          "bases": [
+            "TypedDict"
+          ],
+          "fields": {
+            "id": "str",
+            "changed": "int",
+            "user": "int"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Account",
+          "bases": [
+            "Entity"
+          ],
+          "fields": {
+            "private": "bool",
+            "balanceCorrectionType": "str",
+            "role": "int | None",
+            "instrument": "int | None",
+            "company": "int | None",
+            "type": "Literal['cash', 'ccard', 'checking', 'loan', 'deposit', 'emoney', 'debt']",
+            "title": "str",
+            "syncID": "list[str] | None",
+            "balance": "Number | None",
+            "startBalance": "Number | None",
+            "creditLimit": "Number | None",
+            "inBalance": "bool",
+            "savings": "bool | None",
+            "enableCorrection": "bool",
+            "enableSMS": "bool",
+            "archive": "bool",
+            "capitalization": "bool | None",
+            "percent": "Number | None",
+            "startDate": "str | None",
+            "endDateOffset": "int | None",
+            "endDateOffsetInterval": "Literal['day', 'week', 'month', 'year'] | None",
+            "payoffStep": "int | None",
+            "payoffInterval": "Literal['month', 'year'] | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Tag",
+          "bases": [
+            "Entity"
+          ],
+          "fields": {
+            "archive": "bool",
+            "staticId": "str | None",
+            "title": "str",
+            "parent": "str | None",
+            "icon": "str | None",
+            "picture": "str | None",
+            "color": "int | None",
+            "showIncome": "bool",
+            "showOutcome": "bool",
+            "budgetIncome": "bool",
+            "budgetOutcome": "bool",
+            "required": "bool | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Merchant",
+          "bases": [
+            "Entity"
+          ],
+          "fields": {
+            "mcc": "int | None",
+            "title": "str"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Movement",
+          "bases": [
+            "Entity"
+          ],
+          "fields": {
+            "incomeInstrument": "int",
+            "incomeAccount": "str",
+            "income": "Number",
+            "outcomeInstrument": "int",
+            "outcomeAccount": "str",
+            "outcome": "Number",
+            "tag": "list[str] | None",
+            "merchant": "str | None",
+            "payee": "str | None",
+            "comment": "str | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Transaction",
+          "bases": [
+            "Movement"
+          ],
+          "fields": {
+            "created": "int",
+            "deleted": "bool",
+            "hold": "bool | None",
+            "originalPayee": "str | None",
+            "date": "str",
+            "mcc": "int | None",
+            "reminderMarker": "str | None",
+            "opIncome": "Number | None",
+            "opIncomeInstrument": "int | None",
+            "opOutcome": "Number | None",
+            "opOutcomeInstrument": "int | None",
+            "latitude": "Number | None",
+            "longitude": "Number | None",
+            "viewed": "bool",
+            "qrCode": "str | None",
+            "source": "str | None",
+            "incomeBankID": "str | None",
+            "outcomeBankID": "str | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Reminder",
+          "bases": [
+            "Movement"
+          ],
+          "fields": {
+            "interval": "Literal['day', 'week', 'month', 'year'] | None",
+            "step": "int | None",
+            "points": "list[int] | None",
+            "startDate": "str",
+            "endDate": "str | None",
+            "notify": "bool"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "ReminderMarker",
+          "bases": [
+            "Movement"
+          ],
+          "fields": {
+            "isForecast": "bool",
+            "date": "str",
+            "reminder": "str",
+            "state": "Literal['planned', 'processed', 'deleted']",
+            "notify": "bool"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Budget",
+          "bases": [
+            "TypedDict"
+          ],
+          "fields": {
+            "isIncomeForecast": "bool",
+            "isOutcomeForecast": "bool",
+            "changed": "int",
+            "user": "int",
+            "tag": "str | None",
+            "date": "str",
+            "income": "Number",
+            "incomeLock": "bool",
+            "outcome": "Number",
+            "outcomeLock": "bool"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "Deletion",
+          "bases": [
+            "TypedDict"
+          ],
+          "fields": {
+            "id": "str",
+            "object": "str",
+            "user": "int",
+            "stamp": "int"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "TransactionFields",
+          "bases": [
+            "TypedDict"
+          ],
+          "fields": {
+            "originalPayee": "str | None",
+            "reminderMarker": "str | None",
+            "opIncome": "Number | None",
+            "opIncomeInstrument": "int | None",
+            "opOutcome": "Number | None",
+            "opOutcomeInstrument": "int | None",
+            "latitude": "Number | None",
+            "longitude": "Number | None",
+            "mcc": "int | None",
+            "hold": "bool | None",
+            "deleted": "bool",
+            "viewed": "bool",
+            "qrCode": "str | None",
+            "source": "str | None",
+            "incomeBankID": "str | None",
+            "outcomeBankID": "str | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "BaseTransactionOptions",
+          "bases": [
+            "TransactionFields"
+          ],
+          "fields": {
+            "user": "Required[int]",
+            "date": "Required[str]",
+            "categories": "list[str] | None",
+            "comment": "str | None",
+            "merchant": "str | None",
+            "id": "str | None",
+            "now": "int | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "TransactionOptions",
+          "bases": [
+            "BaseTransactionOptions"
+          ],
+          "fields": {
+            "payee": "str | None"
+          },
+          "methods": []
+        }
+      ],
+      "moduleDeclarations": [
+        {
+          "name": "Number",
+          "expression": "int | float | Decimal"
+        }
+      ]
+    },
+    "oauth.py": {
+      "sha256": "817fb489a8e7babe34163672fa758571cae8ba62f04c43cbdbc1c34815b27619",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "authorization_url",
+          "parameters": "client_id: str, redirect_uri: str, *, state: str"
+        },
+        {
+          "kind": "function",
+          "name": "callback_code",
+          "parameters": "callback_url: str, *, expected_state: str"
+        },
+        {
+          "kind": "class",
+          "name": "Token",
+          "bases": [],
+          "fields": {
+            "access_token": "str",
+            "token_type": "str",
+            "expires_in": "int | None",
+            "refresh_token": "str | None"
+          },
+          "methods": []
+        },
+        {
+          "kind": "class",
+          "name": "OAuthClient",
+          "bases": [
+            "_OAuthConfig[httpx.BaseTransport]"
+          ],
+          "fields": {
+            "_http": "httpx.Client | None"
+          },
+          "methods": [
+            {
+              "name": "close",
+              "parameters": "self"
+            },
+            {
+              "name": "exchange_code",
+              "parameters": "self, code: str"
+            },
+            {
+              "name": "refresh",
+              "parameters": "self, refresh_token: str"
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AsyncOAuthClient",
+          "bases": [
+            "_OAuthConfig[httpx.AsyncBaseTransport]"
+          ],
+          "fields": {
+            "_http": "httpx.AsyncClient | None"
+          },
+          "methods": [
+            {
+              "name": "aclose",
+              "parameters": "self"
+            },
+            {
+              "name": "exchange_code",
+              "parameters": "self, code: str"
+            },
+            {
+              "name": "refresh",
+              "parameters": "self, refresh_token: str"
+            }
+          ]
+        }
+      ],
+      "moduleDeclarations": [
+        {
+          "name": "Transport",
+          "expression": "TypeVar('Transport', httpx.BaseTransport, httpx.AsyncBaseTransport)"
+        }
+      ]
+    },
+    "protocol.py": {
+      "sha256": "29ec3931fd766b4de92eb0400e1bed1f775c6051f8aa4a44ac25b5055630b2bc",
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "Diff",
+          "bases": [
+            "dict[str, Any]"
+          ],
+          "fields": {},
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": "self, data: EntityData, raw_json: str"
+            },
+            {
+              "name": "server_timestamp",
+              "parameters": "self"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "entity_key",
+          "parameters": "kind: str, item: Mapping[str, Any]"
+        },
+        {
+          "kind": "function",
+          "name": "validate_diff",
+          "parameters": "data: Any"
+        },
+        {
+          "kind": "function",
+          "name": "decode_json",
+          "parameters": "raw: bytes"
+        },
+        {
+          "kind": "function",
+          "name": "decode_diff",
+          "parameters": "raw: bytes, cursor: int"
+        },
+        {
+          "kind": "function",
+          "name": "timestamp",
+          "parameters": "value: Any"
+        },
+        {
+          "kind": "function",
+          "name": "encode_json",
+          "parameters": "value: Any"
+        },
+        {
+          "kind": "function",
+          "name": "diff_payload",
+          "parameters": "cursor: int, now: int, changes: Changes | None=None, deletions: Sequence[Mapping[str, Any]] | None=None, force_fetch: Sequence[str] | None=None"
+        },
+        {
+          "kind": "function",
+          "name": "suggest_payload",
+          "parameters": "transactions: Mapping[str, Any] | Sequence[Mapping[str, Any]]"
+        },
+        {
+          "kind": "function",
+          "name": "decode_suggestion",
+          "parameters": "raw: bytes, request: EntityData | list[EntityData]"
+        }
+      ],
+      "moduleDeclarations": [
+        {
+          "name": "EntityData",
+          "annotation": "TypeAlias",
+          "expression": "dict[str, Any]"
+        },
+        {
+          "name": "Changes",
+          "annotation": "TypeAlias",
+          "expression": "Mapping[str, Sequence[Mapping[str, Any]]]"
+        },
+        {
+          "name": "KINDS",
+          "expression": "('instrument', 'company', 'user', 'account', 'tag', 'merchant', 'budget', 'reminder', 'reminderMarker', 'transaction', 'country')"
+        },
+        {
+          "name": "FORCE_FETCH",
+          "expression": "tuple((kind for kind in KINDS if kind != 'country'))"
+        },
+        {
+          "name": "WRITABLE",
+          "expression": "('account', 'tag', 'merchant', 'budget', 'reminder', 'reminderMarker', 'transaction')"
+        },
+        {
+          "name": "DELETABLE",
+          "expression": "tuple((kind for kind in WRITABLE if kind != 'budget'))"
+        }
+      ]
+    },
+    "transactions.py": {
+      "sha256": "e8d45310d8d345e5b0459b310def500403bd8f4f3860e679625d52b8f1512e25",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "transaction",
+          "parameters": "*, user: int, date: str, income_account: str, outcome_account: str, income_instrument: int, outcome_instrument: int, income: Number, outcome: Number, categories: list[str] | None=None, payee: str | None=None, comment: str | None=None, merchant: str | None=None, id: str | None=None, now: int | None=None, **fields: Unpack[TransactionFields]"
+        },
+        {
+          "kind": "function",
+          "name": "expense",
+          "parameters": "*, account: str, instrument: int, amount: Number, **kwargs: Unpack[TransactionOptions]"
+        },
+        {
+          "kind": "function",
+          "name": "income",
+          "parameters": "*, account: str, instrument: int, amount: Number, **kwargs: Unpack[TransactionOptions]"
+        },
+        {
+          "kind": "function",
+          "name": "transfer",
+          "parameters": "*, from_account: str, to_account: str, from_instrument: int, to_instrument: int, amount_out: Number, amount_in: Number, **kwargs: Unpack[TransactionOptions]"
+        },
+        {
+          "kind": "function",
+          "name": "debt",
+          "parameters": "*, action: str, account: str, debt_account: str, instrument: int, amount: Number, payee: str, **kwargs: Unpack[BaseTransactionOptions]"
+        },
+        {
+          "kind": "function",
+          "name": "update",
+          "parameters": "entity: Mapping[str, Any], *, now: int | None=None, **fields: Any"
+        },
+        {
+          "kind": "function",
+          "name": "deletion",
+          "parameters": "kind: str, id: str, *, user: int, now: int | None=None"
+        },
+        {
+          "kind": "function",
+          "name": "clear_budget",
+          "parameters": "budget: Mapping[str, Any], *, now: int | None=None"
+        }
+      ],
+      "moduleDeclarations": [
+        {
+          "name": "CREATION_DEFAULTS",
+          "annotation": "EntityData",
+          "expression": "{key: None for key in ('merchant', 'originalPayee', 'reminderMarker', 'opIncome', 'opIncomeInstrument', 'opOutcome', 'opOutcomeInstrument', 'latitude', 'longitude', 'qrCode', 'source', 'incomeBankID', 'outcomeBankID')}"
+        }
+      ]
+    }
+  },
+  "releaseTag": "v0.7.0",
+  "releaseCommit": "6c38d4c0cb3e8cc271292e37e9934e6c1a7b9972",
+  "releaseSourceComparison": "git diff v0.7.0 HEAD -- src/zenmoney_api is empty; published wheel not inspected in this task"
+}
