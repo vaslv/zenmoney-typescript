@@ -57,3 +57,17 @@ test('all option bags reject unused keys and helper exports stay intentional',()
   assert.throws(()=>t.clearBudget({}, {now:1,unexpected:true}),ValidationError);
   assert.equal('newId' in t,false);assert.equal('currentTimestamp' in t,false);
 });
+test('builders reject decimal user, instrument and timestamp IDs regardless of spelling',()=>{
+  for(const lexeme of ['1','1.0','1e0']) {
+    const value=decimal(lexeme);
+    assert.throws(()=>t.expense({...options,user:value}),ValidationError);
+    assert.throws(()=>t.expense({...options,instrument:value}),ValidationError);
+    assert.throws(()=>t.expense({...options,now:value}),ValidationError);
+    assert.throws(()=>t.expense({...options,mcc:value}),ValidationError);
+    assert.throws(()=>e.account({user:1,title:'x',instrument:value}),ValidationError);
+  }
+  const values={...options,categories:['tag'],amount:decimal('1.0')};
+  const input=t.expense(values);
+  assert.equal(input.outcome.toString(),'1.0');assert.deepEqual(input.tag,['tag']);
+  assert.equal(values.categories.length,1);
+});

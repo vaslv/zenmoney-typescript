@@ -120,3 +120,19 @@ export function encodeJson(value: unknown): string {
   try { return encodeValue(value); } catch { throw new ValidationError('invalid_json_value'); }
 }
 export function cloneJson<T>(value: T): T {return decodeJson(encodeJson(value)) as T;}
+
+function copyValue(value: unknown): unknown {
+  if(Array.isArray(value))return value.map(copyValue);
+  if(value !== null && typeof value === 'object' && !(value instanceof ExactDecimal)) {
+    const result:Record<string,unknown>={};
+    for(const key of Object.keys(value))Object.defineProperty(result,key,{
+      value:copyValue(Object.getOwnPropertyDescriptor(value,key)!.value),enumerable:true,writable:true,configurable:true,
+    });
+    return result;
+  }
+  return value;
+}
+/** Copy validated caller data without normalizing ExactDecimal into an integer. */
+export function copyJson<T>(value:T):T {
+  try {validate(value);return copyValue(value) as T;} catch {throw new ValidationError('invalid_json_value');}
+}

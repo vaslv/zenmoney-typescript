@@ -213,3 +213,17 @@ checks; offline `node --test tests/unit/builders.test.mjs` passed. The new nativ
 case covers forbidden type/instrument overrides, ordinary accounts, valid deposits,
 and preserved extensions. Reviewed the change for accidental restrictions on
 complete-object low-level writes. No live API call was made.
+
+## 2026-10-20 — Full-review remediation F3
+
+Validated caller options are copied without converting ExactDecimal integer
+lexemes into native integers before ID, cursor, instrument, or timestamp checks.
+The wire decoder and ordinary response clone remain unchanged. JavaScript callers
+now receive consistent validation for decimal('1'), decimal('1.0') and decimal('1e0')
+in integer-only positions, matching the Python reference's type rule.
+
+Verification: node-target Docker build passed package, declarations and manifest
+checks. Offline native protocol, builder and codec tests passed, followed by the
+complete Node 22 unit suite: 54 passed. Reviewed copying for immutable decimal
+sharing, independent caller arrays/objects, accessor rejection, and inert
+__proto__ keys. No live API call was made.

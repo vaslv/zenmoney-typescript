@@ -1,6 +1,6 @@
 import {ValidationError, ResponseError} from './errors.js';
 import {ExactDecimal,decimal} from './numbers.js';
-import {cloneJson,encodeJson,decodeJson} from './codec.js';
+import {cloneJson,copyJson,encodeJson,decodeJson} from './codec.js';
 import type {Integer, JsonObject} from './models.js';
 export const KINDS = Object.freeze(['instrument','company','user','account','tag','merchant','budget','reminder','reminderMarker','transaction','country'] as const);
 export const FORCE_FETCH = Object.freeze(['instrument','company','user','account','tag','merchant','budget','reminder','reminderMarker','transaction'] as const);
@@ -32,7 +32,7 @@ export function truthy(value: unknown): boolean {
   return Boolean(value);
 }
 export function entityKey(kind:string,item:JsonObject): string {
-  try {item=cloneJson(item);} catch {throw new ResponseError('invalid_entity');}
+  try {item=copyJson(item);} catch {throw new ResponseError('invalid_entity');}
   if(!record(item)) throw new ResponseError('invalid_entity');
   if(kind==='budget') {
     if(!integer(item.user) || item.user<=0 || typeof item.date!=='string' ||
@@ -66,7 +66,7 @@ export function jsonOptions<T extends object>(value:T):T {
       if(typeof key!=='string' || !descriptor.enumerable || !('value' in descriptor)) throw new ValidationError();
       if(descriptor.value!==undefined) Object.defineProperty(result,key,{value:descriptor.value,enumerable:true});
     }
-    return cloneJson(result) as T;
+    return copyJson(result) as T;
   } catch {throw new ValidationError('invalid_options');}
 }
 export function diffPayload(options:DiffOptions,now:Integer): JsonObject {

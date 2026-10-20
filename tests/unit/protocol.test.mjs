@@ -52,3 +52,13 @@ test('exported rules are immutable and accessors cannot run during validation', 
   class Custom extends Array {}
   assert.throws(()=>sdk.encodeJson(new Custom(1,2)),sdk.ValidationError);
 });
+test('integer boundaries reject decimal objects regardless of their spelling',()=>{
+  for(const lexeme of ['1','1.0','1e0']) {
+    const value=sdk.decimal(lexeme);
+    assert.throws(()=>diffPayload({serverTimestamp:value},1),sdk.ValidationError);
+    assert.throws(()=>diffPayload({changes:{budget:[{user:value,date:'2026-01-01',tag:null,changed:1}]}},1),sdk.ValidationError);
+    assert.throws(()=>diffPayload({changes:{account:[{id:'a',user:value,changed:1}]}},1),sdk.ValidationError);
+  }
+  assert.equal(diffPayload({serverTimestamp:1n},2).serverTimestamp,1n);
+  assert.equal(sdk.entityKey('budget',{user:1n,date:'2026-01-01',tag:null}),'[1,"2026-01-01",null]');
+});

@@ -70,6 +70,9 @@ Decode every decimal/exponent numeric token as ExactDecimal, including nested un
 fields. Decode integer tokens as number if safe, bigint otherwise. Known integer
 fields accept number | bigint and validate sign/integrality; never reject a valid
 large integer merely to satisfy TypeScript's number type. Dates remain strings.
+Caller option copies retain the original numeric runtime types until integer-only
+fields have been checked. Passing ExactDecimal as an ID, instrument or timestamp is
+invalid regardless of whether its lexeme is `1`, `1.0` or `1e0`.
 Decoded integer monetary values follow the same rule. Number = number | bigint |
 ExactDecimal; field-level models use the appropriate exact integer/numeric union.
 
