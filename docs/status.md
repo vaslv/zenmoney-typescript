@@ -378,7 +378,35 @@ mandatory native TypeScript checks. All test containers used `--network none`.
 showed exactly 27 allowlisted files (dist, README, LICENSE, package.json),
 private:false, MIT license and no publish lifecycle script. New candidate SHA-256:
 `bd0bf5d61fc4c7d00ea4a828cadb34d5ae77789daf622942a7ba21365cb0215a`.
-The older private:true archive was replaced locally. The candidate still needs
-reproducibility verification after its local commit and remote CI after an
-authorized push. Local commit: `build(release): prepare public npm candidate`.
+The older private:true archive was replaced locally. At this point, the candidate
+still needed reproducibility verification after its local commit and remote CI
+after an authorized push. Local commit: `build(release): prepare public npm candidate`.
 No push, tag, GitHub Release or npm publication was performed.
+
+## 2026-10-20 — Committed npm artifact reproducibility
+
+Commit `111e87c` contains the publishable manifest and release-preparation docs.
+A fresh `git archive HEAD` was unpacked into a temporary directory and
+`BUILDX_CONFIG=/tmp/zenmoney-typescript-release-buildx ./scripts/pack.sh` was
+run from that clean snapshot. `cmp` found its tarball byte-identical to the
+working-tree candidate; `sha256sum -c SHA256SUMS` passed in the snapshot.
+Both archives have SHA-256
+`bd0bf5d61fc4c7d00ea4a828cadb34d5ae77789daf622942a7ba21365cb0215a`.
+An offline, unauthenticated publication dry-run in the pinned Node 22 Docker
+image exited 0 for this exact archive. The relevant exact command was:
+
+```sh
+docker run --rm --init --network none --read-only --tmpfs /tmp \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/zenmoney-typescript/.local/release,dst=/artifact,readonly \
+  zenmoney-typescript-s1-node22 sh -c \
+  'cp -R /opt/npm-cache /tmp/npm-cache && export npm_config_cache=/tmp/npm-cache && npm publish /artifact/zenmoney-typescript-0.1.0.tgz --dry-run --ignore-scripts --offline --registry=https://registry.npmjs.org --loglevel=warn'
+```
+
+It emitted the
+expected notice that the isolated dry-run container was not logged in; the host
+`npm whoami` check was separate. No package was uploaded.
+
+`git diff --check` and the offline Docker documentation-link check passed after
+these record updates. Local commit: `docs(release): record reproducible npm candidate`.
+Remote CI, public registry installation, GitHub tag/release and npm publication
+remain pending separate authorization. No push, tag or publication was performed.

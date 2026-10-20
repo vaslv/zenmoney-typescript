@@ -42,7 +42,9 @@ It was rebuilt byte-for-byte from a clean archive of the reviewed runtime commit
 uploaded. The new `private:false` tarball and `SHA256SUMS` are under ignored
 `.local/release/`; 27 allowlisted files, SHA-256
 `bd0bf5d61fc4c7d00ea4a828cadb34d5ae77789daf622942a7ba21365cb0215a`.
-Its installed consumer and full Docker matrix passed. It has not been published.
+Its installed consumer and full Docker matrix passed. A clean `git archive` of
+release-preparation commit `111e87c` reproduced the exact same tarball. Offline
+`npm publish --dry-run` on that archive passed. It has not been published.
 
 ## Explicit outstanding release gates
 
@@ -50,12 +52,13 @@ Its installed consumer and full Docker matrix passed. It has not been published.
 2. Recheck npm registry availability immediately before publishing. The user
    confirmed the name zenmoney-typescript, `npm whoami` returned their npm user,
    and a read-only lookup returned 404 on 2026-10-20; this does not reserve it.
-3. Rebuild the private:false candidate from the committed release tree and compare
-   its checksum with the reviewed archive. The historical private:true candidate
-   described above must not be uploaded as a release.
-4. Run remote CI on that authorized commit and verify its status/artifacts.
-5. Publish the reviewed artifact through the approved authentication method;
+3. Run remote CI on the authorized commit and verify its status/artifacts.
+4. Publish the reviewed artifact through the approved authentication method;
    verify registry install/integrity and GitHub tag/release attachments afterward.
+
+The private:false candidate was rebuilt from the committed release tree and
+compared byte-for-byte with the reviewed archive. The historical private:true
+candidate described above must not be uploaded as a release.
 
 See publication.md for operator details. No long-lived credential, publisher
 configuration or automatic publish-on-push workflow has been installed.
