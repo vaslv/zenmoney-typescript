@@ -72,6 +72,7 @@ export function jsonOptions<T extends object>(value:T):T {
 export function diffPayload(options:DiffOptions,now:Integer): JsonObject {
   options=jsonOptions(options);
   const payload:JsonObject={serverTimestamp:timestamp(options.serverTimestamp === undefined ? 0 : options.serverTimestamp),currentClientTimestamp:timestamp(now)};
+  const changedIds=new Map<string,Set<string>>();
   if(options.forceFetch!==undefined) {
     if(!Array.isArray(options.forceFetch) || options.forceFetch.some(k=>!FORCE_FETCH.includes(k))) throw new ValidationError('invalid_force_fetch');
     payload.forceFetch=[...new Set(options.forceFetch)];
@@ -81,6 +82,7 @@ export function diffPayload(options:DiffOptions,now:Integer): JsonObject {
     for(const [kind,rows] of Object.entries(options.changes)) {
       if(!(WRITABLE as readonly string[]).includes(kind) || !Array.isArray(rows)) throw new ValidationError('invalid_changes');
       const seen=new Set<string>();
+      changedIds.set(kind,seen);
       payload[kind]=rows.map(row=>{
         if(!record(row)) throw new ValidationError('invalid_entity');
         let key:string;
@@ -95,9 +97,9 @@ export function diffPayload(options:DiffOptions,now:Integer): JsonObject {
     const seen=new Set<string>();
     payload.deletion=options.deletions.map(row=>{
       if(!record(row) || !(DELETABLE as readonly unknown[]).includes(row.object)) throw new ValidationError('invalid_deletion');
-      nonempty(row.id);timestamp(row.stamp);positiveInteger(row.user);
+      const id=nonempty(row.id);timestamp(row.stamp);positiveInteger(row.user);
       const key=encodeJson([row.object,row.id]);
-      if(seen.has(key) || (payload[row.object as string] as JsonObject[] | undefined)?.some(t=>t.id===row.id)) throw new ValidationError('conflicting_deletion');
+      if(seen.has(key) || changedIds.get(row.object as string)?.has(id)) throw new ValidationError('conflicting_deletion');
       seen.add(key);return cloneJson(row);
     });
   }

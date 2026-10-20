@@ -227,3 +227,17 @@ checks. Offline native protocol, builder and codec tests passed, followed by the
 complete Node 22 unit suite: 54 passed. Reviewed copying for immutable decimal
 sharing, independent caller arrays/objects, accessor rejection, and inert
 __proto__ keys. No live API call was made.
+
+## 2026-10-20 — Full-review remediation F4
+
+Mixed changes/deletions use a per-kind set of validated write identities for
+conflict detection. This removes the per-deletion scan over all written entities
+while retaining duplicate and same-kind conflict rejection.
+
+Verification: node-target Docker build passed package, declarations and manifest
+checks; offline `node --test tests/unit/protocol.test.mjs` passed. A synthetic
+16,000-write plus 16,000-deletion call completed in 219 ms in Node 22 Docker,
+compared with approximately 927 ms on the review snapshot. Timings are diagnostic;
+the structural absence of the nested scan is the acceptance criterion. Reviewed
+cross-kind equal IDs, repeated deletions and unchanged request semantics. No live
+API call was made.

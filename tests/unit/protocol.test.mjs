@@ -28,6 +28,17 @@ test('diff validates identity, composite budgets, duplicates and deletion confli
   assert.deepEqual(diffPayload({forceFetch:['account','account','tag']},2).forceFetch,['account','tag']);
   assert.throws(()=>diffPayload({forceFetch:['country']},2));
 });
+test('mixed batches index conflicts by kind without changing identity rules',()=>{
+  const changes=Array.from({length:1000},(_,i)=>({id:'write-'+i,user:1,changed:1}));
+  const deletions=Array.from({length:1000},(_,i)=>({object:'transaction',id:'delete-'+i,user:1,stamp:1}));
+  const payload=diffPayload({changes:{transaction:changes},deletions},2);
+  assert.equal(payload.transaction.length,1000);assert.equal(payload.deletion.length,1000);
+  assert.throws(()=>diffPayload({changes:{transaction:changes},deletions:[...deletions,{object:'transaction',id:'write-999',user:1,stamp:1}]},2),sdk.ValidationError);
+  assert.throws(()=>diffPayload({changes:{transaction:changes},deletions:[deletions[0],deletions[0]]},2),sdk.ValidationError);
+  assert.throws(()=>diffPayload({changes:{transaction:[changes[0],changes[0]]}},2),sdk.ValidationError);
+  const different=diffPayload({changes:{account:[changes[0]]},deletions:[{object:'transaction',id:changes[0].id,user:1,stamp:1}]},2);
+  assert.equal(different.account[0].id,different.deletion[0].id);
+});
 test('response identities and cursors remain exact and strict', () => {
   assert.equal(decodeDiff('{"serverTimestamp":9007199254740993}',0).serverTimestamp,9007199254740993n);
   for(const raw of ['{"serverTimestamp":1.0}','{"serverTimestamp":true}','{"serverTimestamp":1,"account":null}',
