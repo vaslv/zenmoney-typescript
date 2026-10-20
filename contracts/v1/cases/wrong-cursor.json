@@ -1,0 +1,34 @@
+{
+  "formatVersion": 1,
+  "id": "wrong-cursor",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "wrong cursor",
+  "featureIds": [
+    "P02",
+    "P03"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "serverTimestamp",
+        {
+          "type": "string",
+          "value": "0"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

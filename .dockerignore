@@ -15,8 +15,10 @@
 !tests/
 !tests/**
 !docs/
-!docs/python-baseline.json
-!docs/python-inventory.json
-!docs/api-options.json
+!docs/**
 !contracts/
 !contracts/**
+!examples/
+!examples/**
+!AGENTS.md
+!CHANGELOG.md

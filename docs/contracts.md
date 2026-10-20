@@ -80,7 +80,8 @@ to the redirect target using the local server. A fake Response(302) is insuffici
 ## Normalized results and comparison
 
 Each runner writes JSONL, one result per requested case, with caseId, featureIds,
-status, requestCount, requests, result/error and runtime identity. Catch errors at
+status, requests, result/error and runtime identity. Request count is the exact
+requests array length; no independent count can disagree with the trace. Catch errors at
 the adapter boundary. Canonicalize values into tagged trees. Normalize number
 lexemes as exact sign/coefficient/base-10-exponent tuples using string/integer
 operations, stripping trailing coefficient zeros. Do not normalize via JS Number

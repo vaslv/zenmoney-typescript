@@ -20,3 +20,12 @@ const mapping = JSON.parse(await readFile('docs/api-options.json', 'utf8'));
 const expected = Object.entries(inventory.modules).flatMap(([name, module]) => module.declarations.map(declaration => `${name}:${declaration.name}`)).sort();
 assert.deepEqual(mapping.declarations.map(item => item.python).sort(), expected);
 console.log(`Declaration mappings verified: ${expected.length}.`);
+const licenses={'lossless-json':'MIT',typescript:'Apache-2.0',esbuild:'MIT',playwright:'Apache-2.0','@types/node':'MIT',ajv:'MIT'};
+for(const [name,license] of Object.entries(licenses)) {
+  const installed=JSON.parse(await readFile('node_modules/'+name+'/package.json','utf8'));
+  assert.equal(installed.license,license,'Unexpected dependency license: '+name);
+}
+console.log('Direct dependency license inventory verified.');
+
+const contracts=JSON.parse(await readFile('contracts/manifest.json','utf8'));
+assert.equal(contracts.stage,7,'Candidate acceptance requires all shared implementation stages');

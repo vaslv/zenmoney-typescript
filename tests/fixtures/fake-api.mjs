@@ -1,8 +1,10 @@
 import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
+import {parse,stringify} from 'lossless-json';
 
 export async function startFakeApi() {
   const calls = [];
+  const stored=new Map();
   const sockets = new Set();
   let cancelled = 0;
   const server = createServer(async (req, res) => {
@@ -16,7 +18,9 @@ export async function startFakeApi() {
     if(req.url?.startsWith('/sdk')) {
       if(req.url==='/sdk-cors')res.setHeader('Access-Control-Allow-Origin','*');
       if(req.method==='OPTIONS'){res.setHeader('Access-Control-Allow-Headers','authorization,content-type');res.end();return;}
-      res.end('{"serverTimestamp":10}');return;
+      let wire='';for await(const chunk of req)wire+=chunk.toString();
+      const data=parse(wire);for(const item of data.transaction??[])stored.set(item.id,item);
+      res.end(stringify({serverTimestamp:10,wire,transaction:[...stored.values()]}));return;
     }
     if (req.url === '/cors') res.setHeader('Access-Control-Allow-Origin', '*');
     if (req.url === '/redirect') { res.writeHead(302, {Location: '/redirect-target'}); res.end(); return; }

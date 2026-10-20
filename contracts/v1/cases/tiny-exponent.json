@@ -1,0 +1,36 @@
+{
+  "formatVersion": 1,
+  "id": "tiny-exponent",
+  "stage": 3,
+  "operation": "codec.decode",
+  "description": "tiny exponent",
+  "featureIds": [
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "1e-999"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "number",
+      "lexeme": "1E-999"
+    }
+  }
+}

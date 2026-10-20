@@ -1,0 +1,107 @@
+{
+  "formatVersion": 1,
+  "id": "duplicate-budget",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "duplicate budget",
+  "featureIds": [
+    "P02",
+    "P03"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "changes",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "budget",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "user",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "date",
+                        {
+                          "type": "string",
+                          "value": "2026-01-01"
+                        }
+                      ],
+                      [
+                        "tag",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "changed",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ]
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "user",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "date",
+                        {
+                          "type": "string",
+                          "value": "2026-01-01"
+                        }
+                      ],
+                      [
+                        "tag",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "changed",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

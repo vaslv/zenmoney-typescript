@@ -1,0 +1,81 @@
+{
+  "formatVersion": 1,
+  "id": "diff-bom-raw",
+  "stage": 3,
+  "operation": "protocol.decodeDiff",
+  "description": "diff bom raw",
+  "featureIds": [
+    "P05",
+    "P21"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "\ufeff {\"serverTimestamp\":10,\"future\":\"value\"}\n"
+        }
+      ],
+      [
+        "cursor",
+        {
+          "type": "number",
+          "lexeme": "0"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "data",
+          {
+            "type": "object",
+            "entries": [
+              [
+                "serverTimestamp",
+                {
+                  "type": "number",
+                  "lexeme": "10"
+                }
+              ],
+              [
+                "future",
+                {
+                  "type": "string",
+                  "value": "value"
+                }
+              ]
+            ]
+          }
+        ],
+        [
+          "rawJson",
+          {
+            "type": "string",
+            "value": "\ufeff {\"serverTimestamp\":10,\"future\":\"value\"}\n"
+          }
+        ],
+        [
+          "serverTimestamp",
+          {
+            "type": "number",
+            "lexeme": "10"
+          }
+        ]
+      ]
+    }
+  }
+}

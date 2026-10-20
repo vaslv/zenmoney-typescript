@@ -53,3 +53,11 @@ and hashes come from https://pypi.org/pypi/zenmoney-python/0.7.0/json.
 Chrome 120 version/download comes from
 https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json.
 Docker manifest digests were resolved from Docker Hub/MCR and are pinned in ADR 001.
+
+## S7 preparation evidence
+
+Context7 consulted official npm trusted-publisher/provenance and actions/checkout
+docs (links in publication.md). Checkout v6.0.2 commit was resolved read-only as
+de0fac2e4500dabe0009e67214ff5f5447ce83dd; the workflow uses read-only contents and
+persist-credentials:false. Anonymous npm name lookup returned 404 on 2026-10-20;
+no registry identity, reservation or publication permission was inferred.

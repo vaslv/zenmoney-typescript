@@ -7,7 +7,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund \
     && npm cache add lossless-json@4.3.2
 COPY . .
-RUN npm run check:manifest && npm run build && npm run typecheck && npm run build:spikes
+RUN npm run check:manifest && npm run build && npm run typecheck && npm run test:package && npm run build:spikes
 CMD ["sh", "scripts/test-node.sh"]
 
 FROM python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258 AS reference
@@ -29,5 +29,5 @@ COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund \
     && npm cache add lossless-json@4.3.2
 COPY . .
-RUN npm run build && npm run build:spikes
+RUN npm run build && npm run test:package && npm run build:spikes
 CMD ["xvfb-run", "-a", "node", "tests/browser/run.mjs"]

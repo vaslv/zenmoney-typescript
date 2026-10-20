@@ -1,0 +1,870 @@
+{
+  "formatVersion": 1,
+  "id": "complete-recurring-budget",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "complete recurring budget",
+  "featureIds": [
+    "P02",
+    "P03",
+    "P08"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "changes",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "reminder",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "id",
+                        {
+                          "type": "string",
+                          "value": "rem"
+                        }
+                      ],
+                      [
+                        "user",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "changed",
+                        {
+                          "type": "number",
+                          "lexeme": "1700000000"
+                        }
+                      ],
+                      [
+                        "incomeInstrument",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "incomeAccount",
+                        {
+                          "type": "string",
+                          "value": "a"
+                        }
+                      ],
+                      [
+                        "income",
+                        {
+                          "type": "number",
+                          "lexeme": "0"
+                        }
+                      ],
+                      [
+                        "outcomeInstrument",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "outcomeAccount",
+                        {
+                          "type": "string",
+                          "value": "a"
+                        }
+                      ],
+                      [
+                        "outcome",
+                        {
+                          "type": "number",
+                          "lexeme": "12.34"
+                        }
+                      ],
+                      [
+                        "tag",
+                        {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string",
+                              "value": "tag"
+                            }
+                          ]
+                        }
+                      ],
+                      [
+                        "merchant",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "payee",
+                        {
+                          "type": "string",
+                          "value": "Synthetic"
+                        }
+                      ],
+                      [
+                        "comment",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "interval",
+                        {
+                          "type": "string",
+                          "value": "month"
+                        }
+                      ],
+                      [
+                        "step",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "points",
+                        {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "number",
+                              "lexeme": "1"
+                            }
+                          ]
+                        }
+                      ],
+                      [
+                        "startDate",
+                        {
+                          "type": "string",
+                          "value": "2026-01-01"
+                        }
+                      ],
+                      [
+                        "endDate",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "notify",
+                        {
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ],
+            [
+              "reminderMarker",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "id",
+                        {
+                          "type": "string",
+                          "value": "marker"
+                        }
+                      ],
+                      [
+                        "user",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "changed",
+                        {
+                          "type": "number",
+                          "lexeme": "1700000000"
+                        }
+                      ],
+                      [
+                        "incomeInstrument",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "incomeAccount",
+                        {
+                          "type": "string",
+                          "value": "a"
+                        }
+                      ],
+                      [
+                        "income",
+                        {
+                          "type": "number",
+                          "lexeme": "0"
+                        }
+                      ],
+                      [
+                        "outcomeInstrument",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "outcomeAccount",
+                        {
+                          "type": "string",
+                          "value": "a"
+                        }
+                      ],
+                      [
+                        "outcome",
+                        {
+                          "type": "number",
+                          "lexeme": "12.34"
+                        }
+                      ],
+                      [
+                        "tag",
+                        {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string",
+                              "value": "tag"
+                            }
+                          ]
+                        }
+                      ],
+                      [
+                        "merchant",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "payee",
+                        {
+                          "type": "string",
+                          "value": "Synthetic"
+                        }
+                      ],
+                      [
+                        "comment",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "isForecast",
+                        {
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ],
+                      [
+                        "date",
+                        {
+                          "type": "string",
+                          "value": "2026-01-01"
+                        }
+                      ],
+                      [
+                        "reminder",
+                        {
+                          "type": "string",
+                          "value": "rem"
+                        }
+                      ],
+                      [
+                        "state",
+                        {
+                          "type": "string",
+                          "value": "deleted"
+                        }
+                      ],
+                      [
+                        "notify",
+                        {
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ],
+            [
+              "budget",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "user",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "changed",
+                        {
+                          "type": "number",
+                          "lexeme": "1700000000"
+                        }
+                      ],
+                      [
+                        "tag",
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      [
+                        "date",
+                        {
+                          "type": "string",
+                          "value": "2026-01-01"
+                        }
+                      ],
+                      [
+                        "income",
+                        {
+                          "type": "number",
+                          "lexeme": "0"
+                        }
+                      ],
+                      [
+                        "outcome",
+                        {
+                          "type": "number",
+                          "lexeme": "100.01"
+                        }
+                      ],
+                      [
+                        "incomeLock",
+                        {
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ],
+                      [
+                        "outcomeLock",
+                        {
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ],
+                      [
+                        "isIncomeForecast",
+                        {
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ],
+                      [
+                        "isOutcomeForecast",
+                        {
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [
+    {
+      "status": 200,
+      "body": "{\"serverTimestamp\":10}"
+    }
+  ],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "entries": [
+            [
+              "method",
+              {
+                "type": "string",
+                "value": "POST"
+              }
+            ],
+            [
+              "url",
+              {
+                "type": "string",
+                "value": "https://api.zenmoney.ru/v8/diff/"
+              }
+            ],
+            [
+              "headers",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "content-type",
+                    {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  ],
+                  [
+                    "authorization",
+                    {
+                      "type": "string",
+                      "value": "Bearer TEST_BEARER_NOT_A_SECRET"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              "body",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "serverTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "0"
+                    }
+                  ],
+                  [
+                    "currentClientTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "1700000000"
+                    }
+                  ],
+                  [
+                    "reminder",
+                    {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "entries": [
+                            [
+                              "id",
+                              {
+                                "type": "string",
+                                "value": "rem"
+                              }
+                            ],
+                            [
+                              "user",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "changed",
+                              {
+                                "type": "number",
+                                "lexeme": "1700000000"
+                              }
+                            ],
+                            [
+                              "incomeInstrument",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "incomeAccount",
+                              {
+                                "type": "string",
+                                "value": "a"
+                              }
+                            ],
+                            [
+                              "income",
+                              {
+                                "type": "number",
+                                "lexeme": "0"
+                              }
+                            ],
+                            [
+                              "outcomeInstrument",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "outcomeAccount",
+                              {
+                                "type": "string",
+                                "value": "a"
+                              }
+                            ],
+                            [
+                              "outcome",
+                              {
+                                "type": "number",
+                                "lexeme": "12.34"
+                              }
+                            ],
+                            [
+                              "tag",
+                              {
+                                "type": "array",
+                                "items": [
+                                  {
+                                    "type": "string",
+                                    "value": "tag"
+                                  }
+                                ]
+                              }
+                            ],
+                            [
+                              "merchant",
+                              {
+                                "type": "null"
+                              }
+                            ],
+                            [
+                              "payee",
+                              {
+                                "type": "string",
+                                "value": "Synthetic"
+                              }
+                            ],
+                            [
+                              "comment",
+                              {
+                                "type": "null"
+                              }
+                            ],
+                            [
+                              "interval",
+                              {
+                                "type": "string",
+                                "value": "month"
+                              }
+                            ],
+                            [
+                              "step",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "points",
+                              {
+                                "type": "array",
+                                "items": [
+                                  {
+                                    "type": "number",
+                                    "lexeme": "1"
+                                  }
+                                ]
+                              }
+                            ],
+                            [
+                              "startDate",
+                              {
+                                "type": "string",
+                                "value": "2026-01-01"
+                              }
+                            ],
+                            [
+                              "endDate",
+                              {
+                                "type": "null"
+                              }
+                            ],
+                            [
+                              "notify",
+                              {
+                                "type": "boolean",
+                                "value": true
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  [
+                    "reminderMarker",
+                    {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "entries": [
+                            [
+                              "id",
+                              {
+                                "type": "string",
+                                "value": "marker"
+                              }
+                            ],
+                            [
+                              "user",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "changed",
+                              {
+                                "type": "number",
+                                "lexeme": "1700000000"
+                              }
+                            ],
+                            [
+                              "incomeInstrument",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "incomeAccount",
+                              {
+                                "type": "string",
+                                "value": "a"
+                              }
+                            ],
+                            [
+                              "income",
+                              {
+                                "type": "number",
+                                "lexeme": "0"
+                              }
+                            ],
+                            [
+                              "outcomeInstrument",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "outcomeAccount",
+                              {
+                                "type": "string",
+                                "value": "a"
+                              }
+                            ],
+                            [
+                              "outcome",
+                              {
+                                "type": "number",
+                                "lexeme": "12.34"
+                              }
+                            ],
+                            [
+                              "tag",
+                              {
+                                "type": "array",
+                                "items": [
+                                  {
+                                    "type": "string",
+                                    "value": "tag"
+                                  }
+                                ]
+                              }
+                            ],
+                            [
+                              "merchant",
+                              {
+                                "type": "null"
+                              }
+                            ],
+                            [
+                              "payee",
+                              {
+                                "type": "string",
+                                "value": "Synthetic"
+                              }
+                            ],
+                            [
+                              "comment",
+                              {
+                                "type": "null"
+                              }
+                            ],
+                            [
+                              "isForecast",
+                              {
+                                "type": "boolean",
+                                "value": false
+                              }
+                            ],
+                            [
+                              "date",
+                              {
+                                "type": "string",
+                                "value": "2026-01-01"
+                              }
+                            ],
+                            [
+                              "reminder",
+                              {
+                                "type": "string",
+                                "value": "rem"
+                              }
+                            ],
+                            [
+                              "state",
+                              {
+                                "type": "string",
+                                "value": "deleted"
+                              }
+                            ],
+                            [
+                              "notify",
+                              {
+                                "type": "boolean",
+                                "value": false
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  [
+                    "budget",
+                    {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "entries": [
+                            [
+                              "user",
+                              {
+                                "type": "number",
+                                "lexeme": "1"
+                              }
+                            ],
+                            [
+                              "changed",
+                              {
+                                "type": "number",
+                                "lexeme": "1700000000"
+                              }
+                            ],
+                            [
+                              "tag",
+                              {
+                                "type": "null"
+                              }
+                            ],
+                            [
+                              "date",
+                              {
+                                "type": "string",
+                                "value": "2026-01-01"
+                              }
+                            ],
+                            [
+                              "income",
+                              {
+                                "type": "number",
+                                "lexeme": "0"
+                              }
+                            ],
+                            [
+                              "outcome",
+                              {
+                                "type": "number",
+                                "lexeme": "100.01"
+                              }
+                            ],
+                            [
+                              "incomeLock",
+                              {
+                                "type": "boolean",
+                                "value": false
+                              }
+                            ],
+                            [
+                              "outcomeLock",
+                              {
+                                "type": "boolean",
+                                "value": true
+                              }
+                            ],
+                            [
+                              "isIncomeForecast",
+                              {
+                                "type": "boolean",
+                                "value": false
+                              }
+                            ],
+                            [
+                              "isOutcomeForecast",
+                              {
+                                "type": "boolean",
+                                "value": true
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "serverTimestamp",
+          {
+            "type": "number",
+            "lexeme": "10"
+          }
+        ]
+      ]
+    }
+  }
+}

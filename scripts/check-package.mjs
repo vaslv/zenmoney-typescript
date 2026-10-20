@@ -27,4 +27,29 @@ for (const options of [['--module', 'NodeNext', '--moduleResolution', 'NodeNext'
   execFileSync(resolve('node_modules/.bin/tsc'), ['--strict', '--noEmit', '--target', 'ES2022', '--types', './empty.d.ts', ...options, 'consumer.ts'],
     {cwd, encoding: 'utf8', stdio: 'pipe'});
 }
+
+const required=['ZenMoneyClient','OAuthClient','OAuthToken','authorizationUrl','callbackCode','ExactDecimal','decimal','encodeJson','decodeJson','entityKey','KINDS','WRITABLE','DELETABLE','FORCE_FETCH','transactions','entities','ZenMoneyError','HTTPError','ValidationError','ResponseError','TransportError','ClientClosedError'];
+assert.deepEqual(Object.keys(sdk).sort(),[...required,'MAX_NUMBER_LENGTH'].sort());
+const requestLog=[];
+const client=new sdk.ZenMoneyClient({token:'TEST_BEARER_NOT_A_SECRET',clock:()=>1,fetch:async(url,init)=>{
+  assert.equal(url,'https://api.zenmoney.ru/v8/diff/');requestLog.push(sdk.decodeJson(init.body));return new Response('{"serverTimestamp":1}');}});
+const transaction=sdk.transactions.expense({user:1,date:'2026-01-15',account:'a',instrument:1,amount:sdk.decimal('1.00000000000000000001'),id:'fixture',now:1,viewed:false});
+await client.upsert('transaction',[transaction]);client.close();assert.equal(requestLog.length,1);
+assert.equal(requestLog[0].transaction[0].outcome.toString(),'1.00000000000000000001');
+assert.equal(requestLog[0].transaction[0].viewed,false);
+const closed=new sdk.OAuthClient({clientId:'TEST_APP',clientSecret:'TEST_SECRET',redirectUri:'https://example.invalid/callback'});closed.close();assert(closed.isClosed);
+await writeFile(cwd+'/sdk-consumer.ts',`import {ZenMoneyClient,OAuthClient,transactions,entities,decimal,type Transaction,type Diff,type Integer} from 'zenmoney-typescript';
+const value:Transaction=transactions.transfer({user:1,date:'2026-01-15',fromAccount:'a',toAccount:'b',fromInstrument:1,toInstrument:2,amountOut:decimal('1.1'),amountIn:2n});
+const account=entities.account({user:1,title:'Example',instrument:1});
+const client=new ZenMoneyClient({token:'TEST_BEARER_NOT_A_SECRET'});
+const result:Promise<Diff>=client.upsert('transaction',[value]);
+const cursor:Integer=1n;
+void result;void account;void cursor;void OAuthClient;
+// @ts-expect-error readonly collection cannot be written
+client.upsert('user',[]);
+// @ts-expect-error helper flags are booleans
+transactions.expense({user:1,date:'2026-01-15',account:'a',instrument:1,amount:1,viewed:'false'});
+`);
+for(const options of [['--module','NodeNext','--moduleResolution','NodeNext'],['--module','ESNext','--moduleResolution','Bundler']])execFileSync(resolve('node_modules/.bin/tsc'),['--strict','--noEmit','--target','ES2022','--types','./empty.d.ts',...options,'sdk-consumer.ts'],{cwd,encoding:'utf8',stdio:'pipe'});
+
 console.log(JSON.stringify({package: pack.filename, files: pack.files.length, consumers: ['NodeNext', 'Bundler'], status: 'passed'}));

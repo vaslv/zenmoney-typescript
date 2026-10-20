@@ -1,7 +1,7 @@
 # Sequential implementation plan
 
-Status: APPROVED by the user on 2026-10-20. S1 is implemented and verified;
-see docs/status.md for evidence. S2 is the next implementation stage.
+Status: APPROVED by the user on 2026-10-20. See docs/status.md for completed
+stages and evidence. S8 remote publication requires separate authorization.
 
 ## Execution discipline
 
@@ -156,7 +156,7 @@ release attachments and npm tarball integrity/provenance. Record exact URLs, has
 version and CI runs. Do not publish partial-functionality SDK as full Python parity.
 Suggested final local record: docs(release): record verified initial publication.
 
-## Expected future layout (not created yet)
+## Intended layout
 
 src/{index,client,transport,protocol,numbers,models,transactions,entities,oauth,errors}.ts
 contracts/{manifest.json,v1/schema.json,v1/cases/}

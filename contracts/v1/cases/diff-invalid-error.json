@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "id": "diff-invalid-error",
+  "stage": 3,
+  "operation": "protocol.decodeDiff",
+  "description": "diff invalid error",
+  "featureIds": [
+    "P05"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "raw",
+        {
+          "type": "string",
+          "value": "{\"serverTimestamp\": 10, \"error\": {\"message\": \"rejected\"}}"
+        }
+      ],
+      [
+        "cursor",
+        {
+          "type": "number",
+          "lexeme": "0"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "response"
+  }
+}

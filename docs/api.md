@@ -1,7 +1,7 @@
-# Proposed public API and invariant contract
+# Public API and invariant contract
 
-Status: approved target API. S1 implements ExactDecimal/decimal only and freezes
-the mapping in api-options.json; all remaining root exports below are planned.
+Status: implemented candidate, not published. api-options.json records all Python
+declaration mappings. Shared fixtures and runtime checks provide offline evidence.
 Numeric/resource decisions are recorded in adr/002-exact-json.md.
 
 ## Exports and module boundaries
@@ -17,7 +17,7 @@ and an explicit package exports map with types before default. No CJS build in
 v0.1.0. The package must be bundleable without process, Buffer, filesystem, DOM,
 or Chrome globals in runtime modules. Node-only tests/tools stay outside src.
 
-## Proposed signatures
+## Signatures
 
 ```ts
 const client = new ZenMoneyClient({
@@ -37,7 +37,7 @@ const item = transactions.expense({
 client.close();
 ```
 
-Draft declaration shapes:
+Declaration shapes:
 - diff({serverTimestamp = 0, changes?, deletions?, forceFetch?, signal?} = {}): Promise<Diff>
 - readDiff({serverTimestamp = 0, forceFetch?, signal?} = {}): Promise<Diff>
 - upsert(kind, entities, {serverTimestamp = 0, signal?} = {}): Promise<Diff>

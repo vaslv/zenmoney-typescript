@@ -6,8 +6,8 @@ comments, examples, errors, and commit descriptions in English.
 This is an independent SDK for the public ZenMoney API. Read README.md and
 all linked design documents before implementation. Execute stages sequentially;
 record exact verification commands/results and local commits in docs/status.md.
-The current repository has S1 primitives and feasibility probes only: do not claim
-full SDK support. Consult docs/status.md for the last completed stage.
+Consult docs/status.md for completed stages and verification evidence. Offline
+contract acceptance is not live service acceptance; do not conflate them.
 
 Do not add Chrome APIs, DOM dependencies, storage, bank connectors, transaction
 matching, category prediction, or background synchronization to the SDK.

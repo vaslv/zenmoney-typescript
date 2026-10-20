@@ -1,0 +1,289 @@
+{
+  "formatVersion": 1,
+  "id": "all-read-kinds",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "all read kinds",
+  "featureIds": [
+    "P01",
+    "P02",
+    "P06"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": []
+  },
+  "events": [
+    {
+      "status": 200,
+      "body": "{\"serverTimestamp\": 10, \"instrument\": [{\"id\": 1}], \"company\": [{\"id\": 1}], \"user\": [{\"id\": 1}], \"country\": [{\"id\": 1}], \"account\": [], \"tag\": [], \"merchant\": [], \"budget\": [{\"user\": 1, \"date\": \"2026-01-01\", \"tag\": null}], \"reminder\": [], \"reminderMarker\": [], \"transaction\": [], \"deletion\": [{\"object\": \"transaction\", \"id\": \"old\"}]}"
+    }
+  ],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "entries": [
+            [
+              "method",
+              {
+                "type": "string",
+                "value": "POST"
+              }
+            ],
+            [
+              "url",
+              {
+                "type": "string",
+                "value": "https://api.zenmoney.ru/v8/diff/"
+              }
+            ],
+            [
+              "headers",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "content-type",
+                    {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  ],
+                  [
+                    "authorization",
+                    {
+                      "type": "string",
+                      "value": "Bearer TEST_BEARER_NOT_A_SECRET"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              "body",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "serverTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "0"
+                    }
+                  ],
+                  [
+                    "currentClientTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "1700000000"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "serverTimestamp",
+          {
+            "type": "number",
+            "lexeme": "10"
+          }
+        ],
+        [
+          "instrument",
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "id",
+                    {
+                      "type": "number",
+                      "lexeme": "1"
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "company",
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "id",
+                    {
+                      "type": "number",
+                      "lexeme": "1"
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "id",
+                    {
+                      "type": "number",
+                      "lexeme": "1"
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "country",
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "id",
+                    {
+                      "type": "number",
+                      "lexeme": "1"
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "account",
+          {
+            "type": "array",
+            "items": []
+          }
+        ],
+        [
+          "tag",
+          {
+            "type": "array",
+            "items": []
+          }
+        ],
+        [
+          "merchant",
+          {
+            "type": "array",
+            "items": []
+          }
+        ],
+        [
+          "budget",
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "user",
+                    {
+                      "type": "number",
+                      "lexeme": "1"
+                    }
+                  ],
+                  [
+                    "date",
+                    {
+                      "type": "string",
+                      "value": "2026-01-01"
+                    }
+                  ],
+                  [
+                    "tag",
+                    {
+                      "type": "null"
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "reminder",
+          {
+            "type": "array",
+            "items": []
+          }
+        ],
+        [
+          "reminderMarker",
+          {
+            "type": "array",
+            "items": []
+          }
+        ],
+        [
+          "transaction",
+          {
+            "type": "array",
+            "items": []
+          }
+        ],
+        [
+          "deletion",
+          {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "object",
+                    {
+                      "type": "string",
+                      "value": "transaction"
+                    }
+                  ],
+                  [
+                    "id",
+                    {
+                      "type": "string",
+                      "value": "old"
+                    }
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}

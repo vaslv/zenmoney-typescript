@@ -1,0 +1,113 @@
+{
+  "formatVersion": 1,
+  "id": "equal-cursor",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "equal cursor",
+  "featureIds": [
+    "P02"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "serverTimestamp",
+        {
+          "type": "number",
+          "lexeme": "10"
+        }
+      ]
+    ]
+  },
+  "events": [
+    {
+      "status": 200,
+      "body": "{\"serverTimestamp\":10}"
+    }
+  ],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "entries": [
+            [
+              "method",
+              {
+                "type": "string",
+                "value": "POST"
+              }
+            ],
+            [
+              "url",
+              {
+                "type": "string",
+                "value": "https://api.zenmoney.ru/v8/diff/"
+              }
+            ],
+            [
+              "headers",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "content-type",
+                    {
+                      "type": "string",
+                      "value": "application/json"
+                    }
+                  ],
+                  [
+                    "authorization",
+                    {
+                      "type": "string",
+                      "value": "Bearer TEST_BEARER_NOT_A_SECRET"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              "body",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "serverTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "10"
+                    }
+                  ],
+                  [
+                    "currentClientTimestamp",
+                    {
+                      "type": "number",
+                      "lexeme": "1700000000"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "serverTimestamp",
+          {
+            "type": "number",
+            "lexeme": "10"
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "formatVersion": 1,
+  "id": "leap-day",
+  "stage": 4,
+  "operation": "transactions.expense",
+  "description": "leap day",
+  "featureIds": [
+    "P10"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "date",
+        {
+          "type": "string",
+          "value": "2024-02-29"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "t"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ],
+      [
+        "account",
+        {
+          "type": "string",
+          "value": "a"
+        }
+      ],
+      [
+        "instrument",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "amount",
+        {
+          "type": "number",
+          "lexeme": "12.34"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "merchant",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "originalPayee",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "reminderMarker",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opIncome",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opIncomeInstrument",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opOutcome",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "opOutcomeInstrument",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "latitude",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "longitude",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "qrCode",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "source",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "incomeBankID",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "outcomeBankID",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "viewed",
+          {
+            "type": "boolean",
+            "value": true
+          }
+        ],
+        [
+          "mcc",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "t"
+          }
+        ],
+        [
+          "created",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "changed",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "deleted",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "hold",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "date",
+          {
+            "type": "string",
+            "value": "2024-02-29"
+          }
+        ],
+        [
+          "incomeAccount",
+          {
+            "type": "string",
+            "value": "a"
+          }
+        ],
+        [
+          "outcomeAccount",
+          {
+            "type": "string",
+            "value": "a"
+          }
+        ],
+        [
+          "incomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "outcomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "income",
+          {
+            "type": "number",
+            "lexeme": "0"
+          }
+        ],
+        [
+          "outcome",
+          {
+            "type": "number",
+            "lexeme": "12.34"
+          }
+        ],
+        [
+          "tag",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "payee",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "comment",
+          {
+            "type": "null"
+          }
+        ]
+      ]
+    }
+  }
+}

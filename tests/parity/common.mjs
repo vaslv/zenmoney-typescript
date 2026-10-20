@@ -27,6 +27,7 @@ function uniqueKeys(node) {
 }
 export function loadCases() {
   const manifest = JSON.parse(readFileSync('contracts/manifest.json', 'utf8'));
+  assert(Number.isInteger(manifest.stage)&&manifest.stage>=3&&manifest.stage<=7,'Invalid implementation stage');
   const schemaText = readFileSync('contracts/v1/schema.json', 'utf8');
   assert.equal(createHash('sha256').update(schemaText).digest('hex'), manifest.schemaSha256);
   const schema = JSON.parse(schemaText);

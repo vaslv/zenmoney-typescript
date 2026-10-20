@@ -1,0 +1,291 @@
+{
+  "formatVersion": 1,
+  "id": "account-type-loan",
+  "stage": 4,
+  "operation": "entities.account",
+  "description": "account type loan",
+  "featureIds": [
+    "P09"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "title",
+        {
+          "type": "string",
+          "value": "Synthetic"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "x"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ],
+      [
+        "instrument",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "accountType",
+        {
+          "type": "string",
+          "value": "loan"
+        }
+      ],
+      [
+        "fields",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "capitalization",
+              {
+                "type": "boolean",
+                "value": false
+              }
+            ],
+            [
+              "percent",
+              {
+                "type": "number",
+                "lexeme": "5.25"
+              }
+            ],
+            [
+              "startDate",
+              {
+                "type": "string",
+                "value": "2026-01-01"
+              }
+            ],
+            [
+              "endDateOffset",
+              {
+                "type": "number",
+                "lexeme": "12"
+              }
+            ],
+            [
+              "endDateOffsetInterval",
+              {
+                "type": "string",
+                "value": "month"
+              }
+            ]
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "x"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "title",
+          {
+            "type": "string",
+            "value": "Synthetic"
+          }
+        ],
+        [
+          "changed",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "role",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "instrument",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "company",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "type",
+          {
+            "type": "string",
+            "value": "loan"
+          }
+        ],
+        [
+          "syncID",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "balance",
+          {
+            "type": "number",
+            "lexeme": "0"
+          }
+        ],
+        [
+          "startBalance",
+          {
+            "type": "number",
+            "lexeme": "0"
+          }
+        ],
+        [
+          "creditLimit",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "inBalance",
+          {
+            "type": "boolean",
+            "value": true
+          }
+        ],
+        [
+          "savings",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "enableCorrection",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "enableSMS",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "archive",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "private",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "balanceCorrectionType",
+          {
+            "type": "string",
+            "value": "request"
+          }
+        ],
+        [
+          "capitalization",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "percent",
+          {
+            "type": "number",
+            "lexeme": "5.25"
+          }
+        ],
+        [
+          "startDate",
+          {
+            "type": "string",
+            "value": "2026-01-01"
+          }
+        ],
+        [
+          "endDateOffset",
+          {
+            "type": "number",
+            "lexeme": "12"
+          }
+        ],
+        [
+          "endDateOffsetInterval",
+          {
+            "type": "string",
+            "value": "month"
+          }
+        ],
+        [
+          "payoffStep",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "payoffInterval",
+          {
+            "type": "null"
+          }
+        ]
+      ]
+    }
+  }
+}

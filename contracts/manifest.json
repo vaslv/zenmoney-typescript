@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "suiteVersion": "1.0.1",
+  "suiteVersion": "1.1.0",
   "referencePackage": "zenmoney-python",
   "referenceVersion": "0.7.0",
   "referenceCommit": "6c38d4c0cb3e8cc271292e37e9934e6c1a7b9972",
@@ -9,6 +9,46 @@
       "id": "account-debt-rejected",
       "file": "v1/cases/account-debt-rejected.json",
       "sha256": "7a1ae42284522c379a5840e1176aa02f49031eb9e5d099b65705976e59aa2c9b"
+    },
+    {
+      "id": "account-type-cash",
+      "file": "v1/cases/account-type-cash.json",
+      "sha256": "aa4a3cef7ced141f6e4843dc90f2711859b626944b2df691485b1d84954587ff"
+    },
+    {
+      "id": "account-type-ccard",
+      "file": "v1/cases/account-type-ccard.json",
+      "sha256": "b82894acda5569738e618d0a74412171d698da7f7ec702fd1d897634aede3718"
+    },
+    {
+      "id": "account-type-checking",
+      "file": "v1/cases/account-type-checking.json",
+      "sha256": "2f49c21358bf10a173aeb73b5b7229ce5fa93840a93d5d2226b5116825a86e33"
+    },
+    {
+      "id": "account-type-deposit",
+      "file": "v1/cases/account-type-deposit.json",
+      "sha256": "b7c97aeeece2f4e3ed9fdbd212de397d8e67a9807c8d24a30e734734deb970cc"
+    },
+    {
+      "id": "account-type-emoney",
+      "file": "v1/cases/account-type-emoney.json",
+      "sha256": "3fe6ddb46e46530878a6beb4cd4736bf3f51e379571ba31af8cf50d0ed1faa65"
+    },
+    {
+      "id": "account-type-loan",
+      "file": "v1/cases/account-type-loan.json",
+      "sha256": "21ab02597b0599147b90955fab9d58d5263ba94737242387865fb4db197e3a8f"
+    },
+    {
+      "id": "adjacent-integer-boundary",
+      "file": "v1/cases/adjacent-integer-boundary.json",
+      "sha256": "f5756d895e7a0e53a52eef7821873c1253d22f35841a1a564ba6bc6dded2e05f"
+    },
+    {
+      "id": "all-read-kinds",
+      "file": "v1/cases/all-read-kinds.json",
+      "sha256": "ead864debff806ec62d11b308873a750daee8a2af1f9ba43584562dcddf4db88"
     },
     {
       "id": "bad-coordinate",
@@ -59,6 +99,11 @@
       "id": "client-closed",
       "file": "v1/cases/client-closed.json",
       "sha256": "03bd77165577888855fbfecfa693484644e854c9f51cc45da0015373bbb2d761"
+    },
+    {
+      "id": "complete-recurring-budget",
+      "file": "v1/cases/complete-recurring-budget.json",
+      "sha256": "60b1e6659ac51f25c3ca9aaf7f0acd9ca43867bd7defa6cb19ad1d7fb5173691"
     },
     {
       "id": "country-force-fetch",
@@ -131,9 +176,44 @@
       "sha256": "1bd2bcf545871e4924c099c3c6443a5cb315820d136e216f1b1895d1f55690b4"
     },
     {
+      "id": "diff-bom-raw",
+      "file": "v1/cases/diff-bom-raw.json",
+      "sha256": "5592d08a53d35cbc09eb804e56897ae9842a908ec541eac2a4bab442f8581925"
+    },
+    {
+      "id": "diff-invalid-deletion",
+      "file": "v1/cases/diff-invalid-deletion.json",
+      "sha256": "37599c21cb33ce96a0c9a6b0940fb0126fa49f634d98f0446f86ed7b1ed002f2"
+    },
+    {
+      "id": "diff-invalid-error",
+      "file": "v1/cases/diff-invalid-error.json",
+      "sha256": "822ba0e16f6d78cb92bbdd7b3c5ed0d717846c9f1bf5dce84a99dc3e5a572acc"
+    },
+    {
+      "id": "diff-invalid-serverTimestamp",
+      "file": "v1/cases/diff-invalid-serverTimestamp.json",
+      "sha256": "fbc71f5f864e3e0665c2ebb6c3c834d933c416cf8a0936f981d641605d5d640b"
+    },
+    {
+      "id": "diff-invalid-transaction",
+      "file": "v1/cases/diff-invalid-transaction.json",
+      "sha256": "6bc6deb12691b969a46f8cad4bc23b29abc24126739df8164e7b30be4c63ba3c"
+    },
+    {
       "id": "diff-unknown-fields",
       "file": "v1/cases/diff-unknown-fields.json",
       "sha256": "b1c7a83b491108e53b6432712d60df03933aab399b0ca31de6dc4d2c9c204eb4"
+    },
+    {
+      "id": "duplicate-budget",
+      "file": "v1/cases/duplicate-budget.json",
+      "sha256": "2206233798a9b813c8fec483ac2f9c27ebef92cfa60797094ee8d6fdebd63e16"
+    },
+    {
+      "id": "duplicate-deletions",
+      "file": "v1/cases/duplicate-deletions.json",
+      "sha256": "575acde25a4972980af8ecc333126392a231af21efdd71273de9d61ca3a3e5d0"
     },
     {
       "id": "duplicate-different",
@@ -156,9 +236,24 @@
       "sha256": "e883d5aa35d7e4a45c8beda9fd4fb0395a02295711d45c0498ae67dfd73251d7"
     },
     {
+      "id": "empty-tags",
+      "file": "v1/cases/empty-tags.json",
+      "sha256": "ef72e672ca47a8a4767e1e866b6e87d969f072457c5132f4b3d7b802ea6d8aeb"
+    },
+    {
       "id": "encode-exact",
       "file": "v1/cases/encode-exact.json",
       "sha256": "cc7dcdaef295b4093e56a265c8c6a88e2286b67a72f60e181978a77fb6fa14b2"
+    },
+    {
+      "id": "equal-cursor",
+      "file": "v1/cases/equal-cursor.json",
+      "sha256": "bb47276dc7c24863708b296389a7bd2c25810be84b206a3c13371aff5b98067a"
+    },
+    {
+      "id": "expense-all-fields",
+      "file": "v1/cases/expense-all-fields.json",
+      "sha256": "e2af9226269cccc973ba5421a959501ea02cc74e669436657577ed70530d9eec"
     },
     {
       "id": "expense-defaults",
@@ -231,6 +326,11 @@
       "sha256": "11d67ea51da30471c5a4c36c6eefc8d554b319e035590496df31661a8c468424"
     },
     {
+      "id": "invalid-leap-day",
+      "file": "v1/cases/invalid-leap-day.json",
+      "sha256": "8af659e86dedaa939cdf028245aed52c18b0b1ce9b58340200b3e4fcbfb22b50"
+    },
+    {
       "id": "invalid-utf8",
       "file": "v1/cases/invalid-utf8.json",
       "sha256": "246b86562104a9df043846d14909cc5c5a16f56f35dfc7699ff8529735da74ad"
@@ -256,6 +356,11 @@
       "sha256": "4d2d8c2d35f856fe5ade46c2d8c1a51a06b7e85c1c1124590685b51dd16b9548"
     },
     {
+      "id": "leap-day",
+      "file": "v1/cases/leap-day.json",
+      "sha256": "efc9bf32d602adda9ab6d0f30d7ff898708b9b7a233e87fe89a3628c528b1ee5"
+    },
+    {
       "id": "long-fraction",
       "file": "v1/cases/long-fraction.json",
       "sha256": "75ec3d0121edba92e8d71cecf45766de41060fc90f4a6c0e25964c2fb9c6d88a"
@@ -264,6 +369,11 @@
       "id": "missing-changed",
       "file": "v1/cases/missing-changed.json",
       "sha256": "db90de5824ec581ba2897659c01834742558fee8b0c65e7541f4bf2f5c197f98"
+    },
+    {
+      "id": "multiple-tags",
+      "file": "v1/cases/multiple-tags.json",
+      "sha256": "c9f513e9d9466a8926a0e957a3b0628908318af1248bb96de8ee99c156d9efd5"
     },
     {
       "id": "negative-cursor",
@@ -276,6 +386,11 @@
       "sha256": "af205f0ecc7c9a001b053036934524a321c730f59124387952ba9c24ded2c72d"
     },
     {
+      "id": "negative-zero",
+      "file": "v1/cases/negative-zero.json",
+      "sha256": "1c418c0ff499cb9d3ca9b13d78049125d876bd16a6ecacb77a3d90e707606497"
+    },
+    {
       "id": "nested-extension",
       "file": "v1/cases/nested-extension.json",
       "sha256": "95a5532c882ea606e6f8356a332deed9c3901f4d52de5fe402e2cee78643971e"
@@ -284,6 +399,11 @@
       "id": "nonfinite-json",
       "file": "v1/cases/nonfinite-json.json",
       "sha256": "4de4ebc09692acf698499c5a790552f399ce5134354e6893d935d4b7665b1c8d"
+    },
+    {
+      "id": "numeric-write-id",
+      "file": "v1/cases/numeric-write-id.json",
+      "sha256": "398f0c4ecd37bbb6ca9b2cb8b7cfde4dba6acb1a8578cba26ac6776ae6a22e06"
     },
     {
       "id": "oauth-authorization-url",
@@ -301,6 +421,16 @@
       "sha256": "999d6fc3cdc17024d567376170d774bed5959747f9ea802c7ca2aecd334b5ffa"
     },
     {
+      "id": "oauth-code-duplicate",
+      "file": "v1/cases/oauth-code-duplicate.json",
+      "sha256": "2d0c1a1d5ee54172d305fc696aa67c37ea1378af74b3e8761f9b17cfa6c9e33d"
+    },
+    {
+      "id": "oauth-code-empty",
+      "file": "v1/cases/oauth-code-empty.json",
+      "sha256": "25a43b1dc6cebcf42f0f9feba44584512d7a81aad7ec9fd884750a3a3a543f11"
+    },
+    {
       "id": "oauth-error",
       "file": "v1/cases/oauth-error.json",
       "sha256": "70fce7084cdc6ce7651c07a53b763ffaeee33587419be6ec9c07174158d0ff8b"
@@ -311,9 +441,24 @@
       "sha256": "1eac6f3fd3fd73f7ad7d028f237000ed4472ce228d41cc2cfc674e5562de0bd9"
     },
     {
+      "id": "oauth-lifetime-fraction",
+      "file": "v1/cases/oauth-lifetime-fraction.json",
+      "sha256": "befdd76287fbd0f99676340975acfe0d52330997fd921ec22c6fdd44534d7aec"
+    },
+    {
+      "id": "oauth-lifetime-negative",
+      "file": "v1/cases/oauth-lifetime-negative.json",
+      "sha256": "31b33ee294a277ed3ea5d015d33ce9ec06c9476e51dc1605b087e37f1fccbc2a"
+    },
+    {
       "id": "oauth-refresh",
       "file": "v1/cases/oauth-refresh.json",
       "sha256": "6c0ba8880a7f33a4d4b3c7221685bbc2ca109f020ae42c5033c789d0210007ca"
+    },
+    {
+      "id": "oauth-refresh-empty",
+      "file": "v1/cases/oauth-refresh-empty.json",
+      "sha256": "9ee462604679e18f970481c14b876ea6186b7f3be6fd370145626051a165a46b"
     },
     {
       "id": "oauth-state-duplicate",
@@ -324,6 +469,21 @@
       "id": "oauth-state-mismatch",
       "file": "v1/cases/oauth-state-mismatch.json",
       "sha256": "8efa981db4a116d32c7f16267b74569af086c852fbd66bf6171eb372ba57b5d7"
+    },
+    {
+      "id": "oauth-state-missing",
+      "file": "v1/cases/oauth-state-missing.json",
+      "sha256": "78dddff704764c7266703c2983e306b2e5c921eb05a9fd2b890dab108ef37b30"
+    },
+    {
+      "id": "oauth-token-type",
+      "file": "v1/cases/oauth-token-type.json",
+      "sha256": "405f6ba347708d25e92fc50a246934fb6a294883e0eaf4e7387b97efba447862"
+    },
+    {
+      "id": "oauth-token-whitespace",
+      "file": "v1/cases/oauth-token-whitespace.json",
+      "sha256": "35d59fa7306a076230ab101ca6d60502f966ac8614a9be821895e3a74b1542c4"
     },
     {
       "id": "paired-original-amount",
@@ -344,6 +504,11 @@
       "id": "response-byte-limit",
       "file": "v1/cases/response-byte-limit.json",
       "sha256": "8c41ba3b059c31a74fc678497d24d96a811f82299971e605861568be0e72c88f"
+    },
+    {
+      "id": "safe-integer-boundary",
+      "file": "v1/cases/safe-integer-boundary.json",
+      "sha256": "e24fc78b86fdaea6e09791200773a961d6317e4ed7efe287bafc4ecf8d0001c9"
     },
     {
       "id": "same-account-transfer",
@@ -371,9 +536,24 @@
       "sha256": "1de80435b44b5fac5e48113e837e7d6f34ec5a1116b6b9baa264867cb789b19c"
     },
     {
+      "id": "suggest-list-cardinality",
+      "file": "v1/cases/suggest-list-cardinality.json",
+      "sha256": "f999118a5f5298ca1f76babf6bc94cfdeb039ebac792f157e09c6ee9bb6141ad"
+    },
+    {
+      "id": "suggest-member-error",
+      "file": "v1/cases/suggest-member-error.json",
+      "sha256": "21e98500e54e384d648237e0b5b88fd41dc7988a4340d3cf5449ad618b64c8c9"
+    },
+    {
       "id": "suggest-object",
       "file": "v1/cases/suggest-object.json",
       "sha256": "298486fd8886e5e0fbc45394c3fd370d840ee0a9a4504179b51811015aa48b99"
+    },
+    {
+      "id": "tiny-exponent",
+      "file": "v1/cases/tiny-exponent.json",
+      "sha256": "1426450d92f9cb63ee2bb37f10856d1734aa362a45f4311649cea42ea15c7208"
     },
     {
       "id": "transport-lost-response",
@@ -406,6 +586,11 @@
       "sha256": "3c0765aa4d388da4d79a9bf14fbe19d080f9215c6a25f93507164d7916b29209"
     },
     {
+      "id": "upsert-deletion-conflict",
+      "file": "v1/cases/upsert-deletion-conflict.json",
+      "sha256": "2fc27f267c7282060ecc0f3476c5c52674a56a8c105db6e9dd3d64f459fb2f1d"
+    },
+    {
       "id": "upsert-merchant",
       "file": "v1/cases/upsert-merchant.json",
       "sha256": "715db109c218622fea6621f90e008c08148f17354282fdcdafe28eb3fa176d1b"
@@ -431,6 +616,11 @@
       "sha256": "be93f458e5a38a73862fc29ba2f08ab216e3d48b2ba7d44f655d5b0b750b1e12"
     },
     {
+      "id": "wrong-cursor",
+      "file": "v1/cases/wrong-cursor.json",
+      "sha256": "0c879fbbcf89a3f91b20d19fe070014bf24776bc9dd97430c9e11327f3a4d7e2"
+    },
+    {
       "id": "zero-expense",
       "file": "v1/cases/zero-expense.json",
       "sha256": "43fa454c2a62e92cf755d3e6ed855a12bb3ef666d8d60c6201caa8c2fd071c48"
@@ -439,13 +629,31 @@
   "nativeChecks": {
     "python-sync": [
       "native-cycle",
-      "native-unsupported"
+      "native-unsupported",
+      "native-http-redirect"
     ],
     "python-async": [
       "native-cycle",
-      "native-unsupported"
+      "native-unsupported",
+      "native-http-redirect"
+    ],
+    "typescript": [
+      "native-cycle",
+      "native-unsupported",
+      "native-undefined",
+      "native-unsafe-integer",
+      "native-prototype",
+      "native-accessor",
+      "native-depth",
+      "native-number-length"
     ]
   },
   "schemaSha256": "c0c75295e19ea615d9722bcc89519e045743500b44f32125c7dfea5bade0505e",
-  "stage": 6
+  "stage": 7,
+  "nativeExpectations": {
+    "native-http-redirect": {
+      "error": "http",
+      "statusCode": 302
+    }
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "status": "S1 declaration mapping; tests and implementation coverage follow in S2-S7",
+  "status": "Complete declaration mapping; offline implementation evidence in contracts/coverage.json and docs/status.md",
   "rules": [
     "Wire field spellings remain unchanged",
     "Convenience parameters use camelCase",

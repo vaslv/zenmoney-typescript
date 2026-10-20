@@ -1,17 +1,23 @@
 {
-  "status": "Staged coverage: expected vectors exist now; TS participation is enforced as each implementation stage lands",
+  "status": "Complete offline semantic baseline for zenmoney-python 0.7.0; see docs/parity.md for runtime differences and live limitations",
   "features": {
     "P01": {
       "cases": [
+        "all-read-kinds",
         "initial-read"
       ],
       "typeOnly": false
     },
     "P02": {
       "cases": [
+        "all-read-kinds",
+        "complete-recurring-budget",
         "country-force-fetch",
         "delete-operation",
+        "duplicate-budget",
+        "duplicate-deletions",
         "duplicate-entity",
+        "equal-cursor",
         "force-fetch",
         "http-204",
         "http-400",
@@ -23,29 +29,40 @@
         "initial-read",
         "missing-changed",
         "negative-cursor",
+        "numeric-write-id",
         "readonly-upsert",
         "server-cursor-backwards",
         "suggest-invalid-result",
         "suggest-list",
-        "suggest-object"
+        "suggest-object",
+        "upsert-deletion-conflict",
+        "wrong-cursor"
       ],
       "typeOnly": false
     },
     "P03": {
       "cases": [
+        "complete-recurring-budget",
+        "duplicate-budget",
+        "duplicate-deletions",
+        "numeric-write-id",
         "upsert-account",
         "upsert-budget",
+        "upsert-deletion-conflict",
         "upsert-merchant",
         "upsert-reminder",
         "upsert-reminderMarker",
         "upsert-tag",
-        "upsert-transaction"
+        "upsert-transaction",
+        "wrong-cursor"
       ],
       "typeOnly": false
     },
     "P04": {
       "cases": [
-        "suggest-empty"
+        "suggest-empty",
+        "suggest-list-cardinality",
+        "suggest-member-error"
       ],
       "typeOnly": false
     },
@@ -53,12 +70,18 @@
       "cases": [
         "bad-diff-collection",
         "cursor-backwards",
+        "diff-bom-raw",
+        "diff-invalid-deletion",
+        "diff-invalid-error",
+        "diff-invalid-serverTimestamp",
+        "diff-invalid-transaction",
         "diff-unknown-fields"
       ],
       "typeOnly": false
     },
     "P06": {
       "cases": [
+        "all-read-kinds",
         "force-fetch"
       ],
       "typeOnly": false
@@ -74,6 +97,7 @@
     },
     "P08": {
       "cases": [
+        "complete-recurring-budget",
         "upsert-account",
         "upsert-budget",
         "upsert-merchant",
@@ -87,6 +111,12 @@
     "P09": {
       "cases": [
         "account-debt-rejected",
+        "account-type-cash",
+        "account-type-ccard",
+        "account-type-checking",
+        "account-type-deposit",
+        "account-type-emoney",
+        "account-type-loan",
         "catalog-account",
         "catalog-merchant",
         "catalog-tag"
@@ -98,9 +128,14 @@
         "bad-coordinate",
         "bad-viewed",
         "boolean-user",
+        "empty-tags",
+        "expense-all-fields",
         "expense-defaults",
         "income-refund",
         "invalid-date",
+        "invalid-leap-day",
+        "leap-day",
+        "multiple-tags",
         "negative-expense",
         "paired-original-amount",
         "same-account-transfer",
@@ -148,29 +183,47 @@
       "cases": [
         "oauth-authorization-url",
         "oauth-callback",
+        "oauth-code-duplicate",
+        "oauth-code-empty",
         "oauth-error",
         "oauth-state-duplicate",
-        "oauth-state-mismatch"
+        "oauth-state-mismatch",
+        "oauth-state-missing"
       ],
       "typeOnly": false
     },
     "P16": {
       "cases": [
         "oauth-exchangeCode",
-        "oauth-refresh"
+        "oauth-lifetime-fraction",
+        "oauth-lifetime-negative",
+        "oauth-refresh-empty",
+        "oauth-refresh",
+        "oauth-token-type",
+        "oauth-token-whitespace"
       ],
       "typeOnly": false
     },
     "P17": {
       "cases": [
         "oauth-exchangeCode",
-        "oauth-refresh"
+        "oauth-lifetime-fraction",
+        "oauth-lifetime-negative",
+        "oauth-refresh-empty",
+        "oauth-refresh",
+        "oauth-token-type",
+        "oauth-token-whitespace"
       ],
       "typeOnly": false
     },
     "P18": {
       "cases": [
         "http-400",
+        "oauth-lifetime-fraction",
+        "oauth-lifetime-negative",
+        "oauth-refresh-empty",
+        "oauth-token-type",
+        "oauth-token-whitespace",
         "transport-lost-response"
       ],
       "typeOnly": false
@@ -190,8 +243,10 @@
     },
     "P21": {
       "cases": [
+        "adjacent-integer-boundary",
         "bad-diff-collection",
         "cursor-backwards",
+        "diff-bom-raw",
         "diff-unknown-fields",
         "duplicate-different",
         "duplicate-equal",
@@ -201,9 +256,12 @@
         "invalid-utf8",
         "large-integer",
         "long-fraction",
+        "negative-zero",
         "nested-extension",
         "nonfinite-json",
-        "prototype-data"
+        "prototype-data",
+        "safe-integer-boundary",
+        "tiny-exponent"
       ],
       "typeOnly": false
     },
@@ -218,6 +276,7 @@
         "catalog-account",
         "catalog-merchant",
         "catalog-tag",
+        "expense-all-fields",
         "expense-defaults"
       ],
       "typeOnly": false
@@ -394,6 +453,6 @@
   "fieldTestPlan": {
     "stage": 3,
     "path": "tests/types/models.ts",
-    "status": "planned; release gate requires compiling this file once models land"
+    "status": "implemented; exact type assertions compiled during every Docker node build"
   }
 }

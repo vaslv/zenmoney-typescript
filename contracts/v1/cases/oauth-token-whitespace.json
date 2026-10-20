@@ -1,0 +1,135 @@
+{
+  "formatVersion": 1,
+  "id": "oauth-token-whitespace",
+  "stage": 6,
+  "operation": "oauth.refresh",
+  "description": "oauth token whitespace",
+  "featureIds": [
+    "P16",
+    "P17",
+    "P18"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "value",
+        {
+          "type": "string",
+          "value": "TEST_REFRESH"
+        }
+      ]
+    ]
+  },
+  "events": [
+    {
+      "status": 200,
+      "body": "{\"access_token\": \"bad token\", \"token_type\": \"bearer\"}"
+    }
+  ],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "entries": [
+            [
+              "method",
+              {
+                "type": "string",
+                "value": "POST"
+              }
+            ],
+            [
+              "url",
+              {
+                "type": "string",
+                "value": "https://api.zenmoney.ru/oauth2/token/"
+              }
+            ],
+            [
+              "headers",
+              {
+                "type": "object",
+                "entries": [
+                  [
+                    "content-type",
+                    {
+                      "type": "string",
+                      "value": "application/x-www-form-urlencoded"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              "body",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string",
+                        "value": "client_id"
+                      },
+                      {
+                        "type": "string",
+                        "value": "APP"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string",
+                        "value": "client_secret"
+                      },
+                      {
+                        "type": "string",
+                        "value": "TEST_SECRET"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string",
+                        "value": "grant_type"
+                      },
+                      {
+                        "type": "string",
+                        "value": "refresh_token"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string",
+                        "value": "refresh_token"
+                      },
+                      {
+                        "type": "string",
+                        "value": "TEST_REFRESH"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "error": "response"
+  }
+}

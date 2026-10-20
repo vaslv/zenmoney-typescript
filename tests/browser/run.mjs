@@ -20,9 +20,10 @@ try {
   const page = await context.newPage();
   await page.goto(site.url);
   const result = await page.evaluate(async ({api, exact}) => {
-    const {precisionProbe, boundedFetch, sdkProbe} = await import('/bundle.mjs');
+    const {precisionProbe, boundedFetch, sdkProbe, sdkRejectedProbe} = await import('/bundle.mjs');
     const check = (condition, message) => { if (!condition) throw new Error(message); };
     check((await sdkProbe(api+'/sdk-cors')).includes('serverTimestamp'),'Browser SDK request failed');
+    check(await sdkRejectedProbe(api+'/sdk'),'Installed SDK bypassed page CORS or retried');
     check(precisionProbe() === exact, 'Precision probe failed');
     check(await boundedFetch(api + '/cors') === exact, 'CORS request failed');
     let corsBlocked = false;
@@ -53,6 +54,7 @@ try {
         const check = (condition, message) => { if (!condition) throw new Error(message); };
         const probe = globalThis.probe;
         if(permitted)check((await probe.sdkProbe(url+'/sdk')).includes('serverTimestamp'),'MV3 SDK request failed');
+        else check(await probe.sdkRejectedProbe(url+'/sdk'),'Installed SDK bypassed MV3 permission or retried');
         check(probe.precisionProbe() === exact, 'MV3 precision probe failed');
         let body;
         try { body = await probe.boundedFetch(url + '/api'); } catch { body = null; }

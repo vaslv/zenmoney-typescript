@@ -41,3 +41,38 @@ Do not infer that a successful upload alone proves the installed package works.
 
 Publishing the SDK does not authorize changing or releasing ZenImportChrome,
 ZenImportBackend or zenmoney-python. SDK integration is a later separate stage.
+
+## Current local candidate and operator handoff
+
+S1–S7 implementation is local. package.json remains private:true; therefore the
+candidate archive is for local acceptance and is intentionally not publishable.
+After separate release authorization, changing private to false is a reviewed
+release-preparation change: rebuild/retest the new commit and regenerate checksums.
+Do not publish the earlier private archive or silently mutate a verified archive.
+
+Read-only npm registry lookup on 2026-10-20 returned 404 for zenmoney-typescript.
+That is neither a reservation nor proof of ownership. Before release confirm the
+npm identity and desired public name; GitHub origin is the user-provided repository.
+Do not print credentials or paste access tokens into chat, source or shell history.
+
+Current official guidance was consulted through Context7:
+- https://docs.npmjs.com/trusted-publishers
+- https://docs.npmjs.com/generating-provenance-statements
+- https://github.com/actions/checkout/blob/main/README.md
+
+Prefer a separately authorized manual release workflow with an npm trusted publisher
+bound to the exact repository/workflow/environment, contents:read and id-token:write
+only for that publishing job. Public repository/package trusted publishing can
+produce provenance automatically. Initial package creation/ownership and supported
+npm/Node versions must be verified when configuring it; they are not established
+by today's anonymous lookup. If initial local publication is required, use a
+restricted credential entered interactively into a private credential store.
+Never grant publication credentials to the current build/test-only CI.
+
+The release operator must select the tested commit, confirm clean status, run the
+full Docker matrix, pack once, inspect its files and SHA256SUMS, then separately
+obtain the user's explicit push/tag/release/npm authorization. A local tarball can
+be installed with `npm install /absolute/path/zenmoney-typescript-0.1.0.tgz` before
+publication. After publication anonymously install the registry version and compare
+its integrity/contents with the approved artifact. Record remote CI and URLs only
+when they actually exist. S8 remote actions remain pending authorization.

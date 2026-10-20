@@ -10,6 +10,7 @@ from urllib.parse import parse_qsl
 import httpx
 import zenmoney_api as api
 from zenmoney_api import protocol, transactions, entities, oauth
+from local_http import redirect_check
 
 def decode(node):
     kind = node['type']
@@ -69,7 +70,9 @@ async def run(c, asynchronous):
             elif name == 'clearBudget': value=transactions.clear_budget(args['budget'],now=args.get('now'))
             elif name == 'deletion': value=transactions.deletion(args['kind'],args['id'],user=args['user'],now=args.get('now'))
             else: value=getattr(transactions,name)(**params)
-        elif group == 'entities': value=getattr(entities,name)(**params)
+        elif group == 'entities':
+            fields = params.pop('fields', {})
+            value=getattr(entities,name)(**params,**fields)
         elif group == 'client':
             if name == 'closed':
                 value=client.aclose() if asynchronous else client.close()
@@ -102,10 +105,16 @@ async def run(c, asynchronous):
 
 async def main():
     manifest=json.loads(Path('contracts/manifest.json').read_text())
+    assert protocol.KINDS == ('instrument','company','user','account','tag','merchant','budget','reminder','reminderMarker','transaction','country')
+    assert protocol.FORCE_FETCH == ('instrument','company','user','account','tag','merchant','budget','reminder','reminderMarker','transaction')
+    assert protocol.WRITABLE == ('account','tag','merchant','budget','reminder','reminderMarker','transaction')
+    assert protocol.DELETABLE == ('account','tag','merchant','reminder','reminderMarker','transaction')
     for asynchronous in [False,True]:
         for entry in manifest['cases']:
             c=json.loads((Path('contracts')/entry['file']).read_text())
             print(json.dumps(await run(c,asynchronous)))
+        await redirect_check(asynchronous)
+        print(json.dumps({'caseId':'native-http-redirect','runtime':'python-async' if asynchronous else 'python-sync','status':'completed','error':'http','statusCode':302}))
         for case_id,value in [('native-cycle', []), ('native-unsupported', object())]:
             if case_id=='native-cycle': value.append(value)
             try: protocol.encode_json(value)

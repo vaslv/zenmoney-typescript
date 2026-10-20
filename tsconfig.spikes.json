@@ -12,6 +12,7 @@
   "include": [
     "src/**/*.ts",
     "spikes/**/*.ts",
-    "tests/types/**/*.ts"
+    "tests/types/**/*.ts",
+    "examples/**/*.ts"
   ]
 }

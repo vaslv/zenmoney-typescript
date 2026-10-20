@@ -1,73 +1,57 @@
-# S1 local development and verification
+# Development and verification
 
-This is an incomplete SDK. S1 implements only exact numeric primitives and test-only
-codec/transport feasibility probes. There is no diff/suggest/OAuth client yet.
-
-## Complete Docker acceptance
-
-```sh
-./scripts/test.sh
-```
-
-The script builds pinned Node 22 and Node 24 test images, Python reference image,
-current browser image and Linux amd64 Chrome 120 fixture. Builds download pinned
-public dependencies. Every test container then runs with --network none, so only
-its own synthetic loopback HTTP server is reachable. No host ports, real accounts,
-financial tokens or existing ZenImport containers are needed.
-
-On environments where Docker's default buildx activity directory is inaccessible,
-use a writable task-specific directory without changing the user's Docker settings:
+Use Docker for reproducible acceptance. Host Node is not acceptance evidence.
 
 ```sh
 BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/test.sh
+BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/pack.sh
 ```
 
-Node stages verify exact versions/lock integrity, 50 Python declaration mappings,
-build/declarations and strict types; run 13 focused tests (including 200 seeded
-number comparisons); pack the seven-file npm archive and install it offline into
-a fresh consumer; type-check NodeNext and Bundler consumers without Node ambient
-types. The package is private:true and no publication commands are run.
+The optional BUILDX_CONFIG selects a writable buildx activity directory without
+changing the user's Docker settings. scripts/test.sh builds pinned Node 22/24,
+Python 3.12, current Chromium and Chrome 120 images. Builds may download pinned
+public dependencies; every test container runs offline (--network none), with a
+read-only root and temporary writable directories. Only synthetic loopback HTTP
+servers are used. No host ports, production tokens, bank tabs, host financial
+folders or running ZenImport containers are needed.
 
-The Python stage installs the hash-locked published 0.7.0 wheel, verifies all eight
-runtime module hashes and performs a synthetic exact-number roundtrip. This is
-baseline validation, not the S2 shared contract suite or all Python SDK tests.
+The complete matrix verifies:
+- Lock/version integrity, all 50 Python declaration mappings, strict SDK/types and
+  compiled examples. Every inventoried model field has an exact type assertion.
+- Focused native codec/builders/HTTP/OAuth tests, including seeded comparisons,
+  validation before dispatch, unknown outcomes, streams, cancellation and privacy.
+- 124 reviewed shared cases in both installed Python clients and the packed SDK;
+  comparator negative controls and mandatory native checks cannot silently skip.
+- Offline tarball installation, root export allowlist, runtime operations and strict
+  NodeNext/Bundler consumers without Node ambient types.
+- Installed-package browser bundle and MV3 workers, granted/missing host permission,
+  exact expense write/readback, CORS restrictions, bounds/abort/redirect probes.
 
-Browser checks exercise a normal page with CORS allowed/denied and two MV3 fixtures
-with API host permissions absent/present. The permitted worker checks precision,
-exact/over response limits, chunked cancellation, malformed UTF-8, timeout, caller
-abort and a real redirect without a second request. Static permission fixtures
-prove the networking behavior; the optional-permission user-consent UI is outside S1.
+Full logs live in ignored .local; summarized evidence and review outcomes are in
+status.md. No skipped/optional live tests are reported as passing. The Python SDK
+is installed from the hash-locked public wheel, never imported from a sibling tree.
 
-## Local quick checks
+## Fast checks
 
-Use Node 22 or 24. The host Node version is not acceptance evidence.
+Use Node 22/24 and npm ci --ignore-scripts. Run npm test for native/package checks;
+run scripts/test-parity.sh for Python/packed-TS contracts in Docker. Browser image
+builds prime/install the candidate tarball before bundling. For an entirely offline
+consumer install, first prime exact runtime dependency metadata while online:
+`npm cache add lossless-json@4.3.2`. Docker handles this automatically. A restricted
+host npm cache is not a reason to change its ownership; use Docker or a dedicated
+writable cache directory.
 
-```sh
-npm ci --ignore-scripts
-npm test
-```
-
-npm test runs build, type and unit/pack checks. test:package uses --offline for
-consumer installation. npm ci alone caches tarballs but can omit registry metadata;
-prime the exact runtime package metadata while online first if needed:
-
-```sh
-npm cache add lossless-json@4.3.2
-```
-
-The Dockerfile handles that step during image construction. Browser tests additionally
-need the pinned Playwright browsers, Xvfb and writable XDG directories; use Docker
-for the reproducible path rather than modifying a user's installed Chrome profile.
+The package is private:true. scripts/pack.sh writes only a candidate tarball and
+SHA256SUMS under .local/release. It does not publish, tag, push or modify siblings.
+CI repeats Docker acceptance and packs only, with contents:read permission and no
+publication secrets. GitHub-hosted execution is pending the first authorized push;
+local success is not a claimed remote CI run.
 
 ## Baseline maintenance
 
-python-baseline.json records published wheel URL/hash, Git commits and per-module
-hashes. python-inventory.json is the approved source/API inventory. api-options.json
-maps all 50 inventoried declarations and parameters to their intended TypeScript
-names; it does not promise those methods are implemented. Runtime wire field names
-stay unchanged. Future contract case IDs and implemented coverage belong to S2–S7.
-
-If the reference changes, review actual source differences before updating hashes.
-Do not generate fixtures from real service responses or alter expected results to
-hide a mismatch. Dependency/image changes require reviewing ADRs and rerunning the
-affected acceptance matrix. Tests do not write to sibling projects.
+python-baseline.json and python-inventory.json pin artifact/source hashes.
+api-options.json maps declarations; contracts/coverage.json links runtime/type
+checks. When reference behavior changes, review source differences and deliberate
+expected values; do not regenerate outputs from an SDK to make it pass. Additive
+cases increment suite minor version. Update dependency/image ADRs and affected
+acceptance for toolchain changes. No runtime Python dependency exists.

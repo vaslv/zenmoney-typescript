@@ -11,6 +11,6 @@ COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts --no-audit --no-fund \
     && npm cache add lossless-json@4.3.2
 COPY . .
-RUN npm run build && npm run build:spikes
+RUN npm run build && npm run test:package && npm run build:spikes
 ENV CHROME_EXECUTABLE=/opt/chrome120/chrome-linux64/chrome
 CMD ["xvfb-run", "-a", "node", "tests/browser/run.mjs"]

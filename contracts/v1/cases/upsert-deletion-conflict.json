@@ -1,0 +1,110 @@
+{
+  "formatVersion": 1,
+  "id": "upsert-deletion-conflict",
+  "stage": 5,
+  "operation": "client.diff",
+  "description": "upsert deletion conflict",
+  "featureIds": [
+    "P02",
+    "P03"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "changes",
+        {
+          "type": "object",
+          "entries": [
+            [
+              "transaction",
+              {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "entries": [
+                      [
+                        "id",
+                        {
+                          "type": "string",
+                          "value": "x"
+                        }
+                      ],
+                      [
+                        "user",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ],
+                      [
+                        "changed",
+                        {
+                          "type": "number",
+                          "lexeme": "1"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "deletions",
+        {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "entries": [
+                [
+                  "object",
+                  {
+                    "type": "string",
+                    "value": "transaction"
+                  }
+                ],
+                [
+                  "id",
+                  {
+                    "type": "string",
+                    "value": "x"
+                  }
+                ],
+                [
+                  "user",
+                  {
+                    "type": "number",
+                    "lexeme": "1"
+                  }
+                ],
+                [
+                  "stamp",
+                  {
+                    "type": "number",
+                    "lexeme": "1"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}

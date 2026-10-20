@@ -1,6 +1,8 @@
-import * as sdk from '../../dist/index.js';
-import * as protocol from '../../dist/protocol.js';
+const sdkUrl=process.env.ZENMONEY_SDK_URL??new URL('../../dist/index.js',import.meta.url).href;
+const sdk=await import(sdkUrl);
+const protocol=await import(new URL('protocol.js',sdkUrl).href);
 import {loadCases,compare} from './common.mjs';
+import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
 function decode(node) {
@@ -78,3 +80,23 @@ for(const c of cases) {
 }
 compare(cases,results,'typescript');
 console.log(`TypeScript stage ${manifest.stage}: ${cases.length} shared vectors passed against independent expectations.`);
+
+const cycle=[];cycle.push(cycle);let nested=null;for(let i=0;i<129;i++)nested=[nested];
+let getterCalls=0;
+const invalidNative={
+  'native-cycle':cycle,'native-unsupported':()=>{},'native-undefined':[undefined],
+  'native-unsafe-integer':9007199254740992,'native-prototype':new Date(0),
+  'native-accessor':{get value(){getterCalls++;return 1;}},'native-depth':nested,
+  'native-number-length':10n**4096n,
+};
+assert.deepEqual(Object.keys(invalidNative).sort(),[...manifest.nativeChecks.typescript].sort());
+for(const id of manifest.nativeChecks.typescript)assert.throws(()=>sdk.encodeJson(invalidNative[id]),sdk.ValidationError,id);
+assert.equal(getterCalls,0);
+console.log(`TypeScript mandatory native checks: ${manifest.nativeChecks.typescript.length} passed.`);
+
+const expectedKinds=['instrument','company','user','account','tag','merchant','budget','reminder','reminderMarker','transaction','country'];
+assert.deepEqual(sdk.KINDS,expectedKinds);
+assert.deepEqual(sdk.FORCE_FETCH,expectedKinds.slice(0,-1));
+assert.deepEqual(sdk.WRITABLE,['account','tag','merchant','budget','reminder','reminderMarker','transaction']);
+assert.deepEqual(sdk.DELETABLE,['account','tag','merchant','reminder','reminderMarker','transaction']);
+console.log('Installed SDK collection constants verified.');

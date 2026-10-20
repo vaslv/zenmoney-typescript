@@ -4,14 +4,17 @@ Reference: zenmoney-python 0.7.0; checked-out commit and file hashes are recorde
 [python-inventory.json](python-inventory.json). It is a local source snapshot, not
 an assertion that HEAD equals the release tag. The tag points to
 6c38d4c0cb3e8cc271292e37e9934e6c1a7b9972; the runtime source diff from that tag to
-the recorded HEAD is empty. S1 still verifies published-wheel provenance before
-freezing the contract baseline.
+the recorded HEAD is empty. The installed published wheel and all eight runtime module hashes were verified
+in S1; the baseline is frozen in python-baseline.json.
 
 The inventory lists public module functions, class methods and model fields.
-It is a planning aid, not proof of compatibility. The matrix is a target coverage inventory. Only the ExactDecimal primitive and
-S1 feasibility prototypes exist; the HTTP/client/builder parity entries remain planned. S1 converts this matrix into machine-readable
-feature IDs linked to concrete case IDs and test paths. Release fails on unmapped
-public exports/fields or unexplained reference changes.
+It is an inventory, not proof by itself. The complete implementation is checked by
+124 independently specified shared cases in both installed Python clients and the
+packed TypeScript SDK, exact model-field type assertions, native input tests,
+local HTTP lifecycle tests and installed browser/MV3 consumers. See
+[coverage](../contracts/coverage.json), [manifest](../contracts/manifest.json) and
+[status](status.md). This establishes the documented offline behavioral baseline,
+not exhaustive proof of every combination or live service acceptance.
 
 | ID | Python capability | TypeScript surface | Required evidence |
 |---|---|---|---|

@@ -1,6 +1,7 @@
 # Acceptance and security plan
 
-All checks below are future requirements, not recorded test results.
+This is the acceptance policy. Actual commands/results are recorded in status.md;
+a policy requirement alone is not evidence of a successful check.
 
 ## Layers and required evidence
 

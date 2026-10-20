@@ -133,3 +133,28 @@ Full Docker command `BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/tes
 passed: 44 Node tests per version, all 86 shared vectors in three runners, package/
 consumer checks and both browsers. OAuth registered-application live flow remains
 unverified. Next: S7 complete acceptance/documentation. No push/tags/publication.
+
+## 2026-10-20 — S7 complete
+
+Expanded the offline baseline to 124 reviewed shared cases, exact model-field types,
+eight mandatory TS native checks and Python native loopback redirect checks.
+TypeScript parity, browser and MV3 use the installed npm artifact. Added compiled
+recipes, complete English usage/errors/limitations docs, license/link validation,
+local archive/checksum creation and least-privilege CI with no publishing step.
+Fixed initial-BOM raw text preservation. All independent review findings resolved;
+follow-up PASS (reviews/s7.md).
+
+Verification:
+- `BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/test.sh`: exit 0,
+  Node 22.23.3 and 24.22.0 each 49 tests, 124 vectors in each Python client and
+  packed TS client; eight TS native checks, package/types and both browsers pass.
+- Browser versions: Chromium 156.0.8078.4 and Chrome 120.0.6099.109. Synthetic exact
+  expense write/readback plus denied CORS/MV3 cases exercise the installed SDK.
+- `./scripts/pack.sh` with the same buildx configuration: exit 0, 27 allowlisted
+  archive files and SHA256SUMS under ignored .local/release.
+- Docker clean fast npm test, with empty dist/.local: passed without prior artifacts.
+- Documentation links, strict compiled examples, dependency licenses and whitespace
+  checks passed. No skipped required cases, live financial calls or sibling edits.
+
+S1–S7 implementation is complete. S8 remote publication remains explicitly
+unauthorized. package.json stays private:true; no push, tags or registry release.

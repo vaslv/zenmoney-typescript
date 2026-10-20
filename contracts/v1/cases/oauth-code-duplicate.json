@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "id": "oauth-code-duplicate",
+  "stage": 6,
+  "operation": "oauth.callbackCode",
+  "description": "oauth code duplicate",
+  "featureIds": [
+    "P15"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "callbackUrl",
+        {
+          "type": "string",
+          "value": "https://example.invalid/?state=s&code=a&code=b"
+        }
+      ],
+      [
+        "expectedState",
+        {
+          "type": "string",
+          "value": "s"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "response"
+  }
+}

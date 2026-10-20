@@ -54,7 +54,7 @@ export function decodeDiff(raw:string | Uint8Array,cursor:Integer): Diff {
   if(!Array.isArray(deletions) || data.deletion===null) throw new ResponseError('invalid_deletions');
   for(const row of deletions) if(!record(row) || typeof row.object!=='string' || (typeof row.id!=='string' && !integer(row.id))) throw new ResponseError('invalid_deletion');
   if(data.serverTimestamp<cursor) throw new ResponseError('cursor_regression');
-  return {data:data as Diff['data'],rawJson:typeof raw==='string'?raw:new TextDecoder('utf-8',{fatal:true}).decode(raw),serverTimestamp:data.serverTimestamp};
+  return {data:data as Diff['data'],rawJson:typeof raw==='string'?raw:new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(raw),serverTimestamp:data.serverTimestamp};
 }
 export interface DiffOptions {serverTimestamp?:Integer; changes?:Changes; deletions?:readonly JsonObject[]; forceFetch?:readonly FetchKind[]}
 export function jsonOptions<T extends object>(value:T):T {

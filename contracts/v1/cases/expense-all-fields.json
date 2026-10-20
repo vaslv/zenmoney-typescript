@@ -1,0 +1,427 @@
+{
+  "formatVersion": 1,
+  "id": "expense-all-fields",
+  "stage": 4,
+  "operation": "transactions.expense",
+  "description": "expense all fields",
+  "featureIds": [
+    "P10",
+    "P23"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "user",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "date",
+        {
+          "type": "string",
+          "value": "2026-01-15"
+        }
+      ],
+      [
+        "id",
+        {
+          "type": "string",
+          "value": "t"
+        }
+      ],
+      [
+        "now",
+        {
+          "type": "number",
+          "lexeme": "1700000000"
+        }
+      ],
+      [
+        "account",
+        {
+          "type": "string",
+          "value": "a"
+        }
+      ],
+      [
+        "instrument",
+        {
+          "type": "number",
+          "lexeme": "1"
+        }
+      ],
+      [
+        "amount",
+        {
+          "type": "number",
+          "lexeme": "12.34"
+        }
+      ],
+      [
+        "originalPayee",
+        {
+          "type": "string",
+          "value": "Original"
+        }
+      ],
+      [
+        "reminderMarker",
+        {
+          "type": "string",
+          "value": "marker"
+        }
+      ],
+      [
+        "opIncome",
+        {
+          "type": "number",
+          "lexeme": "1.01"
+        }
+      ],
+      [
+        "opIncomeInstrument",
+        {
+          "type": "number",
+          "lexeme": "2"
+        }
+      ],
+      [
+        "opOutcome",
+        {
+          "type": "number",
+          "lexeme": "2.02"
+        }
+      ],
+      [
+        "opOutcomeInstrument",
+        {
+          "type": "number",
+          "lexeme": "3"
+        }
+      ],
+      [
+        "latitude",
+        {
+          "type": "number",
+          "lexeme": "-90"
+        }
+      ],
+      [
+        "longitude",
+        {
+          "type": "number",
+          "lexeme": "180"
+        }
+      ],
+      [
+        "mcc",
+        {
+          "type": "number",
+          "lexeme": "5411"
+        }
+      ],
+      [
+        "hold",
+        {
+          "type": "null"
+        }
+      ],
+      [
+        "deleted",
+        {
+          "type": "boolean",
+          "value": true
+        }
+      ],
+      [
+        "viewed",
+        {
+          "type": "boolean",
+          "value": false
+        }
+      ],
+      [
+        "qrCode",
+        {
+          "type": "string",
+          "value": "synthetic-qr"
+        }
+      ],
+      [
+        "source",
+        {
+          "type": "string",
+          "value": "test"
+        }
+      ],
+      [
+        "incomeBankID",
+        {
+          "type": "string",
+          "value": "in"
+        }
+      ],
+      [
+        "outcomeBankID",
+        {
+          "type": "string",
+          "value": "out"
+        }
+      ],
+      [
+        "payee",
+        {
+          "type": "string",
+          "value": "Synthetic"
+        }
+      ],
+      [
+        "comment",
+        {
+          "type": "string",
+          "value": "Example"
+        }
+      ],
+      [
+        "merchant",
+        {
+          "type": "string",
+          "value": "merchant"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "result": {
+      "type": "object",
+      "entries": [
+        [
+          "merchant",
+          {
+            "type": "string",
+            "value": "merchant"
+          }
+        ],
+        [
+          "originalPayee",
+          {
+            "type": "string",
+            "value": "Original"
+          }
+        ],
+        [
+          "reminderMarker",
+          {
+            "type": "string",
+            "value": "marker"
+          }
+        ],
+        [
+          "opIncome",
+          {
+            "type": "number",
+            "lexeme": "1.01"
+          }
+        ],
+        [
+          "opIncomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "2"
+          }
+        ],
+        [
+          "opOutcome",
+          {
+            "type": "number",
+            "lexeme": "2.02"
+          }
+        ],
+        [
+          "opOutcomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "3"
+          }
+        ],
+        [
+          "latitude",
+          {
+            "type": "number",
+            "lexeme": "-90"
+          }
+        ],
+        [
+          "longitude",
+          {
+            "type": "number",
+            "lexeme": "180"
+          }
+        ],
+        [
+          "qrCode",
+          {
+            "type": "string",
+            "value": "synthetic-qr"
+          }
+        ],
+        [
+          "source",
+          {
+            "type": "string",
+            "value": "test"
+          }
+        ],
+        [
+          "incomeBankID",
+          {
+            "type": "string",
+            "value": "in"
+          }
+        ],
+        [
+          "outcomeBankID",
+          {
+            "type": "string",
+            "value": "out"
+          }
+        ],
+        [
+          "viewed",
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        [
+          "mcc",
+          {
+            "type": "number",
+            "lexeme": "5411"
+          }
+        ],
+        [
+          "id",
+          {
+            "type": "string",
+            "value": "t"
+          }
+        ],
+        [
+          "created",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "changed",
+          {
+            "type": "number",
+            "lexeme": "1700000000"
+          }
+        ],
+        [
+          "user",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "deleted",
+          {
+            "type": "boolean",
+            "value": true
+          }
+        ],
+        [
+          "hold",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "date",
+          {
+            "type": "string",
+            "value": "2026-01-15"
+          }
+        ],
+        [
+          "incomeAccount",
+          {
+            "type": "string",
+            "value": "a"
+          }
+        ],
+        [
+          "outcomeAccount",
+          {
+            "type": "string",
+            "value": "a"
+          }
+        ],
+        [
+          "incomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "outcomeInstrument",
+          {
+            "type": "number",
+            "lexeme": "1"
+          }
+        ],
+        [
+          "income",
+          {
+            "type": "number",
+            "lexeme": "0"
+          }
+        ],
+        [
+          "outcome",
+          {
+            "type": "number",
+            "lexeme": "12.34"
+          }
+        ],
+        [
+          "tag",
+          {
+            "type": "null"
+          }
+        ],
+        [
+          "payee",
+          {
+            "type": "string",
+            "value": "Synthetic"
+          }
+        ],
+        [
+          "comment",
+          {
+            "type": "string",
+            "value": "Example"
+          }
+        ]
+      ]
+    }
+  }
+}

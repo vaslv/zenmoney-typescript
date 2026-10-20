@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "id": "oauth-state-missing",
+  "stage": 6,
+  "operation": "oauth.callbackCode",
+  "description": "oauth state missing",
+  "featureIds": [
+    "P15"
+  ],
+  "evidence": "zenmoney-python 0.7.0 pinned source semantics; independent explicit expected values",
+  "clock": 1700000000,
+  "runtimeScope": "shared",
+  "input": {
+    "type": "object",
+    "entries": [
+      [
+        "callbackUrl",
+        {
+          "type": "string",
+          "value": "https://example.invalid/?code=a"
+        }
+      ],
+      [
+        "expectedState",
+        {
+          "type": "string",
+          "value": "s"
+        }
+      ]
+    ]
+  },
+  "events": [],
+  "expect": {
+    "requests": {
+      "type": "array",
+      "items": []
+    },
+    "error": "validation"
+  }
+}
