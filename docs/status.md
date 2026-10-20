@@ -122,3 +122,14 @@ Full Docker acceptance: `BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts
 passed with 38 Node tests per version, 86 Python vectors per runner, 78 active TS
 vectors, package/consumer checks and both browser versions using the SDK.
 Next: S6 optional OAuth. No live API requests, push, tags or publication.
+
+## 2026-10-20 — S6 complete
+
+Implemented authorizationUrl/callbackCode, OAuthClient and redacted OAuthToken.
+Exchange/refresh remain explicit; application credentials are optional for using
+Bearer clients. Exact integer lifetimes and the 1 MiB response limit are enforced.
+Independent review PASS with no material findings (reviews/s6.md).
+Full Docker command `BUILDX_CONFIG=/tmp/zenmoney-typescript-buildx ./scripts/test.sh`
+passed: 44 Node tests per version, all 86 shared vectors in three runners, package/
+consumer checks and both browsers. OAuth registered-application live flow remains
+unverified. Next: S7 complete acceptance/documentation. No push/tags/publication.

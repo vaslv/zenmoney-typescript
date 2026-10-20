@@ -39,9 +39,15 @@ for(const c of cases) {
       const responseBody=event.bodyBase64?Buffer.from(event.bodyBase64,'base64'):event.body;
       return new Response(responseBody.length===0?null:responseBody,{status:event.status});
     };
+    if(c.operation.startsWith('oauth.') && !['oauth.authorizationUrl','oauth.callbackCode'].includes(c.operation))client=new sdk.OAuthClient({clientId:'APP',clientSecret:'TEST_SECRET',redirectUri:'https://example.invalid/callback',fetch});
     if(c.operation.startsWith('client.'))client=new sdk.ZenMoneyClient({token:'TEST_BEARER_NOT_A_SECRET',fetch,clock:()=>c.clock,...(a.config??{})});
     let result;
     switch(c.operation) {
+      case 'oauth.authorizationUrl':result=sdk.authorizationUrl(a);break;
+      case 'oauth.callbackCode':result=sdk.callbackCode(a.callbackUrl,{expectedState:a.expectedState});break;
+      case 'oauth.closed':client.close();result=await client.refresh('TEST_REFRESH');break;
+      case 'oauth.exchangeCode':result=await client.exchangeCode(a.value);break;
+      case 'oauth.refresh':result=await client.refresh(a.value);break;
       case 'codec.decode':result=sdk.decodeJson(a.bodyBase64 ? Uint8Array.from(Buffer.from(a.bodyBase64,'base64')) : a.raw);break;
       case 'codec.encode':result=sdk.decodeJson(sdk.encodeJson(a.value));break;
       case 'protocol.entityKey':result=sdk.entityKey(a.kind,a.entity);break;
@@ -60,6 +66,7 @@ for(const c of cases) {
         else throw new Error('Required TypeScript operation not implemented: '+c.operation);
     }
     if(c.operation.startsWith('client.') && c.operation!=='client.suggest')result=result.data;
+    if(result instanceof sdk.OAuthToken)result={accessToken:result.accessToken,tokenType:result.tokenType,expiresIn:result.expiresIn,refreshToken:result.refreshToken};
     row.result=encode(result);
   } catch(error) {
     if(!(error instanceof sdk.ZenMoneyError))throw error;

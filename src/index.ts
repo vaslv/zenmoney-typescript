@@ -8,3 +8,5 @@ export * as transactions from './transactions.js';
 export * as entities from './entities.js';
 export {ZenMoneyClient} from './client.js';
 export type {ClientOptions,RequestOptions,ExchangeOptions} from './client.js';
+export {OAuthClient,OAuthToken,authorizationUrl,callbackCode} from './oauth.js';
+export type {AuthorizationOptions,CallbackOptions,OAuthOptions,TokenOptions} from './oauth.js';
