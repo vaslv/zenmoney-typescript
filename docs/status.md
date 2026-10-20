@@ -158,3 +158,31 @@ Verification:
 
 S1–S7 implementation is complete. S8 remote publication remains explicitly
 unauthorized. package.json stays private:true; no push, tags or registry release.
+
+## Clean committed-source acceptance and S8 local handoff
+
+Clean `git archive` of reviewed commit 2c5ea88 passed the full Docker matrix and
+packing with exit 0, without host node_modules or ignored build inputs. Results:
+[s7-results.json](s7-results.json). The tarball reproduced byte-for-byte:
+`4cdac33c1de9ee09e501253a84cf20e23c89146e39b1099d646a846a29621ca0`.
+The same candidate and SHA256SUMS are in .local/release. This private artifact is
+for local installation/acceptance; the future private:false release commit must
+be rebuilt and checked again.
+
+| Completed stage | Local implementation commit |
+|---|---|
+| S2 contracts/Python adapters | 4075bd5 |
+| S3 protocol/models/exact codec | fd5a5d3 |
+| S4 builders | f17542d |
+| S5 data client/transport | 1e31b84 |
+| S6 OAuth | c5a2d8e |
+| S7 full candidate acceptance | 2c5ea88 |
+
+S8 local preparation/checklist is complete in release-candidate.md and publication.md.
+Remote S8 actions are pending the user's explicit authorization; no tags, push,
+GitHub Release or npm publication occurred. Anonymous registry 404 is not ownership
+verification. No live API acceptance or remote CI run is claimed. The Python SDK,
+backend, installed extension and all financial data remain untouched.
+Independent final handoff review: PASS. Artifact size (17,589 bytes), 27-file
+allowlist, checksum and explicit remote/live publication gates were independently
+confirmed. The final handoff documentation is recorded in a separate local commit.
