@@ -55,9 +55,12 @@ configuration or automatic publish-on-push workflow has been installed.
 
 ## Separate product integration gate
 
-Synthetic acceptance is complete. No live TypeScript API request or registered-app
-OAuth flow is claimed. Before replacing production ZenImport's Python transport,
-perform the separately authorized read-only extension/API connectivity scenario,
-then design the local storage/domain/migration layer described in
-extension-boundary.md. This SDK does not itself provide durable deduplication,
-bank connectors, a local database or optional-backend mode.
+Synthetic acceptance is complete. A separately authorized Node 22 test-account
+run verified live diff reads, forceFetch, Suggest for one/list, and one owned 1 VND
+expense followed by deletion and independent balance restoration. See status.md.
+This is limited live evidence, not full live parity; registered-app OAuth and
+direct Chrome extension connectivity remain unverified. Before replacing
+production ZenImport's Python transport, perform the separately authorized
+extension/API connectivity scenario, then design the local storage/domain/migration
+layer described in extension-boundary.md. This SDK does not itself provide
+durable deduplication, bank connectors, a local database or optional-backend mode.

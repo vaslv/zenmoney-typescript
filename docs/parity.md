@@ -122,7 +122,9 @@ an ADR and a targeted fixture. Do not weaken exact values/identities/no-retry ru
 
 Compare source/tests with the public API documentation and historical synthetic
 live findings. Resolve conflicts explicitly. Never rewrite expected fixtures solely
-to make the reference pass. Historical October 2026 Python live results do not
-constitute a live TypeScript test. OAuth refresh has protocol/local-test evidence,
-not registered-application live acceptance. Loan/deposit and recurring reminder
+to make the reference pass. A separately authorized, limited TypeScript test-account
+run confirmed diff reads, forced account/tag reads, Suggest, and creation/deletion
+of one owned expense; see status.md. It does not establish live parity for every
+entity or operation. OAuth refresh has protocol/local-test evidence, not
+registered-application live acceptance. Loan/deposit and recurring reminder
 combinations also need that distinction. See sources.md.

@@ -6,8 +6,10 @@ MIT licensed; ESM with TypeScript 5.9.3+ declarations. No Python runtime require
 
 **Unpublished 0.1.0 candidate.** Implements the public capabilities of
 [zenmoney-python 0.7.0](https://github.com/vaslv/zenmoney-python), with shared offline
-contracts, exact financial values and explicit lifecycle management. Mock/local
-HTTP acceptance is not live ZenMoney acceptance. npm installation by package name
+contracts, exact financial values and explicit lifecycle management. Offline
+acceptance covers the shared contracts; a limited authorized test-account run
+confirmed reads, suggestions and one owned expense creation/deletion. See
+[the test record](docs/status.md) for its scope. npm installation by package name
 is not available until publication; install the prepared `.tgz` locally instead.
 
 ## Read and prepare a transaction

@@ -292,3 +292,66 @@ working tree. Both private tarballs are byte-identical: 27 allowlisted files,
 `af9d77375070204b63875188146a23f279153d42754a9671de95164097445e5c`.
 `sha256sum -c .local/release/SHA256SUMS`, archive inspection, and `git diff --check`
 passed. No real API call, production data, push, tag or publication occurred.
+
+## 2026-10-20 — Authorized limited live test-account acceptance
+
+The user authorized use of the private Python-project test token and separately
+approved creation and deletion of one artificial 1 VND expense. The token and
+historical identity journal were mounted read-only into the pinned Node 22 Docker
+image; neither was copied into this repository or printed. The tested TypeScript
+SDK was the packed package installed in the image, not the source tree. The live
+user identity matched the Python test journal, and every historical baseline
+account/category ID was still present. Before the write, the test account had
+68 transactions. This was a test account, not production data.
+
+Read-only calls succeeded for a full diff, an incremental cursor diff, forced
+account/tag fetches, `encodeJson` of the response, and `suggest` with one and two
+synthetic expenses. The incremental read returned zero transactions and the
+suggestions did not change the transaction count. The two ephemeral read scripts
+exited 0 in `zenmoney-typescript-s1-node22`.
+
+For the approved write, an ephemeral script first saved an ownership marker,
+unique transaction ID, original transaction IDs and account balance in a private
+mode-0600 journal under `/tmp/zenmoney-typescript-live-state`. It sent one 1 VND
+expense, read the server independently and found exactly one matching owned ID
+with the expected amount/account. ZenMoney assigned a category to the initially
+uncategorized expense. The script deleted only that owned ID, with no automatic
+retry. A separate Docker process then read the live data again: the owned ID was
+absent, all original transaction IDs remained and the account balance matched
+the pre-write value. Both processes exited 0.
+
+Verification commands (private mounts and ephemeral scripts were local to this
+run and are not part of the repository):
+
+```sh
+docker run --rm --init --read-only --tmpfs /tmp \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-read.mjs,dst=/work/live-read.mjs,readonly \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/ZenMoneyAPI/.env,dst=/run/secrets/zenmoney.env,readonly \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/ZenMoneyAPI/.local/live.json,dst=/run/secrets/python-live.json,readonly \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-state,dst=/state \
+  zenmoney-typescript-s1-node22 node /work/live-read.mjs
+docker run --rm --init --read-only --tmpfs /tmp \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-read-extended.mjs,dst=/work/live-read-extended.mjs,readonly \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/ZenMoneyAPI/.env,dst=/run/secrets/zenmoney.env,readonly \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/ZenMoneyAPI/.local/live.json,dst=/run/secrets/python-live.json,readonly \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-state,dst=/state \
+  zenmoney-typescript-s1-node22 node /work/live-read-extended.mjs
+docker run --rm --init --read-only --tmpfs /tmp \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-write.mjs,dst=/work/live-write.mjs,readonly \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/ZenMoneyAPI/.env,dst=/run/secrets/zenmoney.env,readonly \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/ZenMoneyAPI/.local/live.json,dst=/run/secrets/python-live.json,readonly \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-state,dst=/state \
+  -e ZENMONEY_LIVE_APPROVED=yes zenmoney-typescript-s1-node22 \
+  node /work/live-write.mjs --write-one-vnd-expense
+docker run --rm --init --read-only --tmpfs /tmp \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-final-verify.mjs,dst=/work/final-verify.mjs,readonly \
+  --mount type=bind,src=/Users/vaslv/Projects/Vaslv/ZenMoneyAPI/.env,dst=/run/secrets/zenmoney.env,readonly \
+  --mount type=bind,src=/tmp/zenmoney-typescript-live-state,dst=/state,readonly \
+  zenmoney-typescript-s1-node22 node /work/final-verify.mjs
+```
+
+This is limited live evidence. OAuth, loans, transfers, other writes and direct
+Chrome-extension connectivity were not live tested. No push, tag or publication
+was performed. Documentation validation: `git diff --check` and the offline
+Docker documentation checker (`node scripts/check-docs.mjs`) passed with 19 links
+across 26 files. Local commit: `docs(live): record test-account API validation`.
