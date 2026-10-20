@@ -83,6 +83,8 @@ equal for semantic contract results; keep original raw response bytes/text.
 
 The codec must reject duplicate keys, invalid UTF-8, malformed JSON, nonfinite
 numbers, cycles and unsupported JS values (functions/symbols/custom prototypes).
+It also rejects unpaired Unicode surrogates in decoded keys and string values;
+accepted responses can be encoded again without silently replacing characters.
 JSON object keys such as __proto__ must remain inert data without prototype mutation.
 Preserve missing versus null versus empty arrays. Avoid regex-based JSON replacement.
 S1 selected lossless-json 4.3.2 with bounded duplicate-key preflight; see ADR 002.

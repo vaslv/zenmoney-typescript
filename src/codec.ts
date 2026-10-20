@@ -111,7 +111,9 @@ export function decodeJson(raw: string | Uint8Array): unknown {
   try {
     const text=typeof raw==='string' ? raw : new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(raw);
     unicode(text);
-    return decodeText(text.startsWith('\uFEFF')?text.slice(1):text);
+    const value=decodeText(text.startsWith('\uFEFF')?text.slice(1):text);
+    validate(value);
+    return value;
   } catch { throw new ResponseError('invalid_json'); }
 }
 export function encodeJson(value: unknown): string {

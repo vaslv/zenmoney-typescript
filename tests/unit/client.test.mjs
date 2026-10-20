@@ -19,6 +19,14 @@ test('client retains raw response/extensions and never advances a hidden cursor'
   assert(diff.rawJson.includes('1.00000000000000000001'));await client.readDiff();
   assert.equal(sent.length,2);assert(sent.every(x=>x.serverTimestamp===0 && x.currentClientTimestamp===123));client.close();
 });
+test('invalid escaped Unicode in unknown response fields never returns a cursor',async()=>{
+  const client=new ZenMoneyClient({token,fetch:async()=>new Response('{"serverTimestamp":1,"future":"\\ud800"}')});
+  await assert.rejects(client.readDiff(),ResponseError);
+  client.close();
+  const suggest=new ZenMoneyClient({token,fetch:async()=>new Response('{"future":"\\ud800"}')});
+  await assert.rejects(suggest.suggest({id:'synthetic'}),ResponseError);
+  suggest.close();
+});
 test('input failures are sanitized before network or getters execute',async()=>{
   let calls=0;const fetch=async()=>{calls++;return response();};
   for(const config of [{token:''},{token:'bad token'},{token,timeoutMs:0},{token,maxResponseBytes:true},{token,fetch:12}])assert.throws(()=>new ZenMoneyClient(config),ValidationError);

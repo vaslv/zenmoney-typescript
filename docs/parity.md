@@ -89,6 +89,9 @@ transaction time ordering from a date-only field or change timezone silently.
   it never disposes global/injected fetch or another client's resources.
 - ExactDecimal/bigint replace Python Decimal/arbitrary-size int; no implicit
   financial conversion through floating point. See api.md for number inputs.
+- TypeScript rejects JSON strings and keys containing unpaired surrogates after
+  unescaping them. Python's JSON decoder can accept these sequences; rejecting
+  them keeps every accepted TypeScript response serializable by the SDK codec.
 - JS undefined is not JSON null. Optional object properties with undefined are
   omitted at the public options boundary; undefined array entries and explicit
   protocol objects containing undefined are rejected.

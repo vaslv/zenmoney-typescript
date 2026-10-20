@@ -57,3 +57,12 @@ test('punctuation and escapes inside strings do not affect preflight structure',
   const data = {a: '{"a":1,"a":1}', b: ['[]{}', '\\"', 'e1234'], '"': 1};
   assert.equal(encode(decode(JSON.stringify(data))), JSON.stringify(data));
 });
+test('decoded Unicode must be safe for a lossless JSON roundtrip', () => {
+  for(const raw of ['"\\ud800"','"\\udc00"','{"future":"\\ud800"}',
+    '{"\\udc00":1}','{"nested":[{"future":"\\ud800"}]}']) {
+    assert.throws(() => decode(raw), ResponseError);
+    assert.throws(() => decode(new TextEncoder().encode(raw)), ResponseError);
+  }
+  for(const raw of ['"\\ud83d\\ude00"','{"\\ud83d\\ude00":"\\ud83d\\ude00"}',
+    '{"future":"\\\\ud800"}']) assert.equal(encode(decode(raw)), JSON.stringify(JSON.parse(raw)));
+});

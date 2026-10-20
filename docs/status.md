@@ -186,3 +186,16 @@ backend, installed extension and all financial data remain untouched.
 Independent final handoff review: PASS. Artifact size (17,589 bytes), 27-file
 allowlist, checksum and explicit remote/live publication gates were independently
 confirmed. The final handoff documentation is recorded in a separate local commit.
+
+## 2026-10-20 — Full-review remediation F1
+
+The decoded JSON tree is validated before a response can return an apparently
+usable cursor. Escaped unpaired surrogates in keys or values now fail consistently
+as ResponseError; valid pairs and literal backslash sequences still round-trip.
+This is an explicit difference from Python's permissive escaped-surrogate decoder.
+
+Verification: `BUILDX_CONFIG=/tmp/zenmoney-typescript-remediation-buildx docker build
+--target node -t zenmoney-typescript-review-current .` and offline Docker execution
+of `node --test tests/unit/codec.test.mjs tests/unit/client.test.mjs`: 21 passed.
+Reviewed the diff for preservation of UTF-8/BOM, depth, duplicate-key and exact
+number behavior. No live API call was made.
