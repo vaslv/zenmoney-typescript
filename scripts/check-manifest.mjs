@@ -29,3 +29,14 @@ console.log('Direct dependency license inventory verified.');
 
 const contracts=JSON.parse(await readFile('contracts/manifest.json','utf8'));
 assert.equal(contracts.stage,7,'Candidate acceptance requires all shared implementation stages');
+const differences=contracts.runtimeDifferences;
+assert.deepEqual(differences.map(item=>item.id).sort(),[
+  'account-builder-reserved-fields','decoded-unpaired-surrogates',
+]);
+const parity=await readFile('docs/parity.md','utf8');
+for(const item of differences){
+  assert(/^P(0[1-9]|1[0-9]|2[0-3])$/.test(item.featureId));
+  assert(item.reference && item.typescript && parity.includes(item.id),`Undocumented runtime difference: ${item.id}`);
+  assert((await readFile(item.evidence,'utf8')).length>0,`Missing runtime difference evidence: ${item.id}`);
+}
+console.log(`Intentional runtime differences verified: ${differences.length}.`);

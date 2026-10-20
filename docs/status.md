@@ -267,3 +267,28 @@ Verification: both browser Docker images built successfully and their offline
 acceptance runs passed with the final test file: Chromium 156.0.8078.4 and Chrome
 120.0.6099.109 MV3. Reviewed installed-artifact import wiring and no external
 network or real ZenMoney request was used.
+
+## 2026-10-20 — Full-review remediation F7
+
+The final review rechecked all F1–F6 source changes and their tests. The two
+intentional Python differences are now also listed in contract metadata and
+verified by the manifest checker; no shared fixture or Python adapter was changed.
+The release-candidate handoff and follow-up review are in release-candidate.md
+and reviews/full-review-remediation.md. The package remains private.
+
+Verification: `BUILDX_CONFIG=/tmp/zenmoney-typescript-remediation-buildx
+./scripts/test.sh` passed from a clean `git archive` of runtime commit `bc5b081`
+and again from the final working tree with contract metadata and documentation
+changes. Each run passed 56 Node unit tests on both pinned Node 22.23.3 and
+24.22.0, 124 shared vectors in installed Python sync/async and packed TypeScript,
+eight TypeScript native checks, declarations, NodeNext/Bundler package consumers,
+Chromium 156.0.8078.4 and Chrome 120.0.6099.109 browser/MV3 acceptance. The
+installed Python reference and mandatory native checks passed as well. All test
+containers used `--network none` and only synthetic loopback API data.
+
+`./scripts/pack.sh` (same buildx configuration) passed from the clean archive and
+working tree. Both private tarballs are byte-identical: 27 allowlisted files,
+17,838 bytes, SHA-256
+`af9d77375070204b63875188146a23f279153d42754a9671de95164097445e5c`.
+`sha256sum -c .local/release/SHA256SUMS`, archive inspection, and `git diff --check`
+passed. No real API call, production data, push, tag or publication occurred.

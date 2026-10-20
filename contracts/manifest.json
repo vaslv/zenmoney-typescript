@@ -655,5 +655,21 @@
       "error": "http",
       "statusCode": 302
     }
-  }
+  },
+  "runtimeDifferences": [
+    {
+      "id": "account-builder-reserved-fields",
+      "featureId": "P09",
+      "reference": "Python 0.7.0 permits a type override through extra account fields",
+      "typescript": "The account builder rejects fields.type and fields.instrument before constructing an account",
+      "evidence": "tests/unit/builders.test.mjs"
+    },
+    {
+      "id": "decoded-unpaired-surrogates",
+      "featureId": "P21",
+      "reference": "Python JSON decoding can accept escaped unpaired surrogates",
+      "typescript": "The codec rejects decoded unpaired surrogates in keys and values with ResponseError",
+      "evidence": "tests/unit/codec.test.mjs"
+    }
+  ]
 }

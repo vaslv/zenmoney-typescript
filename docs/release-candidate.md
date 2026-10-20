@@ -3,10 +3,11 @@
 Version: 0.1.0, unpublished/private. Reference: zenmoney-python 0.7.0.
 Repository: https://github.com/vaslv/zenmoney-typescript.
 
-The implementation stages S1–S7 are complete, with review after each stage and
-local conventional commits. Offline evidence is in status.md, reviews/ and the
-contract manifest. Publication is S8 and remains separately authorized. There is
-no published npm version or remote CI result to link yet.
+The implementation stages S1–S7 and the ordered full-review remediation F1–F7
+are complete, with separate local conventional commits for the runtime, guidance,
+browser-acceptance and final review changes. Offline evidence is in status.md,
+reviews/ and the contract manifest. Publication is S8 and remains separately
+authorized. There is no published npm version or remote CI result to link yet.
 
 ## Candidate scope
 
@@ -20,11 +21,24 @@ undocumented/private ZenMoney functionality or every possible service combinatio
 ## Ready locally
 
 - Pinned dependency/runtime locks, 124 shared synthetic vectors in three runners,
-  exact model-field checks, native HTTP/security tests and installed consumers.
+  56 Node unit tests in each pinned runtime, exact model-field checks, native
+  HTTP/security tests and installed consumers.
 - Current Chromium/Chrome 120, ordinary-page CORS and granted/missing MV3 permission.
+  Installed-package transport failure paths cover size, streaming, invalid UTF-8,
+  timeout, cancellation, client close and redirect refusal.
 - Build/test/pack-only GitHub workflow with read-only repository permission.
-- Local npm tarball and SHA256SUMS; reproducible from the reviewed source snapshot.
+- Local npm tarball and SHA256SUMS, rebuilt after the full-review remediation.
 - English README, recipes, OAuth/server-only guidance and unknown-write-outcome rules.
+
+The two intentional Python differences uncovered by the review (reserved account
+builder fields and decoded unpaired surrogates) are recorded in both parity.md and
+the contract manifest. The prior S7 result file remains a historical snapshot.
+The current local `private:true` tarball is `zenmoney-typescript-0.1.0.tgz`
+(17,838 bytes; 27 allowlisted files). Its SHA-256 is
+`af9d77375070204b63875188146a23f279153d42754a9671de95164097445e5c`.
+It was rebuilt byte-for-byte from a clean archive of the reviewed runtime commit
+`bc5b081` and from the final working tree. The tarball and `SHA256SUMS` are under
+ignored `.local/release/`; they are not a published package.
 
 ## Explicit outstanding release gates
 
