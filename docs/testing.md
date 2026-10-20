@@ -30,6 +30,10 @@ Test both Python Client and AsyncClient, not only one HTTP adapter. Test TypeScr
 ESM from the packed installation rather than path aliases to src. Compile NodeNext
 and bundler consumer fixtures and ensure Node type packages do not leak into the
 browser declarations. Shared contracts and SDK assets must contain only synthetic data.
+Browser and MV3 transport acceptance exercises ZenMoneyClient from the installed
+package, including response limits, streaming cancellation, timeout, caller abort,
+close, invalid UTF-8 and redirects. Historical spikes are feasibility artifacts,
+not substitutes for SDK behavior.
 
 Required native cases that cannot be represented in JSON fixtures have stable
 manifest IDs and explicit expected runners (contracts.md). They cannot disappear

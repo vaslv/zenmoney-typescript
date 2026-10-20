@@ -253,3 +253,17 @@ Verification: node-target Docker build passed declarations, package and manifest
 checks; offline `node --test tests/unit/builders.test.mjs` passed. Reviewed the
 example against entityKey and the generic helper without changing runtime API
 behavior. No live API call was made.
+
+## 2026-10-20 — Full-review remediation F6
+
+Browser and MV3 failure-path acceptance now uses ZenMoneyClient from the packed,
+installed SDK. Synthetic local endpoints cover exact and over-limit responses,
+unbounded streaming, invalid UTF-8, header/body timeouts, caller abort, close during
+request, redirect refusal and independent later use of the same fetch. The browser
+suite checks server-side request counts, no redirect follow-up, and cancellation.
+Feasibility spike bundles remain separate but no longer supply SDK assertions.
+
+Verification: both browser Docker images built successfully and their offline
+acceptance runs passed with the final test file: Chromium 156.0.8078.4 and Chrome
+120.0.6099.109 MV3. Reviewed installed-artifact import wiring and no external
+network or real ZenMoney request was used.

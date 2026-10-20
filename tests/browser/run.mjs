@@ -10,7 +10,7 @@ const executablePath = process.env.CHROME_EXECUTABLE;
 const launch = {...(executablePath ? {executablePath} : {}), headless: false, args};
 const api = await startFakeApi();
 const site = await startFakeApi();
-const exact = '{"amount":1.00000000000000000001,"id":9007199254740993}';
+const exactAmount='1.00000000000000000001';
 const browser = await chromium.launch(launch);
 let version;
 try {
@@ -19,18 +19,13 @@ try {
   await context.route('**/*', route => route.request().url().startsWith('http://127.0.0.1:') ? route.continue() : route.abort());
   const page = await context.newPage();
   await page.goto(site.url);
-  const result = await page.evaluate(async ({api, exact}) => {
-    const {precisionProbe, boundedFetch, sdkProbe, sdkRejectedProbe} = await import('/bundle.mjs');
+  const result = await page.evaluate(async ({api, exactAmount}) => {
+    const {sdkProbe, sdkRejectedProbe} = await import('/bundle.mjs');
     const check = (condition, message) => { if (!condition) throw new Error(message); };
-    check((await sdkProbe(api+'/sdk-cors')).includes('serverTimestamp'),'Browser SDK request failed');
+    check((await sdkProbe(api+'/sdk-cors')).includes(exactAmount),'Browser SDK exact readback failed');
     check(await sdkRejectedProbe(api+'/sdk'),'Installed SDK bypassed page CORS or retried');
-    check(precisionProbe() === exact, 'Precision probe failed');
-    check(await boundedFetch(api + '/cors') === exact, 'CORS request failed');
-    let corsBlocked = false;
-    try { await boundedFetch(api + '/api'); } catch { corsBlocked = true; }
-    check(corsBlocked, 'Ordinary page bypassed CORS');
     return 'page passed';
-  }, {api: api.url, exact});
+  }, {api: api.url, exactAmount});
   assert.equal(result, 'page passed');
   await context.close();
 } finally { await browser.close(); }
@@ -50,38 +45,43 @@ try {
       args: [...args, `--disable-extensions-except=${path}`, `--load-extension=${path}`]});
     try {
       const worker = context.serviceWorkers()[0] ?? await context.waitForEvent('serviceworker', {timeout: 20000});
-      const result = await worker.evaluate(async ({url, permitted, exact}) => {
+      const result = await worker.evaluate(async ({url, permitted, exactAmount}) => {
         const check = (condition, message) => { if (!condition) throw new Error(message); };
         const probe = globalThis.probe;
-        if(permitted)check((await probe.sdkProbe(url+'/sdk')).includes('serverTimestamp'),'MV3 SDK request failed');
+        if(permitted)check((await probe.sdkProbe(url+'/sdk')).includes(exactAmount),'MV3 SDK exact readback failed');
         else check(await probe.sdkRejectedProbe(url+'/sdk'),'Installed SDK bypassed MV3 permission or retried');
-        check(probe.precisionProbe() === exact, 'MV3 precision probe failed');
-        let body;
-        try { body = await probe.boundedFetch(url + '/api'); } catch { body = null; }
-        check(permitted ? body === exact : body === null, 'MV3 host permission behavior differs');
         if (permitted) {
-          check((await probe.boundedFetch(url + '/limit')).length === 1024, 'Exact limit failed');
-          for (const [path, options] of [['/over', {}], ['/stream', {}], ['/slow', {timeoutMs: 30}], ['/invalid-utf8', {}], ['/redirect', {}]]) {
-            let rejected = false;
-            try { await probe.boundedFetch(url + path, options); } catch { rejected = true; }
-            check(rejected, 'Expected rejection: ' + path);
-          }
-          const controller = new AbortController();
-          const pending = probe.boundedFetch(url + '/slow', {signal: controller.signal});
-          setTimeout(() => controller.abort(), 30);
-          let aborted = false;
-          try { await pending; } catch { aborted = true; }
-          check(aborted, 'Caller abort failed');
+          const endpoint=path=>url+'/sdk-failure/'+path;
+          const expectFailure=async(path,options,category,code)=>{
+            const result=await probe.sdkTransportProbe(endpoint(path),options);
+            check(!result.ok && result.category===category && result.code===code && result.calls===1,
+              'SDK failure mismatch '+path+': '+JSON.stringify(result));
+          };
+          const exact=await probe.sdkTransportProbe(endpoint('limit'),{maxResponseBytes:1024});
+          check(exact.ok && exact.rawJson.length===1024 && exact.calls===1,'SDK exact response limit failed');
+          await expectFailure('over',{maxResponseBytes:1024},'response','response_limit');
+          await expectFailure('stream',{maxResponseBytes:1024},'response','response_limit');
+          await expectFailure('slow',{timeoutMs:40},'transport','timeout');
+          await expectFailure('body-slow',{timeoutMs:40},'transport','timeout');
+          await expectFailure('invalid-utf8',{},'response','invalid_json');
+          await expectFailure('redirect',{},'transport','network');
+          await expectFailure('slow',{abortAfterMs:40},'transport','aborted');
+          await expectFailure('slow',{closeAfterMs:40},'transport','aborted');
+          const afterClose=await probe.sdkTransportProbe(endpoint('limit'),{maxResponseBytes:1024});
+          check(afterClose.ok && afterClose.calls===1,'Closing one SDK client broke another');
         }
         return 'worker passed';
-      }, {url: api.url, permitted, exact});
+      }, {url: api.url, permitted, exactAmount});
       assert.equal(result, 'worker passed');
     } finally { await context.close(); }
   }
-  assert.equal(api.calls.filter(path => path === '/redirect').length, 1);
-  assert.equal(api.calls.filter(path => path === '/redirect-target').length, 0);
-  await new Promise(resolve => setTimeout(resolve, 30));
+  for(const [path,count] of [['limit',2],['over',1],['stream',1],['slow',3],['body-slow',1],['invalid-utf8',1],['redirect',1]])
+    assert.equal(api.calls.filter(item=>item==='/sdk-failure/'+path).length,count,'Unexpected SDK send count: '+path);
+  assert.equal(api.calls.filter(path => path === '/sdk-failure/redirect-target').length, 0);
+  await new Promise(resolve => setTimeout(resolve, 100));
   assert(api.cancelled >= 3);
-  console.log(JSON.stringify({browser: version, scenarios: ['page precision', 'page CORS permitted/denied',
-    'MV3 host permission denied/granted', 'MV3 precision', 'bounded stream', 'strict UTF-8', 'timeout', 'caller abort', 'redirect without retry'], status: 'passed'}));
+  console.log(JSON.stringify({browser: version, scenarios: ['installed SDK exact write/readback', 'page CORS permitted/denied',
+    'MV3 host permission denied/granted', 'installed SDK exact/over response limit', 'installed SDK stream cancellation',
+    'installed SDK strict UTF-8', 'installed SDK header/body timeout', 'installed SDK caller abort/close',
+    'installed SDK redirect without retry'], status: 'passed'}));
 } finally { await rm(fixtureRoot, {recursive: true, force: true}); await api.close(); await site.close(); }

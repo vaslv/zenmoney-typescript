@@ -2,6 +2,11 @@ import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {parse,stringify} from 'lossless-json';
 
+function sizedDiff(bytes) {
+  const prefix='{"serverTimestamp":1,"padding":"';
+  return prefix+'x'.repeat(bytes-prefix.length-2)+'"}';
+}
+
 export async function startFakeApi() {
   const calls = [];
   const stored=new Map();
@@ -15,6 +20,29 @@ export async function startFakeApi() {
       res.end(await readFile('.local/browser/browser.mjs')); return;
     }
     if (req.url === '/') { res.end('<!doctype html><title>Synthetic SDK fixture</title>'); return; }
+    if(req.url?.startsWith('/sdk-failure/')) {
+      const mode=req.url.slice('/sdk-failure/'.length);
+      if(mode==='redirect'){res.writeHead(302,{Location:'/sdk-failure/redirect-target'});res.end();return;}
+      if(mode==='redirect-target'){res.end('unexpected redirect target');return;}
+      if(mode==='invalid-utf8'){res.end(Buffer.from([0xc3,0x28]));return;}
+      if(mode==='limit'){res.end(sizedDiff(1024));return;}
+      if(mode==='over'){res.end(sizedDiff(1025));return;}
+      if(mode==='slow'){
+        const timer=setTimeout(()=>res.end('{"serverTimestamp":1}'),500);
+        res.on('close',()=>clearTimeout(timer));return;
+      }
+      if(mode==='body-slow'){
+        res.write('{"serverTimestamp":1,"padding":"');
+        const timer=setTimeout(()=>res.end('"}'),500);
+        res.on('close',()=>clearTimeout(timer));return;
+      }
+      if(mode==='stream'){
+        res.write('{"serverTimestamp":1,"padding":"');
+        const timer=setInterval(()=>res.write('x'.repeat(1024)),10);
+        res.on('close',()=>clearInterval(timer));return;
+      }
+      res.writeHead(404);res.end();return;
+    }
     if(req.url?.startsWith('/sdk')) {
       if(req.url==='/sdk-cors')res.setHeader('Access-Control-Allow-Origin','*');
       if(req.method==='OPTIONS'){res.setHeader('Access-Control-Allow-Headers','authorization,content-type');res.end();return;}

@@ -1,14 +1,4 @@
-import {decimal} from '../src/index.js';
-import {decodeCandidate, encodeCandidate} from './codec.js';
-import {boundedFetch} from './transport.js';
-export {boundedFetch};
-export function precisionProbe(): string {
-  const decoded = decodeCandidate('{"amount":1.00000000000000000001,"id":9007199254740993}');
-  if (!decimal('1.00').equals(decimal('1e0'))) throw new Error('Exact comparison failed');
-  return encodeCandidate(decoded);
-}
-
-import {ZenMoneyClient,transactions,decimal as exact,decodeJson,type Transaction} from 'zenmoney-typescript';
+import {ZenMoneyClient,ZenMoneyError,transactions,decimal as exact,decodeJson,type Transaction} from 'zenmoney-typescript';
 export async function sdkProbe(url:string):Promise<string> {
   const client=new ZenMoneyClient({token:'TEST_BEARER_NOT_A_SECRET',fetch:(_url,init)=>fetch(url,init)});
   try {
@@ -29,4 +19,28 @@ export async function sdkRejectedProbe(url:string):Promise<boolean> {
   try{await client.readDiff();return false;}
   catch(error){return typeof error==='object'&&error!==null&&'category' in error&&error.category==='transport'&&calls===1;}
   finally{client.close();}
+}
+
+export interface TransportProbeOptions {maxResponseBytes?:number;timeoutMs?:number;abortAfterMs?:number;closeAfterMs?:number}
+export async function sdkTransportProbe(url:string,options:TransportProbeOptions={}) {
+  let calls=0;
+  const client=new ZenMoneyClient({token:'TEST_BEARER_NOT_A_SECRET',
+    ...(options.maxResponseBytes===undefined?{}:{maxResponseBytes:options.maxResponseBytes}),
+    ...(options.timeoutMs===undefined?{}:{timeoutMs:options.timeoutMs}),
+    fetch:(_url,init)=>{calls++;return fetch(url,init);}});
+  const controller=new AbortController();
+  let timer:ReturnType<typeof setTimeout>|undefined;
+  try {
+    const pending=client.readDiff({signal:controller.signal});
+    if(options.abortAfterMs!==undefined)timer=setTimeout(()=>controller.abort(),options.abortAfterMs);
+    if(options.closeAfterMs!==undefined)timer=setTimeout(()=>client.close(),options.closeAfterMs);
+    const result=await pending;
+    return {ok:true,rawJson:result.rawJson,calls};
+  } catch(error) {
+    if(!(error instanceof ZenMoneyError))throw error;
+    return {ok:false,category:error.category,code:error.code,calls};
+  } finally {
+    if(timer!==undefined)clearTimeout(timer);
+    client.close();
+  }
 }
